@@ -34,7 +34,7 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2,
     }
-    console.log(line.adjective);
+    // console.log(line.adjective);
 
 
     this.props.addLineCallback(line);

@@ -13,6 +13,7 @@ class Game extends Component {
       // recentLine: 'I am a test!',
       recentLine: '',
       fullPoem: [],
+      display: false,
     }
   }
   addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
@@ -36,6 +37,24 @@ class Game extends Component {
     // console.log(this.state.recentLine);
     // console.log(this.state.fullPoem);
   }
+
+  renderFinalPoem = () => {
+    console.log(this.state.fullPoem);
+
+    if (this.state.display !== false){
+      return(
+        < FinalPoem poem={this.state.fullPoem} />
+      );
+    }
+  }
+
+  toggleRevealPoemButton = () => {
+    this.setState({
+      display: !this.state.display,
+    });
+    
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -66,7 +85,13 @@ class Game extends Component {
           addLineCallback={this.addLine}
         />
 
-        <FinalPoem />
+
+         {/* Renders the Final Poem component by calling the function */}
+          {this.renderFinalPoem()}
+
+        <div className="FinalPoem__reveal-btn-container">
+          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={this.toggleRevealPoemButton} />
+        </div>
 
       </div>
     );

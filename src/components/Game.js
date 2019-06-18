@@ -11,7 +11,8 @@ class Game extends Component {
     this.state = {
       currentPlayer: 1,
       poem: [],
-      updateTurnCallBack: this.updateTurn
+      updateTurnCallBack: this.updateTurn,
+      lastLine: "",
     };
   }
 
@@ -20,7 +21,9 @@ class Game extends Component {
     this.setState({ currentPlayer: updatedPlayer });
     this.state.poem.push(line)
     const newPoem = this.state.poem
+    console.log(newPoem)
     this.setState({poem: newPoem})
+    this.setState({lastLine: line})
   }
 
   render() {
@@ -45,11 +48,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission lastLine={this.state.poem[0]} />
+        <RecentSubmission lastLine={this.state.lastLine} />
 
         <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/>
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.poem}/>
 
       </div>
     );

@@ -27,13 +27,7 @@ class PlayerSubmissionForm extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    const newLine = [this.state.adj1,
-      this.state.noun1,
-      this.state.adv,
-      this.state.verb,
-      this.state.adj2,
-      this.state.noun2]
-      console.log(newLine)
+    const newLine = `${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} ${this.state.adj2} ${this.state.noun2}`
     this.props.updateTurnCallBack(newLine);
   
     this.setState({

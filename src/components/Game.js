@@ -12,6 +12,7 @@ class Game extends Component {
 
   render() {
 
+    // chains words together from form 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;

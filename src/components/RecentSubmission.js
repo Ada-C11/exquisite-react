@@ -9,5 +9,4 @@ const RecentSubmission = ({ recentSubmission }) => {
     </div>
   );
 };
-
 export default RecentSubmission;

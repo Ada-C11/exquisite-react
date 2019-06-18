@@ -2,32 +2,53 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-
   constructor(props) {
     super(props);
+    this.state = this.stateFields();
   }
 
-  render() {
+  stateFields = () => {
+    const formFields = {};
+    this.props.format.forEach(elem => {
+      formFields[elem] = '';
+    });
+    return formFields;
+  };
 
+  createForm = () => {
+    return this.props.format.map(field => {
+      if (field.placeholder) {
+        return (
+          <input
+            type="text"
+            placeholder={field.placeholder}
+            name={field.key}
+            onChange={this.handleInput}
+            value={this.state[field.key]}
+          />
+        );
+      } else {
+        return <span>{field}</span>;
+      }
+    });
+  };
+
+  render() {
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
-
+        <form className="PlayerSubmissionForm__form">
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
-
+            {this.createForm()}
           </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input
+              type="submit"
+              value="Submit Line"
+              className="PlayerSubmissionForm__submit-btn"
+            />
           </div>
         </form>
       </div>

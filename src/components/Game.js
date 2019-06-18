@@ -12,10 +12,18 @@ class Game extends Component {
     this.state = {
       poem: [],
     };
-
   }
 
   render() {
+    
+    const addPoemLine = (line) => {
+      console.log("inside addPoemLine");
+      console.log("Here's this:");
+      console.log(this);
+      const updatedState = { poem: this.state.poem };
+      updatedState.poem.push(line);
+      this.setState(updatedState);
+    };
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -39,7 +47,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm onSubmitCallback={console.log("hi")} numOfPlayers={this.state.poem.length} />
+        <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={this.state.poem.length} />
 
         <FinalPoem />
 

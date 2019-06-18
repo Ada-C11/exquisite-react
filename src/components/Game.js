@@ -11,7 +11,6 @@ class Game extends Component {
 
     this.state = {
       finalPoem: [],
-      // addPetCallback: this.addPet,
     };
   }
 
@@ -39,8 +38,6 @@ class Game extends Component {
       }
     }).join(" ");
 
-    console.log(this.state.finalPoem);
-
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -57,7 +54,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
         
-        <FinalPoem poem={this.finalPoem}/>
+        <FinalPoem poem={this.state.finalPoem}/>
 
       </div>
     );

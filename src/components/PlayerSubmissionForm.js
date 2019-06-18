@@ -11,27 +11,47 @@ class PlayerSubmissionForm extends Component {
 
     props.fields.forEach((field) => {
       if (field.key) {
-        initState[field.key] = ''
+        initState[field.key] = '';
       }
     })
 
-    this.state = initState
+    this.state = initState;
   }
 
   onInputChange = (event) => {
+    
     const updatedState = {};
 
     const field = event.target.name;
     const value = event.target.value;
-
     updatedState[field] = value;
     this.setState(updatedState);
   }
 
   makeSentence = () => {
-    const words = Object.values(this.state).slice(1);
-    const sentence = 'The ' + words.slice(0, 4).join(' ') + ' the' + words.slice(4,6).join(' ');
+    console.log(this.state.verb);
+    const sentence = this.props.fields.map((field) => {
+      if (this.state[field.key]) {
+        return this.state[field.key] 
+      }
+      else if (this.state[field.key] === '') {
+        return ''
+      }
+      else {
+        return field
+      }
+    }).join(' ');
     return sentence 
+  }
+
+  clearForm = () => {
+    const newState = this.state;
+    this.props.fields.forEach ((field) => {
+      if (field.key) {
+        newState[field.key] = ''
+      }
+    })
+    this.setState(newState)
   }
 
   incrementPlayer = () => {
@@ -44,7 +64,7 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
     this.incrementPlayer();
     this.props.addSentenceCallback(this.makeSentence())
-
+    this.clearForm()
   }
 
   render() {

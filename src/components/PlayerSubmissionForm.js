@@ -39,6 +39,12 @@ class PlayerSubmissionForm extends Component {
     this.props.addSubmissionCallback(poemLine.join(" "));
   
     this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
       player: this.increasePlayerCount(this.state.player),
     });
 }

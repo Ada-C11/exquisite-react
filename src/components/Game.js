@@ -10,17 +10,21 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      recentSub: '',
       finalPoem: [],
       // addPetCallback: this.addPet,
     };
+  }
+
+  recentSubmission = (poem) => {
+    const poemLength = poem.length - 1
+    const lastLine = poem[poemLength]
+    return lastLine
   }
 
   addSubmission = (line) => {
     const currentPoem = this.state.finalPoem;
     currentPoem.push(line);
     this.setState({
-      recentSub: line,
       finalPoem: currentPoem,
     })
   }
@@ -49,7 +53,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentLine={this.recentSub}/>
+        <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/>
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
         

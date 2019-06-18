@@ -18,23 +18,39 @@ class PlayerSubmissionForm extends Component {
         "noun-2": '',
       },
     };
+
+    this.createLine = this.createLine.bind(this);
+
   }
 
-
+  createLine = () => {
+    alert("in submitLine");
+    const poemLine = this.state.poemLine;
+    const line = `${poemLine["adjective-1"]} ${poemLine["noun-1"]} ${poemLine["adverb"]} ${poemLine["verb"]} ${poemLine["adjective-2"]} ${poemLine["noun-2"]}`;
+    return line;
+  };
+  
 
   render() {
 
-    const onSubmitCallback = () => {};
-    
+    const submitLine = (event) => {
+      event.preventDefault();
+      const line = this.createLine();
+      this.state.handleSubmit(line);
+    };
+
     const onInputChange = (event) => {
-      const updatedState = {};
-    
+      const updatedState = {
+        poemLine: {
+        }
+      };
+
       const field = event.target.name;
       const value = event.target.value;
-    
-      updatedState[field] = value;
+
+      updatedState.poemLine[field] = value;
       this.setState(updatedState);
-    } 
+    }
     // This function and it use above and below is courtesy of Ada Developers' Academy instructors, 
     // from: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/forms-advanced.md.
 
@@ -42,13 +58,15 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{this.state.currentPlayerNumber}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form"
+          onSubmit={submitLine}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <span>The</span>
             <input
               name="adjective-1"
               placeholder="adjective"
+              value={this.state.value}
               type="text"
               onChange={onInputChange} />
             <input

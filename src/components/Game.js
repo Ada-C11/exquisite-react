@@ -17,9 +17,16 @@ class Game extends Component {
     };
   }
 
+  formatFinalPoem = () => {
+    // let currentFinal = this.state.finalPoem;
+    // currentFinal.forEach ((line) => {
+    //   <p>{line}</p>
+    // })
+  }
+
   getRecentUserSubmission = (formInputSentence) => {
     let currentPoemCollection = this.state.finalPoem;
-    currentPoemCollection.push(this.state.recentPoem);
+    currentPoemCollection.push(formInputSentence);
 
     let nextPlayerNum = this.state.playerNum;
     nextPlayerNum += 1
@@ -61,17 +68,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentPoem={this.state.recentPoem}/>
+        <RecentSubmission recentPoem={this.state.recentPoem} />
 
         <PlayerSubmissionForm 
           onFormSubmitCallback={this.getRecentUserSubmission}
-          playerNumber={this.state.playerNum}/>
+          playerNumber={this.state.playerNum} />
 
         <FinalPoem 
           revealPoem={this.changePoemRevealState}
           poemRevealState={this.state.revealPoem}
-          getFinalPoem={this.state.finalPoem}
-          />
+          getFinalPoem={this.state.finalPoem} />
 
       </div>
     );

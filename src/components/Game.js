@@ -11,19 +11,25 @@ class Game extends Component {
 
     this.state = {
       poem: [],
+      numOfPlayers: 1,
     };
   }
 
   render() {
     
     const addPoemLine = (line) => {
-      console.log("inside addPoemLine");
-      console.log("Here's this:");
-      console.log(this);
-      const updatedState = { poem: this.state.poem };
+      const updatedState = { 
+        poem: this.state.poem,
+        numOfPlayers: this.state.numOfPlayers,
+       };
       updatedState.poem.push(line);
+      updatedState.numOfPlayers += 1;
       this.setState(updatedState);
     };
+
+    const updatedPlayerNumber = () => {
+      return this.state.numOfPlayers;
+    }
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -47,7 +53,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={this.state.poem.length} />
+        <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
 
         <FinalPoem />
 

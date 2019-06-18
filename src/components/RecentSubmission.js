@@ -5,7 +5,7 @@ const RecentSubmission = (props) => {
   const { verse } = props;
   return (
     <div className="RecentSubmission">
-      <h3>The Most Recent Submission</h3>
+      <h3 className={(verse) ? "" : "hidden"}>The Most Recent Submission</h3>
       <p className="RecentSubmission__submission">{verse}</p>
     </div>
   );

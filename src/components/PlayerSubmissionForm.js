@@ -5,71 +5,96 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: ''
+
+    }
+  }
+
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.props.onSubmitLineCallback({
+      adjective1: this.state.adjective1,
+      noun1: this.state.noun1,
+      adverb: this.state.adverb,
+      verb: this.state.verb,
+      adjective2: this.state.adjective2,
+      noun2: this.state.noun2
+    });
+
+    this.setState({
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: ''
+    });
   }
 
   render() {
 
-    const { adjective1, noun1, adverb, verb, adjective2, noun2} = this.state;
+    const { adjective1, noun1, adverb, verb, adjective2, noun2 } = this.state;
 
     return (
+
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{}</h3>
 
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-***********************
 
-        <div>
-          
-          <input
-            name='adjective1'
-            value={this.state.name}
-            onChange={this.onChangeHandler}
-          />
-        </div>
-
-        <div>
-          <label htmlFor='images'>Image Link:</label>
-          <input
-            name='images'
-            value={this.state.images}
-            onChange={this.onChangeHandler}
-          />
-        </div>
-
-        <div>
-          <label htmlFor='species'>Species:</label>
-          <input
-            name='species'
-            value={this.state.species}
-            onChange={this.onChangeHandler}
-          />
-        </div>
-
-        <div>
-          <label htmlFor='about'>About:</label>
-          <input
-            name='about'
-            value={this.state.about}
-            onChange={this.onChangeHandler}
-          />
-        </div>
-
-        <input className="btn btn-success new-pet-form--submit" type="submit" name="submit" value="Add a Pet" />
-      </form>
-
-
-
-*********************    
+            <p>The</p>
             <input
-              placeholder="hm..."
-              type="text" />
+              name='adjective1'
+              placeholder='adjective'
+              value={adjective1}
+              onChange={this.onChangeHandler}
+            />
 
-          </div>
+            <input
+              name='noun'
+              value={noun1}
+              onChange={this.onChangeHandler}
+            />
 
-          <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input
+              name='adverb'
+              value={adverb}
+              onChange={this.onChangeHandler}
+            />
+
+            <input
+              name='verb'
+              value={verb}
+              onChange={this.onChangeHandler}
+            />
+
+            <p>the</p>
+            <input
+              name='adjective'
+              value={adjective2}
+              onChange={this.onChangeHandler}
+            />
+
+            <input
+              name='noun'
+              value={noun2}
+              onChange={this.onChangeHandler}
+            />
+
+            <div className="PlayerSubmissionForm__submit">
+              <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            </div>
           </div>
         </form>
       </div>

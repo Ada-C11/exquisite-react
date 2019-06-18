@@ -1,39 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './FinalPoem.css';
 
-class FinalPoem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reveal:false,
-    }
-  }
+const FinalPoem = (props) => {
   
-
-  handleRevealClick = (event) => {
-      event.preventDefault();
-      this.setState({
-        reveal:true,
-      });
-  }
-  render(){
-    const fullPoem = this.props.sentences.map((sentence)=>{
-      return (<p key={this.props.sentences.indexOf(sentence)}>{sentence}</p>);
+    const fullPoem = props.sentences.map((sentence)=>{
+      return (<p key={props.sentences.indexOf(sentence)}>{sentence}</p>);
     });
+
     return (
       <div className="FinalPoem">
         <section className="FinalPoem__poem">
           <h3>Final Poem</h3>
-            {this.state.reveal? fullPoem : ""}
+            {props.gameCompleted ? fullPoem : ""}
         </section>
         <div className="FinalPoem__reveal-btn-container">
           <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn"
-          onClick={this.handleRevealClick} />
+          onClick={props.handleRevealClick} />
         </div>
         
       </div>
     );
-  }
 }
   
   

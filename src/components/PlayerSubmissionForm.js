@@ -61,6 +61,7 @@ class PlayerSubmissionForm extends Component {
               name="adj1"
               value={this.state.adj1}
               onChange={this.onInputChange}
+              className={this.state.adj1 ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
 
             <input
@@ -69,6 +70,7 @@ class PlayerSubmissionForm extends Component {
               name="noun1"
               value={this.state.noun1}
               onChange={this.onInputChange}
+              className={this.state.noun1 ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
 
             <input
@@ -77,6 +79,7 @@ class PlayerSubmissionForm extends Component {
               name="adverb"
               value={this.state.adverb}
               onChange={this.onInputChange}
+              className={this.state.adverb ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
 
             <input
@@ -85,6 +88,7 @@ class PlayerSubmissionForm extends Component {
               name="verb"
               value={this.state.verb}
               onChange={this.onInputChange}
+              className={this.state.verb ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
 
             <span> the </span>
@@ -95,6 +99,7 @@ class PlayerSubmissionForm extends Component {
               name="adj2"
               value={this.state.adj2}
               onChange={this.onInputChange}
+              className={this.state.adj2 ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
 
             <input
@@ -103,6 +108,7 @@ class PlayerSubmissionForm extends Component {
               name="noun2"
               value={this.state.noun2}
               onChange={this.onInputChange}
+              className={this.state.noun2 ? "" : "PlayerSubmissionFormt__input--invalid"}
             />
             
             <span>.</span>

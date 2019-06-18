@@ -22,8 +22,14 @@ class Game extends Component {
       poem: [...this.state.poem, sentence],
       player: this.state.player + 1,
     });
-    console.log(this.state.recentSubmission);
   }
+
+  handleRevealClick = (event) => {
+    event.preventDefault();
+    this.setState({
+      gameCompleted: true,
+    });
+}
 
   render() {
 
@@ -52,9 +58,11 @@ class Game extends Component {
 
         <PlayerSubmissionForm addRecentSubmissionCallback = {this.addRecentSubmission}
         player={this.state.player}
+        gameCompleted = {this.state.gameCompleted}
         />
 
-        <FinalPoem sentences={this.state.poem}/>
+        <FinalPoem sentences={this.state.poem}
+        handleRevealClick ={this.handleRevealClick}gameCompleted = {this.state.gameCompleted}/>
 
       </div>
     );

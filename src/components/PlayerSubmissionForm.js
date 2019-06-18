@@ -61,7 +61,7 @@ class PlayerSubmissionForm extends Component {
             {
               // Put your form inputs here... We've put in one below as an example
             }
-            <h4> The </h4>
+            <p> The </p>
             
             <input
               placeholder="adjective"

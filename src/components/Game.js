@@ -18,18 +18,23 @@ class Game extends Component {
   addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
     // console.log(' I am addLine!');
     let currentLine = this.state.recentLine;
-    
-    let newLine = `${adjective} ${noun} ${adverb} ${verb} ${adjective2} ${noun2}`;
+
+    let newLine = `The ${adjective} ${noun} ${adverb} ${verb} the ${adjective2} ${noun2}`;
 
     // console.log(newLine);
 
     currentLine = newLine;
+    this.state.fullPoem.push(currentLine);
 
     // console.log(currentLine);
 
     this.setState({
       recentLine: currentLine,
+      fullPoem: this.state.fullPoem,
     });
+
+    // console.log(this.state.recentLine);
+    // console.log(this.state.fullPoem);
   }
   render() {
 

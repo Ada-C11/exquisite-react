@@ -8,9 +8,22 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      lines: []
+    };
+  }
+
+  addLine = (line) => {
+    const lines = this.state.lines;
+    lines.push(line);
+    // console.log(line);
+    this.setState({
+      lines,
+    });
   }
 
   render() {
+    console.log(this.state);
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -34,7 +47,8 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          addLineCallback={this.addLine}/>
 
         <FinalPoem />
 

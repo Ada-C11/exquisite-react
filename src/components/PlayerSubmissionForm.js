@@ -41,85 +41,89 @@ class PlayerSubmissionForm extends Component {
     });
   }
   render() {
-
-    return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.props.player}</h3>
-
-        <form className="PlayerSubmissionForm__form" 
-        onSubmit={this.handleSubmitForm}>
-
-          <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <span>The </span>
-            <input
-              placeholder="adjective"
-              type="text" 
-              name="adj1"
-              value={this.state.adj1}
-              onChange={this.onInputChange}
-              className={this.state.adj1 ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-
-            <input
-              placeholder="noun"
-              type="text" 
-              name="noun1"
-              value={this.state.noun1}
-              onChange={this.onInputChange}
-              className={this.state.noun1 ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-
-            <input
-              placeholder="adverb"
-              type="text" 
-              name="adverb"
-              value={this.state.adverb}
-              onChange={this.onInputChange}
-              className={this.state.adverb ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-
-            <input
-              placeholder="verb"
-              type="text" 
-              name="verb"
-              value={this.state.verb}
-              onChange={this.onInputChange}
-              className={this.state.verb ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-
-            <span> the </span>
-
-            <input
-              placeholder="adjective"
-              type="text" 
-              name="adj2"
-              value={this.state.adj2}
-              onChange={this.onInputChange}
-              className={this.state.adj2 ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-
-            <input
-              placeholder="noun"
-              type="text" 
-              name="noun2"
-              value={this.state.noun2}
-              onChange={this.onInputChange}
-              className={this.state.noun2 ? "" : "PlayerSubmissionFormt__input--invalid"}
-            />
-            
-            <span>.</span>
-          </div>
-
-          <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-          </div>
-        </form>
-      </div>
-    );
+    if (!this.props.gameCompleted) {
+      return (
+        <div className="PlayerSubmissionForm">
+          <h3>Player Submission Form for Player #{this.props.player}</h3>
+  
+          <form className="PlayerSubmissionForm__form" 
+          onSubmit={this.handleSubmitForm}>
+  
+            <div className="PlayerSubmissionForm__poem-inputs">
+  
+              {
+                // Put your form inputs here... We've put in one below as an example
+              }
+              <span>The </span>
+              <input
+                placeholder="adjective"
+                type="text" 
+                name="adj1"
+                value={this.state.adj1}
+                onChange={this.onInputChange}
+                className={this.state.adj1 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+  
+              <input
+                placeholder="noun"
+                type="text" 
+                name="noun1"
+                value={this.state.noun1}
+                onChange={this.onInputChange}
+                className={this.state.noun1 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+  
+              <input
+                placeholder="adverb"
+                type="text" 
+                name="adverb"
+                value={this.state.adverb}
+                onChange={this.onInputChange}
+                className={this.state.adverb ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+  
+              <input
+                placeholder="verb"
+                type="text" 
+                name="verb"
+                value={this.state.verb}
+                onChange={this.onInputChange}
+                className={this.state.verb ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+  
+              <span> the </span>
+  
+              <input
+                placeholder="adjective"
+                type="text" 
+                name="adj2"
+                value={this.state.adj2}
+                onChange={this.onInputChange}
+                className={this.state.adj2 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+  
+              <input
+                placeholder="noun"
+                type="text" 
+                name="noun2"
+                value={this.state.noun2}
+                onChange={this.onInputChange}
+                className={this.state.noun2 ? "" : "PlayerSubmissionFormt__input--invalid"}
+              />
+              
+              <span>.</span>
+            </div>
+  
+            <div className="PlayerSubmissionForm__submit">
+              <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return null;
+    }
+    
   }
 }
 

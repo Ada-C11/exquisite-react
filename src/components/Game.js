@@ -12,6 +12,7 @@ class Game extends Component {
       recentSubmission: "",
       poem: [],
       player:1,
+      gameCompleted:false,
     }
   }
 

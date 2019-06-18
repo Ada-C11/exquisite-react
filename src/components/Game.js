@@ -3,6 +3,7 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
+import { throwStatement } from '@babel/types';
 
 class Game extends Component {
 
@@ -11,8 +12,9 @@ class Game extends Component {
 
     this.state = {
       recentSubmission: '',
-      finalPoem: '',
-      player: 1
+      finalPoem: [],
+      player: 1,
+      showFinal: false,
     };
   };
 
@@ -27,6 +29,12 @@ class Game extends Component {
       recentSubmission: recent,
       finalPoem: final,
       player: number
+    });
+  }
+
+  showFinalPoem = () => {
+    this.setState({
+      showFinal: true,
     });
   }
 
@@ -56,7 +64,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm newSubmissionCallback={this.addSubmission} playerNumber={this.state.player}/>
 
-        <FinalPoem />
+        <FinalPoem final={this.state.finalPoem} show={this.state.showFinal} showFinalCallback={this.showFinalPoem}/>
 
       </div>
     );

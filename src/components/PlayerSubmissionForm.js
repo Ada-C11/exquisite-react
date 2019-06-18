@@ -6,34 +6,40 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
-      // addPetCallback: this.addPet,
-    };
+    const allPoemFields = {};
+    props.fields.forEach((field) => {
+      if (field.key) {
+        allPoemFields[ field.key ] = '';
+      }
+    });
+    this.state = {...allPoemFields, player: 1, addSubmissionCallback: this.addSubmission};
+  }
+
+  onChangeHandler = (value, id) => {
+    this.setState({
+      [id]: value,
+    })
+  }
+
+  increasePlayerCount = (value) => {
+    value += 1;
+    return value;
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addSubmissionCallback({
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2,
+    const poemLine = this.props.fields.map((field) => {
+      if (field.key) {
+        return this.state[field.key];
+      } else {
+        return field;
+      }
     });
+
+    this.props.addSubmissionCallback(poemLine.join(" "));
+  
     this.setState({
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
+      player: this.increasePlayerCount(this.state.player),
     });
 }
 
@@ -45,20 +51,22 @@ class PlayerSubmissionForm extends Component {
           key={ i }
           placeholder={ field.placeholder }
           value={ this.state[field.key] }
+          onChange={ (event) => { this.onChangeHandler(event.target.value, field.key) } }
           type="text"
           className="PlayerSubmissionForm__input"
+          // className={this.isValidInput(this.state[field.name]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
         />;
       } else {
         return field;
       }
     })
 
-
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.state.player }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
+        {/* {validForm ? this.handleSubmit : console.log('please enter all form data')}> */}
 
           <div className="PlayerSubmissionForm__poem-inputs">
 

@@ -31,6 +31,7 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
     const newPlayerNumber = this.state.playerNumber + 1
     const verse = `The ${this.state.first} ${this.state.second} ${this.state.third} ${this.state.fourth} the ${this.state.fifth} ${this.state.sixth}.`
+    console.log(verse)
     this.setState({
       playerNumber: newPlayerNumber,
       first: "",
@@ -40,7 +41,7 @@ class PlayerSubmissionForm extends Component {
       fifth: "",
       sixth: ""
     });
-
+    this.props.addNewVerseCallback(verse);
 
   }
   render() {
@@ -53,14 +54,14 @@ class PlayerSubmissionForm extends Component {
           onSubmit={this.onFormSubmit}
         >
 
-          <div className="PlayerSubmissionForm__poem-inputs" onChange={this.onInputChange}>
+          <div className="PlayerSubmissionForm__poem-inputs" >
 
-            <input name="first" value={this.state.first} placeholder="adjective" type="text" />
-            <input name="second" value={this.state.second} placeholder="noun" type="text" />
-            <input name="third" value={this.state.third} placeholder="adverb" type="text" />
-            <input name="fourth" value={this.state.fourth} placeholder="verb" type="text" />
-            <input name="fifth" value={this.state.fifth} placeholder="adjective" type="text" />
-            <input name="sixth" value={this.state.sixth} placeholder="noun" type="text" />
+            <input name="first" value={this.state.first} placeholder="adjective" type="text" onChange={this.onInputChange} />
+            <input name="second" value={this.state.second} placeholder="noun" type="text" onChange={this.onInputChange} />
+            <input name="third" value={this.state.third} placeholder="adverb" type="text" onChange={this.onInputChange} />
+            <input name="fourth" value={this.state.fourth} placeholder="verb" type="text" onChange={this.onInputChange} />
+            <input name="fifth" value={this.state.fifth} placeholder="adjective" type="text" onChange={this.onInputChange} />
+            <input name="sixth" value={this.state.sixth} placeholder="noun" type="text" onChange={this.onInputChange} />
 
             <input
               placeholder="hm..."

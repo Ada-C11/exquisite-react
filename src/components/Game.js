@@ -16,6 +16,16 @@ class Game extends Component {
     }
   }
 
+
+  addNewVerse = (verse) => {
+    this.setState({
+      recentSubmission: verse,
+      finalPoem: [...this.state.finalPoem, verse]
+    });
+    console.log(verse)
+    console.log("inside addNewVerse")
+    console.log(this.state)
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -25,6 +35,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
 
 
 
@@ -42,7 +53,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addNewVerseCallback={this.addNewVerse} />
 
         <FinalPoem />
 

@@ -1,11 +1,53 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: '', 
+    }
   }
+
+  resetState = () => {
+    this.setState({
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: '', 
+    })
+  }
+
+  onFormChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    
+    const updatedState = {};
+    updatedState[field] = value;
+    this.setState(updatedState);
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state
+
+    console.log(event)
+    const verse = this.state
+    this.props.formCallback(verse)
+    this.resetState()
+  }
+
+
 
   render() {
 
@@ -13,16 +55,27 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
+            <div>
+              <input name='adjective1' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective1}/>
+            </div>
+            <div>
+              <input name='noun1' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun1}/>
+            </div>
+            <div>
+              <input name='adverb' type="text" placeholder='adverb' onChange={this.onFormChange} value={this.state.adverb}/>
+            </div>
+            <div>
+              <input name='verb' type="text" placeholder='verb' onChange={this.onFormChange} value={this.state.verb}/>
+            </div>
+            <div>
+              <input name='adjective2' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective2}/>
+            </div>
+            <div>
+              <input name='noun2' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun2}/>
+            </div>
 
           </div>
 
@@ -33,6 +86,10 @@ class PlayerSubmissionForm extends Component {
       </div>
     );
   }
+}
+
+PlayerSubmissionForm.propTypes = {
+  formCallback: PropTypes.func.isRequired,
 }
 
 export default PlayerSubmissionForm;

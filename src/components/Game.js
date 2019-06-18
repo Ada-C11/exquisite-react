@@ -8,10 +8,25 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poem: [],
+    }
+  }
+
+  addLine = (line) => {
+    const newPoem = this.state.poem;
+
+    newPoem.push(line);
+
+    this.setState({
+      poem: newPoem,
+    })
+
+    console.log(this.state.poem)
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -34,7 +49,9 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          fields = {FIELDS}
+          addLineCallback = {this.addLine} />
 
         <FinalPoem />
 

@@ -5,15 +5,31 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    const newFields = this.newFieldsState(this.props.fields);
     this.state = {
+      fields: this.props.fields,
       playerNumber: 1,
-      first: "",
-      second: "",
-      third: "",
-      fourth: "",
-      fifth: "",
-      sixth: ""
+      ...newFields
+      // first: "",
+      // second: "",
+      // third: "",
+      // fourth: "",
+      // fifth: "",
+      // sixth: ""
     }
+    // this.setFieldsState(this.props.fields);
+
+  }
+
+  newFieldsState = (fields) => {
+    const newState = {};
+    fields.forEach((field) => {
+      if (typeof (field) == 'object') {
+        newState[field.key] = "";
+      }
+    });
+    return (newState)
+
   }
 
   validateInput = (input) => {
@@ -21,6 +37,9 @@ class PlayerSubmissionForm extends Component {
     return (valid)
   }
   onInputChange = (event) => {
+    // console.log(event.target.value)
+    // console.log(event.target.name)
+    console.log(this.state[event.target.name])
     const updatedState = {};
     const field = event.target.name;
     const value = event.target.value;
@@ -31,20 +50,55 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     const newPlayerNumber = this.state.playerNumber + 1
-    const verse = `The ${this.state.first} ${this.state.second} ${this.state.third} ${this.state.fourth} the ${this.state.fifth} ${this.state.sixth}.`
+    const newState = this.newFieldsState(this.state.fields)
+    let verse = "";
+    this.state.fields.forEach((field) => {
+      if (typeof (field) == 'string') {
+        verse += field + ' ';
+      } else {
+        verse += this.state[field.key] + ' ';
+      }
+    })
+    // const verse = `The ${this.state.first} ${this.state.second} ${this.state.third} ${this.state.fourth} the ${this.state.fifth} ${this.state.sixth}.`
     this.setState({
       playerNumber: newPlayerNumber,
-      first: "",
-      second: "",
-      third: "",
-      fourth: "",
-      fifth: "",
-      sixth: ""
+      ...newState
+      // first: "",
+      // second: "",
+      // third: "",
+      // fourth: "",
+      // fifth: "",
+      // sixth: ""
     });
     this.props.addNewVerseCallback(verse);
-
   }
+  generateForm = () => {
+    return this.state.fields.map((field, i) => {
+      if (typeof (field) == "string") {
+        // console.log(field);
+        return (<span key={i}>{field}</span>)
+      } else {
+        console.log("in generateForm")
+        console.log(field.key)
+        return (
+          <input
+            key={i}
+            className={this.validateInput(this.state[field.key])}
+            name={field.key}
+            value={this.state[field.key]}
+            placeholder={field.placeholder}
+            type="text"
+            onChange={this.onInputChange} />
+        )
+      }
+    });
+  }
+
+
   render() {
+    // console.log(this.state.fields);
+    const formInputs = this.generateForm();
+    console.log(formInputs)
     return (
       <div className={((this.props.gameComplete) ? "hidden" : "") + " PlayerSubmissionForm"}>
         <h3>Player Submission Form for Player #{this.state.playerNumber}</h3>
@@ -54,51 +108,7 @@ class PlayerSubmissionForm extends Component {
         >
 
           <div className="PlayerSubmissionForm__poem-inputs" >
-            {"The "}
-            <input
-              className={this.validateInput(this.state.first)}
-              name="first"
-              value={this.state.first}
-              placeholder="adjective"
-              type="text"
-              onChange={this.onInputChange} />
-            <input
-              className={this.validateInput(this.state.second)}
-              name="second"
-              value={this.state.second}
-              placeholder="noun"
-              type="text"
-              onChange={this.onInputChange} />
-            <input
-              className={this.validateInput(this.state.third)}
-              name="third"
-              value={this.state.third}
-              placeholder="adverb"
-              type="text"
-              onChange={this.onInputChange} />
-            <input
-              className={this.validateInput(this.state.fourth)}
-              name="fourth"
-              value={this.state.fourth}
-              placeholder="verb"
-              type="text"
-              onChange={this.onInputChange} />
-            {"the "}
-            <input
-              className={this.validateInput(this.state.fifth)}
-              name="fifth"
-              value={this.state.fifth}
-              placeholder="adjective"
-              type="text"
-              onChange={this.onInputChange} />
-            <input
-              className={this.validateInput(this.state.sixth)}
-              name="sixth"
-              value={this.state.sixth}
-              placeholder="noun"
-              type="text"
-              onChange={this.onInputChange} />
-            {"."}
+            {formInputs}
 
           </div>
 

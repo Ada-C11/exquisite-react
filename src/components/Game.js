@@ -13,6 +13,7 @@ class Game extends Component {
       recentSubmission: "",
       finalPoem: [],
       complete: false,
+      fields: FIELDS
     }
   }
 
@@ -57,7 +58,7 @@ class Game extends Component {
 
         <RecentSubmission gameComplete={this.state.complete} verse={this.state.recentSubmission} />
 
-        <PlayerSubmissionForm gameComplete={this.state.complete} addNewVerseCallback={this.addNewVerse} />
+        <PlayerSubmissionForm gameComplete={this.state.complete} addNewVerseCallback={this.addNewVerse} fields={FIELDS} />
 
         <FinalPoem gameComplete={this.state.complete} verses={this.state.finalPoem} finalizePoemCallback={this.finalizePoem} />
 

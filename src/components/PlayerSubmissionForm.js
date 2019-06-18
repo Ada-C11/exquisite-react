@@ -19,22 +19,41 @@ class PlayerSubmissionForm extends Component {
   onChangeHandler = (event) => {
     const field = {}
     field[event.target.name] = event.target.value;
-
     this.setState(field);
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.props.addLineCallback({
+      adj1: this.state.adj1,
+      noun1: this.state.noun1,
+      adv: this.state.adv,
+      verb: this.state.verb,
+      adj2: this.state.adj2,
+      noun2: this.state.noun2,
+    });
+
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.player + 1 }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-              <div>
-              <label htmlFor="adj1"></label>
+              <label htmlFor="adj1">The</label>
               <input
                 name="adj1"
                 placeholder="adjective"
@@ -42,8 +61,6 @@ class PlayerSubmissionForm extends Component {
                 value={this.state.adj1}
                 required
               />
-            </div>
-            <div>
               <label htmlFor="noun"></label>
               <input
                 name="noun1"
@@ -52,8 +69,6 @@ class PlayerSubmissionForm extends Component {
                 onChange={this.onChangeHandler}
                 required
               />
-            </div>
-            <div>
               <label htmlFor="adv"></label>
               <input
                 name="adv"
@@ -62,8 +77,7 @@ class PlayerSubmissionForm extends Component {
                 onChange={this.onChangeHandler}
                 required
               />
-            </div>
-            <div>
+
               <label htmlFor="verb"></label>
               <input
                 name="verb"
@@ -71,10 +85,8 @@ class PlayerSubmissionForm extends Component {
                 value={this.state.verb}
                 onChange={this.onChangeHandler}
                 required
-              />
-            </div>
-            <div>
-              <label htmlFor="adj2"></label>
+              />    
+              <label htmlFor="adj2">the</label>
               <input
                 name="adj2"
                 placeholder="adjective"
@@ -82,8 +94,6 @@ class PlayerSubmissionForm extends Component {
                 onChange={this.onChangeHandler}
                 required
               />
-            </div>
-            <div>
               <label htmlFor="noun2"></label>
               <input
                 name="noun2"
@@ -92,12 +102,7 @@ class PlayerSubmissionForm extends Component {
                 onChange={this.onChangeHandler}
                 required
               />
-            </div>
-            <input
-              type="submit"
-              value="Add Poem"
-            />
-
+              <label>.</label>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -3,6 +3,8 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
+  const condition = props.submissions.length > 0
+
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
@@ -12,6 +14,11 @@ const FinalPoem = (props) => {
 
       <div className="FinalPoem__reveal-btn-container">
         <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+        { 
+          condition && (
+            <section>{props.submissions}</section>
+          )
+        }
       </div>
     </div>
   );

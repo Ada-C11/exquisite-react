@@ -10,11 +10,27 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      recentLine: 'I am a test!',
+      // recentLine: 'I am a test!',
+      recentLine: '',
       fullPoem: [],
     }
   }
+  addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
+    // console.log(' I am addLine!');
+    let currentLine = this.state.recentLine;
+    
+    let newLine = `${adjective} ${noun} ${adverb} ${verb} ${adjective2} ${noun2}`;
 
+    // console.log(newLine);
+
+    currentLine = newLine;
+
+    // console.log(currentLine);
+
+    this.setState({
+      recentLine: currentLine,
+    });
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -37,9 +53,13 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission mostRecentLine={this.state.recentLine}/>
+        <RecentSubmission 
+          mostRecentLine={this.state.recentLine}
+        />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          addLineCallback={this.addLine}
+        />
 
         <FinalPoem />
 

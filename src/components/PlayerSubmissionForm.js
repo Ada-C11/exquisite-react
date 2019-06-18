@@ -34,6 +34,8 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2,
     }
+    console.log(line.adjective);
+
 
     this.props.addLineCallback(line);
 
@@ -52,7 +54,7 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
 

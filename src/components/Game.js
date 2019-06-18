@@ -8,7 +8,22 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      mostRecentLine: '',
+      finalPoem: [],
+    }
   }
+
+
+  onPlayerSubmissionForm = (submission) => {
+    console.log('submission pressed')
+    console.log(submission)
+    this.setState({
+      mostRecentLine: `The ${submission.adjective1} ${submission.noun1} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}`
+    })
+  }
+
 
   render() {
 
@@ -32,9 +47,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission submission={this.state.mostRecentLine}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm onPlayerSubmissionFormCallback={this.onPlayerSubmissionForm}/>
 
         <FinalPoem />
 

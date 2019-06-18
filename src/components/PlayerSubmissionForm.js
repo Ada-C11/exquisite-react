@@ -9,6 +9,8 @@ class PlayerSubmissionForm extends Component {
 
   render() {
 
+    const { adjective1, noun1, adverb, verb, adjective2, noun2} = this.state;
+
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
@@ -16,10 +18,50 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
+***********************
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
+        <div>
+          
+          <input
+            name='adjective1'
+            value={this.state.name}
+            onChange={this.onChangeHandler}
+          />
+        </div>
+
+        <div>
+          <label htmlFor='images'>Image Link:</label>
+          <input
+            name='images'
+            value={this.state.images}
+            onChange={this.onChangeHandler}
+          />
+        </div>
+
+        <div>
+          <label htmlFor='species'>Species:</label>
+          <input
+            name='species'
+            value={this.state.species}
+            onChange={this.onChangeHandler}
+          />
+        </div>
+
+        <div>
+          <label htmlFor='about'>About:</label>
+          <input
+            name='about'
+            value={this.state.about}
+            onChange={this.onChangeHandler}
+          />
+        </div>
+
+        <input className="btn btn-success new-pet-form--submit" type="submit" name="submit" value="Add a Pet" />
+      </form>
+
+
+
+*********************    
             <input
               placeholder="hm..."
               type="text" />

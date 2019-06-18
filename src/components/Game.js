@@ -6,11 +6,19 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentLine: 'test',
+      poem: [],
+
+    }
   }
 
   render() {
+    const {recentLine, poem} = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -29,14 +37,16 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+        line={recentLine}/>
 
         <PlayerSubmissionForm />
 
-        <FinalPoem />
+        <FinalPoem 
+        finalPoem={poem}/>
 
       </div>
     );

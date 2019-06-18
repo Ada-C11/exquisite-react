@@ -8,6 +8,19 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      recentSubmission: "",
+      poem: [],
+    }
+  }
+
+  addRecentSubmission = (sentence) =>{
+    
+    this.setState({
+      recentSubmission: sentence,
+      poem: [...this.state.poem, sentence],
+    });
+    console.log(this.state.recentSubmission);
   }
 
   render() {
@@ -32,11 +45,13 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+        sentence = {this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addRecentSubmissionCallback = {this.addRecentSubmission}
+        />
 
-        <FinalPoem />
+        <FinalPoem sentences={this.state.poem}/>
 
       </div>
     );

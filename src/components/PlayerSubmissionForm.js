@@ -10,13 +10,22 @@ class PlayerSubmissionForm extends Component {
   stateFields = () => {
     const formFields = {};
     this.props.format.forEach(elem => {
-      formFields[elem] = '';
+      if (elem.key) {
+        formFields[elem.key] = '';
+      }
     });
     return formFields;
   };
 
+  handleInput = event => {
+    const formField = {};
+    formField[event.target.name] = event.target.value;
+    this.setState(formField);
+  };
+
   createForm = () => {
-    return this.props.format.map(field => {
+    console.log(this.state);
+    return this.props.format.map((field, i) => {
       if (field.placeholder) {
         return (
           <input
@@ -25,10 +34,11 @@ class PlayerSubmissionForm extends Component {
             name={field.key}
             onChange={this.handleInput}
             value={this.state[field.key]}
+            key={i}
           />
         );
       } else {
-        return <span>{field}</span>;
+        return <span key={i}>{field}</span>;
       }
     });
   };

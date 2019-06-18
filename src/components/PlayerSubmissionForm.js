@@ -5,11 +5,45 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: ''
+    }
+  }
+
+  onInputChange = (event) => {
+    const updatedState = {};
+  
+    const field = event.target.name;
+    const value = event.target.value;
+  
+    updatedState[field] = value;
+    this.setState(updatedState);
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.updateTurnCallBack()
+    const newLine = [this.state.adj1,
+      this.state.noun1,
+      this.state.adv,
+      this.state.verb,
+      this.state.adj2,
+      this.state.noun2]
+      console.log(newLine)
+    this.props.updateTurnCallBack(newLine);
+  
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: ''
+    });
   }
 
   render() {
@@ -28,23 +62,41 @@ class PlayerSubmissionForm extends Component {
             The
             <input
               placeholder="adjective"
-              type="text" />
+              name="adj1"
+              type="text"
+              value={this.state.adj1} 
+              onChange={this.onInputChange}/>
             <input
               placeholder="noun"
-              type="text" />
+              name="noun1"
+              type="text"
+              value={this.state.noun1}
+              onChange={this.onInputChange} />
             <input
               placeholder="adverb"
-              type="text" />
+              name="adv"
+              type="text" 
+              value={this.state.adv}
+              onChange={this.onInputChange}/>
             <input
               placeholder="verb"
-              type="text" />
+              name="verb"
+              type="text"
+              value={this.state.verb}
+              onChange={this.onInputChange}/>
             the
             <input
               placeholder="adjective"
-              type="text" />
+              name="adj2"
+              type="text"
+              value={this.state.adj2}
+              onChange={this.onInputChange} />
             <input
               placeholder="noun"
-              type="text" />
+              name="noun2"
+              type="text"
+              value={this.state.noun2}
+              onChange={this.onInputChange} />
           </div>
 
           <div className="PlayerSubmissionForm__submit">

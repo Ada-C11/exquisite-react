@@ -15,9 +15,12 @@ class Game extends Component {
     };
   }
 
-  updateTurn = () => {
+  updateTurn = (line) => {
     let updatedPlayer = this.state.currentPlayer + 1
     this.setState({ currentPlayer: updatedPlayer });
+    this.state.poem.push(line)
+    const newPoem = this.state.poem
+    this.setState({poem: newPoem})
   }
 
   render() {

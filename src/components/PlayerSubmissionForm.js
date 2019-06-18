@@ -45,9 +45,10 @@ class PlayerSubmissionForm extends Component {
 
   }
   render() {
-
+    console.log("Player Submission FOrm")
+    console.log(this.state.gameComplete)
     return (
-      <div className="PlayerSubmissionForm">
+      <div className={((this.props.gameComplete) ? "hidden" : "") + " PlayerSubmissionForm"}>
         <h3>Player Submission Form for Player #{this.state.playerNumber}</h3>
         <form
           className="PlayerSubmissionForm__form"

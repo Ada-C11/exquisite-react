@@ -9,19 +9,23 @@ const generateVerseElements = (poemVerses) => {
     )
   })
 }
+
+
 const FinalPoem = (props) => {
-  const { verses } = props;
+  const { verses, finalizePoemCallback, gameComplete } = props;
+  console.log(finalizePoemCallback)
   const verseElements = generateVerseElements(verses);
+  console.log(gameComplete)
   return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
+      <section className={((gameComplete) ? "" : "hidden") + " FinalPoem__poem"}>
         <h3>Final Poem</h3>
         <div>{verseElements}</div>
 
       </section>
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+      <div className={((gameComplete) ? "hidden" : "") + " FinalPoem__reveal-btn-container"}>
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={finalizePoemCallback} />
       </div>
     </div>
   );

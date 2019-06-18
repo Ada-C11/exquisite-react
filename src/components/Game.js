@@ -26,6 +26,13 @@ class Game extends Component {
     console.log("inside addNewVerse")
     console.log(this.state)
   }
+
+  finalizePoem = () => {
+    console.log("inside finalize peom callback")
+    this.setState({
+      complete: true
+    })
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -51,11 +58,11 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission verse={this.state.recentSubmission} />
+        <RecentSubmission gameComplete={this.state.complete} verse={this.state.recentSubmission} />
 
-        <PlayerSubmissionForm addNewVerseCallback={this.addNewVerse} />
+        <PlayerSubmissionForm gameComplete={this.state.complete} addNewVerseCallback={this.addNewVerse} />
 
-        <FinalPoem verses={this.state.finalPoem} />
+        <FinalPoem gameComplete={this.state.complete} verses={this.state.finalPoem} finalizePoemCallback={this.finalizePoem} />
 
       </div>
     );

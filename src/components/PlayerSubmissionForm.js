@@ -27,7 +27,7 @@ class PlayerSubmissionForm extends Component {
       }
       fullLine += ' '
     })
-    this.props.addLineCallback(fullLine.substring(0, fullLine.length-3) + '.');
+    this.props.addLineCallback(fullLine.substring(0, fullLine.length-1));
     this.setState({
       adj1: '',
       noun1: '',
@@ -76,7 +76,7 @@ class PlayerSubmissionForm extends Component {
 
   render() {
     return (
-      <div className="PlayerSubmissionForm">
+      <div className={`PlayerSubmissionForm ${this.props.gameOver ? 'hidden' : 'visible'}`}>
         <h3>Player Submission Form for Player #{ this.props.currentPlayer }</h3>
 
         <form className="PlayerSubmissionForm__form" >

@@ -18,7 +18,6 @@ class FinalPoem extends Component {
         </p>
       )
     });
-    console.log(wholePoem)
 
     return (
       <section className={`FinalPoem__poem ${this.state.finished ? 'visible' : 'hidden'}`}>
@@ -31,6 +30,8 @@ class FinalPoem extends Component {
     this.setState ({
       finished: true,
     })
+
+    this.props.gameOverCallback();
   }
 
   render() {

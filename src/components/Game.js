@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       poem: [],
+      gameOver: false,
     }
   }
 
@@ -24,6 +25,13 @@ class Game extends Component {
     })
 
     console.log(this.state.poem)
+  }
+
+  onGameOver = () => {
+    this.setState ({
+      gameOver: true,
+    });
+    console.log(this.state.gameOver)
   }
 
   render() {
@@ -52,10 +60,12 @@ class Game extends Component {
         <PlayerSubmissionForm
           fields = {FIELDS}
           addLineCallback = {this.addLine}
-          currentPlayer = {this.state.poem.length + 1} />
+          currentPlayer = {this.state.poem.length + 1}
+          gameOver = {this.state.gameOver} />
 
         <FinalPoem 
-          poem = {this.state.poem} />
+          poem = {this.state.poem}
+          gameOverCallback = {this.onGameOver} />
 
       </div>
     );

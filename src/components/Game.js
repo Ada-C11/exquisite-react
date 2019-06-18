@@ -74,6 +74,8 @@ class Game extends Component {
 
         <FinalPoem
           finishPoemCallback={this.finishPoem}
+          sentences = {this.state.sentences}
+          revealed = {this.state.revealed}
         />
         
 

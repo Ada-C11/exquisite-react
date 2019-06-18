@@ -11,6 +11,7 @@ class Game extends Component {
     this.state = {
       recentSubmission: "",
       poem: [],
+      player:1,
     }
   }
 
@@ -19,6 +20,7 @@ class Game extends Component {
     this.setState({
       recentSubmission: sentence,
       poem: [...this.state.poem, sentence],
+      player: this.state.player + 1,
     });
     console.log(this.state.recentSubmission);
   }
@@ -49,6 +51,7 @@ class Game extends Component {
         sentence = {this.state.recentSubmission}/>
 
         <PlayerSubmissionForm addRecentSubmissionCallback = {this.addRecentSubmission}
+        player={this.state.player}
         />
 
         <FinalPoem sentences={this.state.poem}/>

@@ -13,7 +13,34 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adjective2: '',
       noun2: ''
-    }
+    };
+  };
+
+  onChangeHandler = (event) => {
+    const field = {}
+    field[event.target.name] = event.target.value;
+
+    this.setState(field);
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.newSubmissionCallback({
+      adjective: this.state.adjective,
+      noun: this.state.noun,
+      adverb: this.state.adverb,
+      verb: this.state.verb,
+      adjective2: this.state.adjective2,
+      noun2: this.state.noun2,
+    });
+    this.setState({
+      adjective: '',
+      noun: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: ''
+    });
   }
 
   render() {
@@ -22,7 +49,7 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>

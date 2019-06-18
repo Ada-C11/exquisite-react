@@ -22,6 +22,7 @@ class Game extends Component {
   }
 
   render() {
+    const playerNumber = this.state.poem.length
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -49,7 +50,7 @@ class Game extends Component {
         />
 
         <PlayerSubmissionForm 
-          playerNumber={this.state.poem.length}
+          playerNumber={playerNumber}
           formCallback={this.addVerse}
         />
 

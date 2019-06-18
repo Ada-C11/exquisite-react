@@ -7,8 +7,6 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    let playerNumber = this.props.playerNumber
-
     this.state = {
       adjective1: '',
       noun1: '',
@@ -57,7 +55,8 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.playerNumber }</h3>
+        {/* Add 1 so it does not start from player #0 */}
+        <h3>Player Submission Form for Player #{ this.props.playerNumber + 1}</h3>
 
         <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 

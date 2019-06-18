@@ -55,7 +55,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission
+          line = {this.state.poem[this.state.poem.length - 1]}
+          gameOver = {this.state.gameOver} />
 
         <PlayerSubmissionForm
           fields = {FIELDS}

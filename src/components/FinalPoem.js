@@ -37,7 +37,7 @@ class FinalPoem extends Component {
   render() {
     return (
       <div className="FinalPoem">
-        <section className="FinalPoem__poem">
+        <section>
           <h3>Final Poem</h3>
           {this.formatPoem()}
         </section>

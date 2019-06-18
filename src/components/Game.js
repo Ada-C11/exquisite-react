@@ -9,7 +9,8 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentences: []
+      sentences: [],
+      revealed: false
     }
   }
 
@@ -19,7 +20,26 @@ class Game extends Component {
     this.setState(newSentences)
   }
 
+  finishPoem = () => {
+    this.setState({ revealed: true });
+  }
+
+  makePoem = () => {
+    const poem = this.state.sentences.map((sentence) => {
+      console.log(sentence)
+      return (<p>{sentence}</p>)
+    });
+    console.log(poem);
+    return poem
+  }
+
   render() {
+    const submissionForm = (<PlayerSubmissionForm
+      addSentenceCallback={this.addSentence}
+      fields={FIELDS}
+    />)
+
+    const submissionSection = this.state.revealed ? <div></div> : submissionForm
 
     // chains words together from form 
     const exampleFormat = FIELDS.map((field) => {
@@ -30,7 +50,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-    console.log(this.state.sentences)
+    
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -40,17 +60,22 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm 
+        {/* <PlayerSubmissionForm 
           addSentenceCallback = {this.addSentence}
           fields = {FIELDS}
-        />
+        /> */}
 
-        <FinalPoem />
+        {submissionSection}
+
+        <FinalPoem
+          finishPoemCallback={this.finishPoem}
+        />
+        
 
       </div>
     );

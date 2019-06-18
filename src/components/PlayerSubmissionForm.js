@@ -16,6 +16,20 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+  validations = () => {
+    let validationsObject = {}
+    this.props.fields.forEach((field) => {
+      if(typeof field != 'string') {
+        validationsObject[field.key] = /.+/
+      }
+    })
+    return validationsObject;
+  }
+
+  fieldValid = (fieldName) => {
+    return this.validations()[fieldName].test(this.state[fieldName]);
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     let fullLine = ''
@@ -47,8 +61,6 @@ class PlayerSubmissionForm extends Component {
     this.setState(field);
   }
 
-  invalidClass = "PlayerSubmissionForm__input--invalid"
-
   generateInputs = () => {
     const formFields = this.props.fields.map((field, i) => {
       if(typeof field === 'string') {
@@ -59,7 +71,7 @@ class PlayerSubmissionForm extends Component {
             key={i}
             name={field.key}
             onChange={this.onChangeHandler}
-            className={`PlayerSubmissionForm__poem-inputs ${this.invalidClass}`}
+            className={`PlayerSubmissionForm__poem-inputs ${this.fieldValid(field.key) ? '' : "PlayerSubmissionForm__input--invalid"}`}
             placeholder={field.placeholder}
             type="text"
             value={this.state[field.key]} />
@@ -75,6 +87,8 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+    console.log(this.validations())
+
     return (
       <div className={`PlayerSubmissionForm ${this.props.gameOver ? 'hidden' : 'visible'}`}>
         <h3>Player Submission Form for Player #{ this.props.currentPlayer }</h3>

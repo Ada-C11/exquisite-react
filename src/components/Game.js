@@ -55,7 +55,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm addNewVerseCallback={this.addNewVerse} />
 
-        <FinalPoem />
+        <FinalPoem verses={this.state.finalPoem} />
 
       </div>
     );

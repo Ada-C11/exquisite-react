@@ -15,6 +15,7 @@ class Game extends Component {
   }
 
 
+  // converts submissions from object to string
   submissionToString = (submission) => {
     let string = ''
 

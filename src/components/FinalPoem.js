@@ -5,15 +5,15 @@ const FinalPoem = (props) => {
 
   const condition = props.submissions.length > 0
 
-  const submissions = props.submissions.map((line) => {
+  const submissions = props.submissions.map((line, i) => {
     return (
-      <p>{line}</p>
+      <p key={i}>{line}</p>
     );
   });
 
   return (
     <div className="FinalPoem">
-      
+
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
         { 

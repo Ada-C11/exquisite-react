@@ -17,7 +17,6 @@ class PlayerSubmissionForm extends Component {
   }
 
   onChangeHandler = (event) => {
-    console.log(event.target.name);
     const field = {}
     field[event.target.name] = event.target.value
 
@@ -51,6 +50,7 @@ class PlayerSubmissionForm extends Component {
           onSubmit={this.onClickSubmit} 
           className="PlayerSubmissionForm__form" >
           <div className="PlayerSubmissionForm__poem-inputs">
+            <label htmlFor="adjectiveOne">The </label>
             <input
               name='adjectiveOne'
               placeholder="adjective"
@@ -75,6 +75,7 @@ class PlayerSubmissionForm extends Component {
               type="text" 
               onChange={this.onChangeHandler}
               value={verb}/>
+            <label htmlFor="adjectiveOne">the </label>
             <input
               name='adjectiveTwo'
               placeholder="adjective"

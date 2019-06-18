@@ -20,11 +20,35 @@ class PlayerSubmissionForm extends Component {
             {
               // Put your form inputs here... We've put in one below as an example
             }
+
+            <input
+              placeholder="hm..."
+              type="text" />
             <input
               placeholder="hm..."
               type="text" />
 
-          </div>
+        
+          <label htmlFor="firstName">First Name:</label>
+          <input name="firstName" value={this.state.fullName} onChange={this.onNameChange}  />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input name="lastName" />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input name="email" />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input name="password" />
+        </div>
+
+        <input
+          type="submit"
+          value="Create Account"
+        />
 
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />

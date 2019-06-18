@@ -10,17 +10,17 @@ class PlayerSubmissionForm extends Component {
   }
 
   emptyStateObject = () => {
-    let stateObject = {}
+    let stateObject = {};
     this.props.fields.forEach((field) => {
       if(typeof field != 'string') {
-        stateObject[field.key] = ''
+        stateObject[field.key] = '';
       }
     })
     return stateObject;
   }
 
   validations = () => {
-    let validationsObject = {}
+    let validationsObject = {};
     this.props.fields.forEach((field) => {
       if(typeof field != 'string') {
         validationsObject[field.key] = /.+/
@@ -83,8 +83,6 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    console.log(this.validations())
-
     return (
       <div className={`PlayerSubmissionForm ${this.props.gameOver ? 'hidden' : 'visible'}`}>
         <h3>Player Submission Form for Player #{ this.props.currentPlayer }</h3>

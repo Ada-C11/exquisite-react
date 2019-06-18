@@ -23,15 +23,12 @@ class Game extends Component {
     this.setState({
       poem: newPoem,
     })
-
-    console.log(this.state.poem)
   }
 
   onGameOver = () => {
     this.setState ({
       gameOver: true,
     });
-    console.log(this.state.gameOver)
   }
 
   render() {

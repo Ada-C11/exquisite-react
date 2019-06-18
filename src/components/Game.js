@@ -8,9 +8,36 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: []
+    }
+  }
+
+
+  submissionToString = (submission) => {
+    let string = ''
+
+    Object.values(submission).forEach((word) => {
+      string = `${string} ${word} `;
+    });
+    
+    string = `${string}.`
+    return string;
+  }
+
+  onSubmitLine = (submission) => {
+    
+    const submissions = this.state.submissions
+    submissions.push(this.submissionToString(submission))
+
+    this.setState({
+      submissions,
+    })
   }
 
   render() {
+    const { submissions } = this.state
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +59,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          mostRecentSubmission={submissions[submissions.length - 1]}
+        />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          playerNum={submissions.length + 1}
+          onSubmitLineCallback={this.onSubmitLine}
+        />
 
-        <FinalPoem />
+        <FinalPoem 
+          submissions={submissions}
+        />
 
       </div>
     );

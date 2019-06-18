@@ -60,13 +60,51 @@ class PlayerSubmissionForm extends Component {
         >
 
           <div className="PlayerSubmissionForm__poem-inputs" >
-
-            <input className={this.validateInput(this.state.first)} name="first" value={this.state.first} placeholder="adjective" type="text" onChange={this.onInputChange} />
-            <input className={this.validateInput(this.state.second)} name="second" value={this.state.second} placeholder="noun" type="text" onChange={this.onInputChange} />
-            <input className={this.validateInput(this.state.third)} name="third" value={this.state.third} placeholder="adverb" type="text" onChange={this.onInputChange} />
-            <input className={this.validateInput(this.state.fourth)} name="fourth" value={this.state.fourth} placeholder="verb" type="text" onChange={this.onInputChange} />
-            <input className={this.validateInput(this.state.fifth)} name="fifth" value={this.state.fifth} placeholder="adjective" type="text" onChange={this.onInputChange} />
-            <input className={this.validateInput(this.state.sixth)} name="sixth" value={this.state.sixth} placeholder="noun" type="text" onChange={this.onInputChange} />
+            {"The "}
+            <input
+              className={this.validateInput(this.state.first)}
+              name="first"
+              value={this.state.first}
+              placeholder="adjective"
+              type="text"
+              onChange={this.onInputChange} />
+            <input
+              className={this.validateInput(this.state.second)}
+              name="second"
+              value={this.state.second}
+              placeholder="noun"
+              type="text"
+              onChange={this.onInputChange} />
+            <input
+              className={this.validateInput(this.state.third)}
+              name="third"
+              value={this.state.third}
+              placeholder="adverb"
+              type="text"
+              onChange={this.onInputChange} />
+            <input
+              className={this.validateInput(this.state.fourth)}
+              name="fourth"
+              value={this.state.fourth}
+              placeholder="verb"
+              type="text"
+              onChange={this.onInputChange} />
+            {"the "}
+            <input
+              className={this.validateInput(this.state.fifth)}
+              name="fifth"
+              value={this.state.fifth}
+              placeholder="adjective"
+              type="text"
+              onChange={this.onInputChange} />
+            <input
+              className={this.validateInput(this.state.sixth)}
+              name="sixth"
+              value={this.state.sixth}
+              placeholder="noun"
+              type="text"
+              onChange={this.onInputChange} />
+            {"."}
 
           </div>
 

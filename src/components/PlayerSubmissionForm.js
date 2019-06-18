@@ -26,14 +26,9 @@ class PlayerSubmissionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.onFormSubmitCallback({
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2
-    });
+    this.props.onFormSubmitCallback(
+      `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
+    );
 
     this.setState({
       adj1: '',
@@ -51,7 +46,6 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{  }</h3>
 
-        <p>The</p>
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
@@ -83,7 +77,6 @@ class PlayerSubmissionForm extends Component {
               type='text'
               onChange={this.onChangeHandler}/>
 
-            <p>the</p>
             <input
               name='adj2'
               value={this.state.adj2}

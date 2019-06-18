@@ -10,12 +10,12 @@ class PlayerSubmissionForm extends Component {
       handleSubmit: this.props.onSubmitCallback,
       currentPlayerNumber: this.props.numOfPlayers + 1,
       poemLine: {
-        "adjective-1": '',
-        "noun-1": '',
-        "adverb": '',
-        "verb": '',
-        "adjective-2": '',
-        "noun-2": '',
+        adjective1: '',
+        noun1: '',
+        adverb: '',
+        verb: '',
+        adjective2: '',
+        noun2: '',
       },
     };
 
@@ -26,7 +26,7 @@ class PlayerSubmissionForm extends Component {
   createLine = () => {
     alert("in submitLine");
     const poemLine = this.state.poemLine;
-    const line = `${poemLine["adjective-1"]} ${poemLine["noun-1"]} ${poemLine["adverb"]} ${poemLine["verb"]} ${poemLine["adjective-2"]} ${poemLine["noun-2"]}`;
+    const line = `${poemLine["adjective1"]} ${poemLine["noun1"]} ${poemLine["adverb"]} ${poemLine["verb"]} ${poemLine["adjective2"]} ${poemLine["noun2"]}`;
     return line;
   };
   
@@ -40,16 +40,14 @@ class PlayerSubmissionForm extends Component {
     };
 
     const onInputChange = (event) => {
-      const updatedState = {
-        poemLine: {
-        }
-      };
+      const updatedState = this.state.poemLine;
 
       const field = event.target.name;
       const value = event.target.value;
 
-      updatedState.poemLine[field] = value;
+      updatedState[field] = value;
       this.setState(updatedState);
+      console.log(this.state.poemLine);
     }
     // This function and it use above and below is courtesy of Ada Developers' Academy instructors, 
     // from: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/forms-advanced.md.
@@ -64,13 +62,13 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
             <span>The</span>
             <input
-              name="adjective-1"
+              name="adjective1"
               placeholder="adjective"
               value={this.state.value}
               type="text"
               onChange={onInputChange} />
             <input
-              name="noun-1"
+              name="noun1"
               placeholder="noun"
               type="text"
               onChange={onInputChange} />
@@ -86,12 +84,12 @@ class PlayerSubmissionForm extends Component {
               onChange={onInputChange} />
             <span>the</span>
             <input
-              name="adjective-2"
+              name="adjective2"
               placeholder="adjective"
               type="text"
               onChange={onInputChange} />
             <input
-              name="noun-2"
+              name="noun2"
               placeholder="noun"
               type="text"
               onChange={onInputChange} />

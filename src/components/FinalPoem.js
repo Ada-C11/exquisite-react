@@ -13,9 +13,7 @@ const generateVerseElements = (poemVerses) => {
 
 const FinalPoem = (props) => {
   const { verses, finalizePoemCallback, gameComplete } = props;
-  console.log(finalizePoemCallback)
   const verseElements = generateVerseElements(verses);
-  console.log(gameComplete)
   return (
     <div className="FinalPoem">
       <section className={((gameComplete) ? "" : "hidden") + " FinalPoem__poem"}>

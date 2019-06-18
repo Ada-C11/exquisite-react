@@ -21,12 +21,9 @@ class PlayerSubmissionForm extends Component {
     return (valid)
   }
   onInputChange = (event) => {
-    console.log(event.target.value)
     const updatedState = {};
-
     const field = event.target.name;
     const value = event.target.value;
-
     updatedState[field] = value;
     this.setState(updatedState);
   }
@@ -35,7 +32,6 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
     const newPlayerNumber = this.state.playerNumber + 1
     const verse = `The ${this.state.first} ${this.state.second} ${this.state.third} ${this.state.fourth} the ${this.state.fifth} ${this.state.sixth}.`
-    console.log(verse)
     this.setState({
       playerNumber: newPlayerNumber,
       first: "",
@@ -49,8 +45,6 @@ class PlayerSubmissionForm extends Component {
 
   }
   render() {
-    console.log("Player Submission FOrm")
-    console.log(this.state.gameComplete)
     return (
       <div className={((this.props.gameComplete) ? "hidden" : "") + " PlayerSubmissionForm"}>
         <h3>Player Submission Form for Player #{this.state.playerNumber}</h3>

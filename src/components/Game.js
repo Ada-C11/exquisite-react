@@ -22,13 +22,10 @@ class Game extends Component {
       recentSubmission: verse,
       finalPoem: [...this.state.finalPoem, verse]
     });
-    console.log(verse)
-    console.log("inside addNewVerse")
-    console.log(this.state)
+
   }
 
   finalizePoem = () => {
-    console.log("inside finalize peom callback")
     this.setState({
       complete: true
     })

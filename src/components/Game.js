@@ -8,6 +8,16 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentPlayer: 1,
+      poem: [],
+      updateTurnCallBack: this.updateTurn
+    };
+  }
+
+  updateTurn = () => {
+    let updatedPlayer = this.state.currentPlayer + 1
+    this.setState({ currentPlayer: updatedPlayer });
   }
 
   render() {
@@ -32,9 +42,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission lastLine={this.state.poem[0]} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/>
 
         <FinalPoem />
 

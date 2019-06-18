@@ -7,51 +7,48 @@ class PlayerSubmissionForm extends Component {
     super(props);
   }
 
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.updateTurnCallBack()
+  }
+
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.id}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
             {
               // Put your form inputs here... We've put in one below as an example
             }
-
+            The
             <input
-              placeholder="hm..."
+              placeholder="adjective"
               type="text" />
             <input
-              placeholder="hm..."
+              placeholder="noun"
               type="text" />
-
-        
-          <label htmlFor="firstName">First Name:</label>
-          <input name="firstName" value={this.state.fullName} onChange={this.onNameChange}  />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input name="lastName" />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input name="email" />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input name="password" />
-        </div>
-
-        <input
-          type="submit"
-          value="Create Account"
-        />
+            <input
+              placeholder="adverb"
+              type="text" />
+            <input
+              placeholder="verb"
+              type="text" />
+            the
+            <input
+              placeholder="adjective"
+              type="text" />
+            <input
+              placeholder="noun"
+              type="text" />
+          </div>
 
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn"/>
           </div>
         </form>
       </div>

@@ -34,6 +34,9 @@
 .PlayerSubmissionFormt__input--invalid {
   background-color: #FFE9E9;
 }
+.PlayerSubmissionFormt__input--valid {
+  background-color: white;
+}
 
 .PlayerSubmissionForm__input--invalid::placeholder {
   color: black;

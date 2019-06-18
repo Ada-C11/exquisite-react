@@ -8,9 +8,20 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissionList: [],
+    }
   }
 
+  addSentence = (sentence) => {
+    const submissionList = this.state.submissionList;
+    submissionList.push(sentence);
+    this.setState({submissionList});
+  }
+
+
   render() {
+    const recentSubmission = this.state.submissionList[this.state.submissionList.length-1]
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -19,6 +30,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
 
     return (
       <div className="Game">
@@ -32,9 +44,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={recentSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm  addSentenceCallback={this.addSentence}/>
 
         <FinalPoem />
 

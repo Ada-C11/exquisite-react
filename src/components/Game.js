@@ -8,6 +8,12 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSub: '',
+      finalPoem: [],
+      // addPetCallback: this.addPet,
+    };
   }
 
   render() {
@@ -34,7 +40,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields={FIELDS} />
 
         <FinalPoem />
 

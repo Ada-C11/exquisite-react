@@ -6,14 +6,17 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
-    }
+    this.state = this.emptyStateObject();
+  }
+
+  emptyStateObject = () => {
+    let stateObject = {}
+    this.props.fields.forEach((field) => {
+      if(typeof field != 'string') {
+        stateObject[field.key] = ''
+      }
+    })
+    return stateObject;
   }
 
   validations = () => {
@@ -42,14 +45,7 @@ class PlayerSubmissionForm extends Component {
       fullLine += ' '
     })
     this.props.addLineCallback(fullLine.substring(0, fullLine.length-1));
-    this.setState({
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: '',
-    });
+    this.setState(this.emptyStateObject);
   }
 
   onChangeHandler = (event) => {

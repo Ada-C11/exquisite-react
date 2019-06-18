@@ -8,6 +8,26 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: '',
+      finalPoem: '',
+      player: 1
+    };
+  };
+
+  addSubmission = (submission) => {
+    const final = [...this.state.finalPoem]
+    const recent = `The ${submission.adjective} ${submission.noun} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}.`
+    final.push(recent);
+
+    const number = this.state.player + 1;
+
+    this.setState({
+      recentSubmission: recent,
+      finalPoem: final,
+      player: number
+    });
   }
 
   render() {
@@ -32,9 +52,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recent={this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm newSubmissionCallback={this.addSubmission} playerNumber={this.state.player}/>
 
         <FinalPoem />
 

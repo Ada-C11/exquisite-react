@@ -8,18 +8,17 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
-    const poem = []
 
     this.state = {
-      poem,
+      poem: [],
     }
   }
 
   addVerse = (newVerse) => {
-    this.state.poem.push(newVerse)
-    this.setState({
-      updatedPoem: this.state.poem,
-    })
+    const newState = {...this.state}
+    const updatedPoem = newState.poem
+    updatedPoem.push(newVerse)
+    this.setState(updatedPoem)
   }
 
   render() {
@@ -42,11 +41,17 @@ class Game extends Component {
 
         <p className="Game__format-example">
           { exampleFormat }
+          {console.log(this.state.poem)}
+          {console.log(this.state.poem.length)}
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+        />
 
-        <PlayerSubmissionForm formCallback={this.addVerse}/>
+        <PlayerSubmissionForm 
+          playerNumber={this.state.poem.length}
+          formCallback={this.addVerse}
+        />
 
         <FinalPoem />
 

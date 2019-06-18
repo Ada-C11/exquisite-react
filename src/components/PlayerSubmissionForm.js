@@ -7,6 +7,8 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
+    let playerNumber = this.props.playerNumber
+
     this.state = {
       adjective1: '',
       noun1: '',
@@ -42,9 +44,11 @@ class PlayerSubmissionForm extends Component {
     const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state
 
     console.log(event)
-    const verse = this.state
-    this.props.formCallback(verse)
+    const newVerse = this.state
+    
     this.resetState()
+
+    this.props.formCallback(newVerse)
   }
 
 
@@ -53,7 +57,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.playerNumber }</h3>
 
         <form onSubmit={this.onSubmit} className="PlayerSubmissionForm__form" >
 
@@ -90,6 +94,7 @@ class PlayerSubmissionForm extends Component {
 
 PlayerSubmissionForm.propTypes = {
   formCallback: PropTypes.func.isRequired,
+  playerNumber: PropTypes.number.isRequired,
 }
 
 export default PlayerSubmissionForm;

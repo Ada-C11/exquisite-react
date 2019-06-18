@@ -59,7 +59,7 @@ class PlayerSubmissionForm extends Component {
             key={i}
             name={field.key}
             onChange={this.onChangeHandler}
-            className={this.invalidClass}
+            className={`PlayerSubmissionForm__poem-inputs ${this.invalidClass}`}
             placeholder={field.placeholder}
             type="text"
             value={this.state[field.key]} />

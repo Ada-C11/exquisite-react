@@ -37,16 +37,16 @@ class FinalPoem extends Component {
   render() {
     return (
       <div className="FinalPoem">
-        <section>
+        <section className={this.state.finished ? 'visible' : 'hidden'}>
           <h3>Final Poem</h3>
           {this.formatPoem()}
         </section>
 
-        <div className="FinalPoem__reveal-btn-container">
+        <div className={`FinalPoem__reveal-btn-container ${this.state.finished ? 'hidden' : 'visible'}`}>
           <input 
             type="button" 
             value="We are finished: Reveal the Poem" 
-            className={`FinalPoem__reveal-btn ${this.state.finished ? 'hidden' : 'visible'}`}
+            className="FinalPoem__reveal-btn"
             onClick={this.revealPoem} />
         </div>
       </div>

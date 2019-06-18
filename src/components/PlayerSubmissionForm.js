@@ -9,6 +9,14 @@ class PlayerSubmissionForm extends Component {
     this.state = {
       handleSubmit: this.props.onSubmitCallback,
       currentPlayerNumber: this.props.numOfPlayers + 1,
+      poemLine: {
+        "adjective-1": '',
+        "noun-1": '',
+        "adverb": '',
+        "verb": '',
+        "adjective-2": '',
+        "noun-2": '',
+      },
     };
   }
 
@@ -16,7 +24,19 @@ class PlayerSubmissionForm extends Component {
 
   render() {
 
-    const onSubmitCallback = () => { };
+    const onSubmitCallback = () => {};
+    
+    const onInputChange = (event) => {
+      const updatedState = {};
+    
+      const field = event.target.name;
+      const value = event.target.value;
+    
+      updatedState[field] = value;
+      this.setState(updatedState);
+    } 
+    // This function and it use above and below is courtesy of Ada Developers' Academy instructors, 
+    // from: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/forms-advanced.md.
 
     return (
       <div className="PlayerSubmissionForm">
@@ -27,24 +47,36 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
             <span>The</span>
             <input
+              name="adjective-1"
               placeholder="adjective"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <input
+              name="noun-1"
               placeholder="noun"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <input
+              name="adverb"
               placeholder="adverb"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <input
+              name="verb"
               placeholder="verb"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <span>the</span>
             <input
+              name="adjective-2"
               placeholder="adjective"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <input
+              name="noun-2"
               placeholder="noun"
-              type="text" />
+              type="text"
+              onChange={onInputChange} />
             <span>.</span>
           </div>
 

@@ -5,25 +5,47 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      handleSubmit: this.props.onSubmitCallback,
+      currentPlayerNumber: this.props.numOfPlayers + 1,
+    };
   }
+
+
 
   render() {
 
+    const onSubmitCallback = () => { };
+
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.state.currentPlayerNumber}</h3>
 
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
+            <span>The</span>
             <input
-              placeholder="hm..."
+              placeholder="adjective"
               type="text" />
-
+            <input
+              placeholder="noun"
+              type="text" />
+            <input
+              placeholder="adverb"
+              type="text" />
+            <input
+              placeholder="verb"
+              type="text" />
+            <span>the</span>
+            <input
+              placeholder="adjective"
+              type="text" />
+            <input
+              placeholder="noun"
+              type="text" />
+            <span>.</span>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

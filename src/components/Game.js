@@ -8,6 +8,11 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentLine: 'I am a test!',
+      fullPoem: [],
+    }
   }
 
   render() {
@@ -32,7 +37,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission mostRecentLine={this.state.recentLine}/>
 
         <PlayerSubmissionForm />
 

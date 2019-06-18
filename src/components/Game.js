@@ -11,14 +11,26 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      recentLine: 'test',
+      recentLine: '',
       poem: [],
 
     }
   }
 
+  onSubmitLine = ({ adjective1, noun1, adverb, verb, adjective2, noun2 }) => {
+    console.log('I am in onSubmit!!!!!');
+
+    const newLine = 'The ' + adjective1 + ' '+ noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2;
+
+    this.setState({
+      recentLine: newLine
+    })
+
+    console.log(this.state.recentLine);
+  }
+
   render() {
-    const {recentLine, poem} = this.state;
+    const { recentLine, poem } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -40,13 +52,14 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission 
-        line={recentLine}/>
+        <RecentSubmission
+          line={recentLine} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          onSubmitLineCallback={this.onSubmitLine} />
 
-        <FinalPoem 
-        finalPoem={poem}/>
+        <FinalPoem
+          finalPoem={poem} />
 
       </div>
     );

@@ -18,6 +18,13 @@ class PlayerSubmissionForm extends Component {
   }
 
 
+  onChangeHandler = (event) => {
+    const field = {}
+    field[event.target.name] = event.target.value;
+
+    this.setState(field);
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -29,6 +36,8 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2
     });
+
+    console.log(this.state.adjective1);
 
     this.setState({
       adjective1: '',
@@ -49,7 +58,7 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
@@ -62,32 +71,37 @@ class PlayerSubmissionForm extends Component {
             />
 
             <input
-              name='noun'
+              name='noun1'
+              placeholder= 'noun'
               value={noun1}
               onChange={this.onChangeHandler}
             />
 
             <input
               name='adverb'
+              placeholder='adverb'
               value={adverb}
               onChange={this.onChangeHandler}
             />
 
             <input
               name='verb'
+              placeholder='verb'
               value={verb}
               onChange={this.onChangeHandler}
             />
 
             <p>the</p>
             <input
-              name='adjective'
+              name='adjective2'
+              placeholder='adjective'
               value={adjective2}
               onChange={this.onChangeHandler}
             />
 
             <input
-              name='noun'
+              name='noun2'
+              placeholder='noun'
               value={noun2}
               onChange={this.onChangeHandler}
             />

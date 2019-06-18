@@ -8,7 +8,7 @@ class PlayerSubmissionForm extends Component {
 
     this.state = {
       handleSubmit: this.props.onSubmitCallback,
-      currentPlayerNumber: this.props.numOfPlayers + 1,
+      currentPlayerNumber: this.props.numOfPlayers,
       poemLine: {
         adjective1: '',
         noun1: '',
@@ -24,7 +24,6 @@ class PlayerSubmissionForm extends Component {
   }
 
   createLine = () => {
-    alert("in submitLine");
     const poemLine = this.state.poemLine;
     const line = `${poemLine["adjective1"]} ${poemLine["noun1"]} ${poemLine["adverb"]} ${poemLine["verb"]} ${poemLine["adjective2"]} ${poemLine["noun2"]}`;
     return line;
@@ -32,7 +31,6 @@ class PlayerSubmissionForm extends Component {
   
 
   render() {
-
     const submitLine = (event) => {
       event.preventDefault();
       const line = this.createLine();
@@ -54,7 +52,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.state.currentPlayerNumber}</h3>
+        <h3>Player Submission Form for Player #{this.state.currentPlayerNumber()}</h3>
 
         <form className="PlayerSubmissionForm__form"
           onSubmit={submitLine}>

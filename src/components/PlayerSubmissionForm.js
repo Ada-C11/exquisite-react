@@ -31,6 +31,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="adjective"
+                placeholder="adjective"
                 onChange={this.onChangeHandler}
                 value={this.state.adjective}
               />
@@ -38,6 +39,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="noun"
+                placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.noun}
               />
@@ -45,6 +47,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="adverb"
+                placeholder="adverb"
                 onChange={this.onChangeHandler}
                 value={this.state.adverb}
               />
@@ -52,6 +55,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="verb"
+                placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.verb}
               />
@@ -62,6 +66,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="adjective2"
+                placeholder="adjective"
                 onChange={this.onChangeHandler}
                 value={this.state.adjective2}
               />
@@ -69,6 +74,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="noun2"
+                placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.noun2}
               />

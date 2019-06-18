@@ -8,6 +8,19 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      finalPoem: [],
+      currentLine: undefined,
+    };
+  }
+
+  addLine = (line) => {
+    const lines = this.state.finalPoem;
+    lines.push(line);
+    this.setState({
+      lines,
+    });
+    console.log(lines);
   }
 
   render() {
@@ -33,8 +46,8 @@ class Game extends Component {
         </p>
 
         <RecentSubmission />
-
-        <PlayerSubmissionForm />
+        
+        <PlayerSubmissionForm addLineCallback = { this.addLine } players = { this.state.finalPoem.length} />
 
         <FinalPoem />
 

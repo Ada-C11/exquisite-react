@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-
+  
   constructor(props) {
     super(props);
-    this.state = {
-      player: 1,
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: ''
+    const initState = {
+      player: 1, 
     }
+
+    props.fields.forEach((field) => {
+      if (field.key) {
+        initState[field.key] = ''
+      }
+    })
+
+    this.state = initState
   }
 
   onInputChange = (event) => {
@@ -26,10 +28,45 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   }
 
+  makeSentence = () => {
+    const words = Object.values(this.state).slice(1);
+    const sentence = 'The ' + words.slice(0, 4).join(' ') + ' the' + words.slice(4,6).join(' ');
+    return sentence 
+  }
+
+  incrementPlayer = () => {
+    const newState = this.state;
+    newState.player += 1;
+    this.setState(newState);
+  }
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.incrementPlayer();
+    this.props.addSentenceCallback(this.makeSentence())
+
+  }
+
   render() {
+    const formFields = this.props.fields.map((field, i) => {
+      if (field.key) {
+      return (
+      <input
+      key = {i}
+      name={field.key}
+      type="text"
+      value={this.state[field.key]}
+      onChange={this.onInputChange}
+      placeholder={field.placeholder}
+      />
+      )}
+      else {
+        return field 
+      }
+    })
 
     return (
-      <div className="PlayerSubmissionForm">
+      <div className="PlayerSubmissionForm" onSubmit={this.onFormSubmit}>
         <h3>Player Submission Form for Player #{this.state.player}</h3>
 
         <form className="PlayerSubmissionForm__form" >
@@ -37,9 +74,9 @@ class PlayerSubmissionForm extends Component {
           <div className="PlayerSubmissionForm__poem-inputs">
 
             {
-              // Put your form inputs here... We've put in one below as an example
+              formFields
             }
-
+{/* 
           The
           <input
               name="adj1"
@@ -77,7 +114,7 @@ class PlayerSubmissionForm extends Component {
               type="text"
               value={this.state.noun2}
               onChange={this.onInputChange}
-              placeholder='noun' />
+              placeholder='noun' /> */}
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -44,10 +44,11 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.playerNumber }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
+          <p>The</p>
           <div className="PlayerSubmissionForm__poem-inputs">
             <input
               name='adj1'
@@ -77,6 +78,8 @@ class PlayerSubmissionForm extends Component {
               type='text'
               onChange={this.onChangeHandler}/>
 
+            <p>the</p>
+
             <input
               name='adj2'
               value={this.state.adj2}
@@ -90,6 +93,8 @@ class PlayerSubmissionForm extends Component {
               placeholder='noun'
               type='text'
               onChange={this.onChangeHandler}/>
+
+            <p>.</p>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

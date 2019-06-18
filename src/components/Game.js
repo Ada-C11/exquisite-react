@@ -10,17 +10,22 @@ class Game extends Component {
     super(props);
 
     this.state = {
+      playerNum: 1,
       recentPoem: "",
       finalPoem: [],
     };
   }
 
-  printUserInput = (formInputSentence) => {
+  getRecentUserSubmission = (formInputSentence) => {
     console.log(formInputSentence);
     let currentPoem = this.state.finalPoem;
     currentPoem.push(this.state.recentPoem);
 
+    let nextPlayerNum = this.state.playerNum;
+    nextPlayerNum += 1
+
     this.setState({
+      playerNum: nextPlayerNum,
       recentPoem: formInputSentence,
       finalPoem: currentPoem
     });
@@ -50,7 +55,9 @@ class Game extends Component {
 
         <RecentSubmission recentPoem={this.state.recentPoem}/>
 
-        <PlayerSubmissionForm onFormSubmitCallback={this.printUserInput}/>
+        <PlayerSubmissionForm 
+          onFormSubmitCallback={this.getRecentUserSubmission}
+          playerNumber={this.state.playerNum}/>
 
         <FinalPoem finalPoem={this.state.finalPoem}/>
 

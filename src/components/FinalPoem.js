@@ -3,12 +3,16 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
+  const displayLines = props.submissions.map((line) => {
+    return <p>{line}</p>
+  })
+
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
 
-        { props.submissions }
+        { displayLines }
 
       </section>
 

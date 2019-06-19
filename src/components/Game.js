@@ -21,7 +21,17 @@ class Game extends Component {
     this.setState(updatedPoem)
   }
 
+ 
+
   render() {
+    const showMostRecent = () => {
+      if (this.state.poem.length >= 1) {
+        return <RecentSubmission 
+        poem={this.state.poem}
+      />
+      }
+    }
+
     const playerNumber = this.state.poem.length
 
     const exampleFormat = FIELDS.map((field) => {
@@ -46,9 +56,10 @@ class Game extends Component {
           {console.log(this.state.poem.length)}
         </p>
 
-        <RecentSubmission 
+        { showMostRecent() }
+        {/* <RecentSubmission 
           poem={this.state.poem}
-        />
+        /> */}
 
         <PlayerSubmissionForm 
           fields={FIELDS}

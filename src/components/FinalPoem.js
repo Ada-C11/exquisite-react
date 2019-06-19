@@ -13,7 +13,6 @@ class FinalPoem extends React.Component {
   }
   
   showAllPoems = () => {
-    // this.props.showAllPoemsCallback()
     console.log(this.state.showAllPoems)
 
     this.setState({
@@ -23,7 +22,6 @@ class FinalPoem extends React.Component {
   }
 
   render() {
-
     const displayButton = 
       <div className="FinalPoem__reveal-btn-container">
         <input 

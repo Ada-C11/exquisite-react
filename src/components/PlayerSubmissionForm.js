@@ -26,15 +26,6 @@ class PlayerSubmissionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // this.props.submitFormCallback({
-    //   adj1: this.state.adj1,
-    //   noun1: this.state.noun1,
-    //   adv: this.state.adv,
-    //   verb: this.state.verb, 
-    //   adj2: this.state.adj2,
-    //   noun2: this.state.noun2
-    // })
-
     this.props.submitFormCallback(
       `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
     )
@@ -52,8 +43,20 @@ class PlayerSubmissionForm extends Component {
     })
   }
 
-  render() {
+  validations = {
+    adj1: /.+/,
+    noun1: /.+/,
+    adv: /.+/,
+    verb: /.+/, 
+    adj2: /.+/,
+    noun2: /.+/,
+}
 
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName])
+  }
+
+  render() {
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{this.state.player}</h3>
@@ -64,6 +67,7 @@ class PlayerSubmissionForm extends Component {
             The 
             <input
               name='adj1'
+              className={!this.fieldValid('adj1') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder="adjective"
               type="text"
               onChange={this.onChangeHandler}
@@ -71,6 +75,7 @@ class PlayerSubmissionForm extends Component {
 
             <input 
               name='noun1'
+              className={!this.fieldValid('noun1') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder='noun'
               type="text"
               onChange={this.onChangeHandler}
@@ -78,6 +83,7 @@ class PlayerSubmissionForm extends Component {
 
             <input 
               name='adv'
+              className={!this.fieldValid('adv') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder='adverb'
               type="text"
               onChange={this.onChangeHandler}
@@ -85,6 +91,7 @@ class PlayerSubmissionForm extends Component {
 
             <input 
               name='verb'
+              className={!this.fieldValid('verb') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder='verb'
               type="text"
               onChange={this.onChangeHandler}
@@ -93,6 +100,7 @@ class PlayerSubmissionForm extends Component {
             the 
             <input 
               name='adj2'
+              className={!this.fieldValid('adj2') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder='adjective'
               type="text"
               onChange={this.onChangeHandler}
@@ -100,6 +108,7 @@ class PlayerSubmissionForm extends Component {
 
             <input 
               name='noun2'
+              className={!this.fieldValid('noun2') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               placeholder='noun'
               type="text"
               onChange={this.onChangeHandler}

@@ -6,14 +6,19 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adj1:"",
-      noun1:"",
-      adverb:"",
-      verb: "",
-      adj2: "",
-      noun2: ""
-
+      ...this.initialState(),
     }
+  }
+
+  initialState = () => {
+    return (
+      this.props.fields.map(
+        (field)=> { return field.key ? {[field.key]: "" } : null;}
+      ).reduce((total, current)=> {
+            return current ? {...total, ...current} : total
+        }, {}
+      )
+    );
   }
 
   onInputChange = (event) => {
@@ -28,92 +33,43 @@ class PlayerSubmissionForm extends Component {
 
   handleSubmitForm  = (event)=> {
     event.preventDefault();
-    const {adj1, noun1, adverb, verb, adj2, noun2} = this.state;
-    const sentence = ["The", adj1, noun1, adverb, verb, "the", adj2, noun2].join(" ") + ".";
+
+    const sentence = this.props.fields.map((field) => {
+      return (field.key ? this.state[field.key] : field)
+    }).join(" ");
     this.props.addRecentSubmissionCallback(sentence);
+    
     this.setState({
-      adj1:"",
-      noun1:"",
-      adverb:"",
-      verb: "",
-      adj2: "",
-      noun2: ""
+      ...this.initialState()
     });
   }
   render() {
+    const fields = this.props.fields.map((field) => {
+      if (field.key) {
+        return (
+          <input
+              key = {field.key}
+              placeholder={field.placeholder}
+              type="text" 
+              name={field.key}
+              value={this.state[field.key]}
+              onChange={this.onInputChange}
+              className={this.state[field.key] ? "" : "PlayerSubmissionFormt__input--invalid"}
+            />
+        )
+      } else {
+        return field;
+      }
+    });
+
     if (!this.props.gameCompleted) {
       return (
         <div className="PlayerSubmissionForm">
           <h3>Player Submission Form for Player #{this.props.player}</h3>
-  
-          <form className="PlayerSubmissionForm__form" 
-          onSubmit={this.handleSubmitForm}>
-  
+          <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmitForm}>
             <div className="PlayerSubmissionForm__poem-inputs">
-  
-              {
-                // Put your form inputs here... We've put in one below as an example
-              }
-              <span>The </span>
-              <input
-                placeholder="adjective"
-                type="text" 
-                name="adj1"
-                value={this.state.adj1}
-                onChange={this.onInputChange}
-                className={this.state.adj1 ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-  
-              <input
-                placeholder="noun"
-                type="text" 
-                name="noun1"
-                value={this.state.noun1}
-                onChange={this.onInputChange}
-                className={this.state.noun1 ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-  
-              <input
-                placeholder="adverb"
-                type="text" 
-                name="adverb"
-                value={this.state.adverb}
-                onChange={this.onInputChange}
-                className={this.state.adverb ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-  
-              <input
-                placeholder="verb"
-                type="text" 
-                name="verb"
-                value={this.state.verb}
-                onChange={this.onInputChange}
-                className={this.state.verb ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-  
-              <span> the </span>
-  
-              <input
-                placeholder="adjective"
-                type="text" 
-                name="adj2"
-                value={this.state.adj2}
-                onChange={this.onInputChange}
-                className={this.state.adj2 ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-  
-              <input
-                placeholder="noun"
-                type="text" 
-                name="noun2"
-                value={this.state.noun2}
-                onChange={this.onInputChange}
-                className={this.state.noun2 ? "" : "PlayerSubmissionFormt__input--invalid"}
-              />
-              
-              <span>.</span>
+              {fields}
             </div>
-  
             <div className="PlayerSubmissionForm__submit">
               <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
             </div>
@@ -123,7 +79,6 @@ class PlayerSubmissionForm extends Component {
     } else {
       return null;
     }
-    
   }
 }
 

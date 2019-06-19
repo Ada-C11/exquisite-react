@@ -60,10 +60,12 @@ class Game extends Component {
         <PlayerSubmissionForm addRecentSubmissionCallback = {this.addRecentSubmission}
         player={this.state.player}
         gameCompleted = {this.state.gameCompleted}
+        fields= {FIELDS}
         />
 
         <FinalPoem sentences={this.state.poem}
-        handleRevealClick ={this.handleRevealClick}gameCompleted = {this.state.gameCompleted}/>
+        handleRevealClick ={this.handleRevealClick}
+        gameCompleted = {this.state.gameCompleted}/>
 
       </div>
     );

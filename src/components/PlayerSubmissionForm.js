@@ -7,12 +7,12 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = {
-      adjective1: 'adjective',
-      noun1: 'noun',
-      adverb: 'adverb',
-      verb: 'verb',
-      adjective2: 'adjective',
-      noun2: 'noun',
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: '',
     };
   }
 
@@ -32,65 +32,64 @@ class PlayerSubmissionForm extends Component {
       adjective2: this.state.adjective2,
       noun2: this.state.noun2,
     });
-    // uncomment these lines after i take out the hard coded data 
-    // this.setState({
-    //   adjective1: '',
-    //   noun1: '',
-    //   adverb: '',
-    //   verb: '',
-    //   adjective2: '',
-    //   noun2: '',
-    // });
+    this.setState({
+      adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: '',
+    });
   }
 
 
   render() {
 
     return (
-      <div className="PlayerSubmissionForm" onSubmit={this.handleSubmit}>
+      <div className="PlayerSubmissionForm" >
         <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-            The 
+            The
             <input
+              name="adjective1"
               placeholder="adjective"
-              type="text" 
               onChange={this.onChangeHandler}
               value={this.state.adjective1}
-              />
+            />
             <input
+              name="noun1"
               placeholder="noun"
-              type="text" 
               onChange={this.onChangeHandler}
               value={this.state.noun1}
-              />
+            />
             <input
+              name="adverb"
               placeholder="adverb"
-              type="text" 
               onChange={this.onChangeHandler}
               value={this.state.adverb}
-              />
+            />
             <input
+              name="verb"
               placeholder="verb"
-              type="text" 
               onChange={this.onChangeHandler}
               value={this.state.verb}
-              />
-              the 
+            />
+            the
             <input
+              name="adjective2"
               placeholder="adjective"
-              type="text" 
               onChange={this.onChangeHandler}
               value={this.state.adjective2}
-              />
+            />
             <input
-              placeholder="noun"
-              type="text" 
+              name="noun2"
+              placeholder="noun" 
               onChange={this.onChangeHandler}
               value={this.state.noun2}
-              />
+            />
 
           </div>
 

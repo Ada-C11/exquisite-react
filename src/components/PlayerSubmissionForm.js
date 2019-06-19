@@ -56,7 +56,6 @@ class PlayerSubmissionForm extends Component {
       adjective2: '',
       noun2: ''},
     });
-    console.log(this);
   };
 
     return (

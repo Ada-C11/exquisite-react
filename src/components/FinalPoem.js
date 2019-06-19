@@ -1,5 +1,7 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
+
 
 class FinalPoem extends React.Component {
 
@@ -39,6 +41,12 @@ class FinalPoem extends React.Component {
     </div>
   );
   }
+}
+
+FinalPoem.propTypes = {
+  showPoemStatus: PropTypes.bool,
+  allSubmissionsString: PropTypes.array,
+  showAllPoemsCallback: PropTypes.func
 }
 
 export default FinalPoem;

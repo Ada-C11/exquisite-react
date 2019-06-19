@@ -7,19 +7,78 @@ import RecentSubmission from './RecentSubmission';
 class Game extends Component {
 
   constructor(props) {
-    super(props);
 
+    super(props);
+    this.state = {
+      mostRencentSubmission: '',
+      finalPoem: [],
+      poem: '',
+      finalPoemClicked: false,
+      finalPoemButtonValue: "We are finished: Reveal the Poem",
+    }
+
+  }
+
+  renderRecentSubmission() {
+    if(this.state.mostRencentSubmission !== '' && this.state.finalPoemClicked === false) {
+      return (
+        <RecentSubmission mostRecentSubmission={this.state.mostRencentSubmission}/>
+      )
+    }
+  }
+
+  renderPlayerSubmissionForm(){
+    if(this.state.finalPoemClicked === false){
+      return (
+        <PlayerSubmissionForm onPlayerFormButtonCallback={this.onPlayerFormButton}/>
+      )
+    }
   }
 
   onPlayerFormButton = (event, full) => {
-    event.preventDefault();
-    console.log("Game")
-    console.log(full)
 
+    event.preventDefault();
+    
+    let finalPoem = this.state.finalPoem
+    finalPoem.push(full)
+
+    let last  = this.state.finalPoem[this.state.finalPoem.length - 1]
+
+    this.setState({
+      finalPoem,
+      mostRencentSubmission: last,
+    })
 
   }
 
+  onFinalPoemButton = () => {
 
+    let clicked = ''
+    let value = ''
+    let poemBuilt = ''
+    if (this.state.finalPoemClicked === false){
+      poemBuilt = ""
+      poemBuilt += this.state.finalPoem.map((line) => {
+      return (line + "\n")
+    }).join(" ")
+
+      clicked = true
+      value = "Play again!"
+    
+    } else {
+      clicked = false
+      value = "We are finished: Reveal the Poem"
+    }
+
+    this.setState({
+      poem: poemBuilt,
+      finalPoemClicked: clicked,
+      mostRencentSubmission: '',
+      finalPoemButtonValue: value,
+    })
+    
+
+  }
 
   render() {
 
@@ -43,11 +102,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.renderRecentSubmission()}
 
-        <PlayerSubmissionForm onPlayerFormButtonCallBack={this.onPlayerFormButton}/>
+        {this.renderPlayerSubmissionForm()}
 
-        <FinalPoem />
+        <FinalPoem value={this.state.finalPoemButtonValue} onFinalPoemButtonCallback={this.onFinalPoemButton} poem={this.state.poem} />
 
       </div>
     );

@@ -8,6 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentPlayer: 1,
+      poem: [],
+      updateTurnCallBack: this.updateTurn,
+      lastLine: "",
+      isSubmitted: false,
+      submitCallBack: this.submit
+    };
+  }
+
+  updateTurn = (line) => {
+    let updatedPlayer = this.state.currentPlayer + 1
+    this.setState({ currentPlayer: updatedPlayer });
+    this.state.poem.push(line)
+    const newPoem = this.state.poem
+    this.setState({poem: newPoem})
+    this.setState({lastLine: line})
+  }
+
+  submit = () => {
+    this.setState({isSubmitted: true })
   }
 
   render() {
@@ -19,6 +40,10 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const recentSubmission =  this.state.isSubmitted === false && this.state.currentPlayer > 1 ? <RecentSubmission lastLine={this.state.lastLine} /> : ""
+    const form = this.state.isSubmitted ? "" : <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/> 
+    
 
     return (
       <div className="Game">
@@ -32,11 +57,10 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {recentSubmission}
+        {form}
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <FinalPoem poem={this.state.poem} submitCallBack={this.state.submitCallBack} isSubmitted={this.state.isSubmitted}/>
 
       </div>
     );

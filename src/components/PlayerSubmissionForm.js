@@ -31,12 +31,6 @@ class PlayerSubmissionForm extends Component {
   
 
   render() {
-    const submitLine = (event) => {
-      event.preventDefault();
-      const line = this.createLine();
-      this.state.handleSubmit(line);
-    };
-
     const onInputChange = (event) => {
       const updatedState = this.state.poemLine;
 
@@ -44,11 +38,26 @@ class PlayerSubmissionForm extends Component {
       const value = event.target.value;
 
       updatedState[field] = value;
-      this.setState(updatedState);
+      this.setState({poemLine: updatedState});
       console.log(this.state.poemLine);
     }
-    // This function and it use above and below is courtesy of Ada Developers' Academy instructors, 
+
+    // The onInputChange function and its use above and below is courtesy of Ada Developers' Academy instructors, 
     // from: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/forms-advanced.md.
+
+    const submitLine = (event) => {
+      event.preventDefault();
+      const line = this.createLine();
+      this.state.handleSubmit(line);
+      this.setState({poemLine: {adjective1: '',
+      noun1: '',
+      adverb: '',
+      verb: '',
+      adjective2: '',
+      noun2: ''},
+    });
+    console.log(this);
+  };
 
     return (
       <div className="PlayerSubmissionForm">
@@ -62,33 +71,38 @@ class PlayerSubmissionForm extends Component {
             <input
               name="adjective1"
               placeholder="adjective"
-              value={this.state.value}
+              value={this.state.poemLine.adjective1}
               type="text"
               onChange={onInputChange} />
             <input
               name="noun1"
               placeholder="noun"
+              value={this.state.poemLine.noun1}
               type="text"
               onChange={onInputChange} />
             <input
               name="adverb"
               placeholder="adverb"
+              value={this.state.poemLine.adverb}
               type="text"
               onChange={onInputChange} />
             <input
               name="verb"
               placeholder="verb"
+              value={this.state.poemLine.verb}
               type="text"
               onChange={onInputChange} />
             <span>the</span>
             <input
               name="adjective2"
               placeholder="adjective"
+              value={this.state.poemLine.adjective2}
               type="text"
               onChange={onInputChange} />
             <input
               name="noun2"
               placeholder="noun"
+              value={this.state.poemLine.noun2}
               type="text"
               onChange={onInputChange} />
             <span>.</span>

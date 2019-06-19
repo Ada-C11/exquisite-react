@@ -26,8 +26,6 @@ class Game extends Component {
       finalPoem: finalPoem,
       playerTurn: this.state.playerTurn + 1,
     });
-    console.log('recent line is:', this.state.mostRecentLine);
-    console.log('final poem is', this.state.finalPoem)
   }
 
   onShowFinalPoem = () => {

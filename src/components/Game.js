@@ -13,6 +13,7 @@ class Game extends Component {
       poem: [],
       lastLine: '',
       numOfPlayers: 1,
+      poemRevealed: false,
     };
   }
 
@@ -44,6 +45,10 @@ class Game extends Component {
       };
     }
 
+    const changePoemRevealed = () => {
+      this.setState({poemRevealed: true});
+    }
+
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -64,11 +69,17 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {returnRecentSubmission()}
+        {this.state.poemRevealed ? ('') : 
+        (returnRecentSubmission())
+        }
+        
 
-        <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
-
-        <FinalPoem poem={this.state.poem}/>
+        {this.state.poemRevealed ? ('') : 
+        (<PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />)
+        }
+        
+        
+        <FinalPoem poem={this.state.poem} poemRevealedCallback={changePoemRevealed}/>
 
       </div>
     );

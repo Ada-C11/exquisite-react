@@ -8,9 +8,46 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poem: [],
+      lastLine: '',
+      numOfPlayers: 1,
+      poemRevealed: false,
+    };
   }
 
   render() {
+    
+    const addPoemLine = (line) => {
+      const updatedState = { 
+        poem: this.state.poem,
+        numOfPlayers: this.state.numOfPlayers,
+        lastLine: this.state.lastLine,
+       };
+      updatedState.poem.push(line);
+      updatedState.numOfPlayers += 1;
+      updatedState.lastLine = line;
+      this.setState(updatedState);
+    };
+
+    const updatedPlayerNumber = () => {
+      return this.state.numOfPlayers;
+    }
+
+    const updatedLastLine = () => {
+      return this.state.lastLine;
+    }
+
+    const returnRecentSubmission = () => {
+      if (this.state.poem.length > 0) {
+        return (<RecentSubmission line={updatedLastLine()}/>)
+      };
+    }
+
+    const changePoemRevealed = () => {
+      this.setState({poemRevealed: true});
+    }
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +69,17 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.state.poemRevealed ? ('') : 
+        (returnRecentSubmission())
+        }
+        
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        {this.state.poemRevealed ? ('') : 
+        (<PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />)
+        }
+        
+        
+        <FinalPoem poem={this.state.poem} poemRevealedCallback={changePoemRevealed}/>
 
       </div>
     );

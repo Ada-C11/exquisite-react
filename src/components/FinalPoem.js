@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+class FinalPoem extends Component {
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+  constructor(props) {
+    super(props);
 
-      </section>
+    this.state = {
+      poem: props.poem,
+      revealSelf: false,
+      hideSubmissionForm: props.poemRevealedCallback,
+    }
+  };
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+  render() {
+    const poemToDisplay = this.state.poem.map((line, i) => {
+      return (<li key={i} className="FinalPoem__line">{line}</li>)
+    });
+
+    const handleClick = () => {
+      this.setState({revealSelf: true});
+      this.state.hideSubmissionForm();
+    }
+  
+    return (
+      <div className="FinalPoem">
+        
+          {this.state.revealSelf ? (
+            <section className="FinalPoem__poem">
+              <h3>Final Poem</h3>
+              <ul>{poemToDisplay}</ul>
+            </section>
+          ) : (<div className="FinalPoem__reveal-btn-container">
+                <input type="button" onClick={handleClick} value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+              </div>)
+          }
+
+        
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FinalPoem;

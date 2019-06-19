@@ -47,14 +47,18 @@ class Game extends Component {
         </p>
 
         <RecentSubmission 
+          poem={this.state.poem}
         />
 
         <PlayerSubmissionForm 
+          fields={FIELDS}
           playerNumber={playerNumber}
           formCallback={this.addVerse}
         />
 
-        <FinalPoem />
+        <FinalPoem 
+          poem={this.state.poem}
+        />
 
       </div>
     );

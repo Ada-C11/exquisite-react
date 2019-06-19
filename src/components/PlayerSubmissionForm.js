@@ -39,14 +39,19 @@ class PlayerSubmissionForm extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state
+    // const {adjective1, noun1, adverb, verb, adjective2, noun2} = this.state
 
+    const newVerse = this.props.fields.map((field) => {
+      if (field.key) {
+        return this.state[field.key]
+      } else {
+        return field
+      }
+    })
     console.log(event)
-    const newVerse = this.state
+    this.props.formCallback(newVerse.join(" "))
     
     this.resetState()
-
-    this.props.formCallback(newVerse)
   }
 
 
@@ -62,7 +67,7 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>
-              <input name='adjective1' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective1}/>
+            <input name='adjective1' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective1}/>
             </div>
             <div>
               <input name='noun1' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun1}/>
@@ -74,7 +79,7 @@ class PlayerSubmissionForm extends Component {
               <input name='verb' type="text" placeholder='verb' onChange={this.onFormChange} value={this.state.verb}/>
             </div>
             <div>
-              <input name='adjective2' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective2}/>
+            <input name='adjective2' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective2}/>
             </div>
             <div>
               <input name='noun2' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun2}/>

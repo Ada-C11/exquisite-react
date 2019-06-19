@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 class FinalPoem extends Component {
   constructor (props) {
@@ -42,6 +43,12 @@ class FinalPoem extends Component {
       );
     }
   }
+}
+
+FinalPoem.propTypes = {
+  hidden: PropTypes.bool.isRequired,
+  hiddenCallback: PropTypes.func.isRequired,
+  allInputs: PropTypes.array.isRequired,
 }
 
 export default FinalPoem;

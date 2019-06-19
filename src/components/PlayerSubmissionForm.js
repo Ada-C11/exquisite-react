@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
   constructor({props}) {
@@ -66,7 +67,6 @@ class PlayerSubmissionForm extends Component {
     return this.state[fieldName].length !== 0;
   }
 
-
   render() {
     if(this.props.hidden) {
       return null;
@@ -88,6 +88,12 @@ class PlayerSubmissionForm extends Component {
       </div>
     );
   }
+}
+
+PlayerSubmissionForm.propTypes = {
+  fields: PropTypes.array.isRequired,
+  hidden: PropTypes.bool.isRequired,
+  inputStorage: PropTypes.func.isRequired,
 }
 
 export default PlayerSubmissionForm;

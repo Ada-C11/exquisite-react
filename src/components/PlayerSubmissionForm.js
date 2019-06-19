@@ -14,15 +14,15 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: ''
-    }
-  }
+    };
+  };
 
   onChangeHandler = (event) => {
     const field = {}
     field[event.target.name] = event.target.value;
 
     this.setState(field);
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -39,7 +39,7 @@ class PlayerSubmissionForm extends Component {
       adj2: '',
       noun2: ''
     });
-  }
+  };
 
   render() {
 
@@ -104,7 +104,7 @@ class PlayerSubmissionForm extends Component {
         </form>
       </div>
     );
-  }
+  };
 };
 
 PlayerSubmissionForm.propTypes = {

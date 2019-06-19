@@ -15,7 +15,7 @@ class Game extends Component {
       finalPoem: [],
       revealPoem: false,
     };
-  }
+  };
 
   getRecentUserSubmission = (formInputSentence) => {
     let currentPoemCollection = this.state.finalPoem;
@@ -31,13 +31,13 @@ class Game extends Component {
     });
 
     console.log(this.state.finalPoem);
-  }
+  };
 
   changePoemRevealState = () => {
     this.setState({
       revealPoem: true,
-    })
-  }
+    });
+  };
 
   render() {
 

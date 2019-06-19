@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       lines: [],
-      disPlayLines: false
+      finalized: false,
     };
   }
 
@@ -24,18 +24,28 @@ class Game extends Component {
 
   handleClickFinalPoem = () => {
     this.setState({
-      disPlayLines: true
-    })
+      finalized: true,
+    });
   }
 
 
   render() {
     // console.log(this.state);
     let lines;
-    if (this.state.disPlayLines){
+    let submissionForm;
+    let recentSubmission;
+    let finalized;
+    if (this.state.finalized){
       lines = this.state.lines;
+      submissionForm = '';
+      finalized = true;
     } else {
       lines = '';
+      submissionForm = (<PlayerSubmissionForm 
+        addLineCallback={this.addLine}/>);
+      recentSubmission = (<RecentSubmission />);
+      finalized = false;
+      
     }
 
     const exampleFormat = FIELDS.map((field) => {
@@ -58,15 +68,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {recentSubmission}
 
-        <PlayerSubmissionForm 
-          addLineCallback={this.addLine}/>
+        {submissionForm}
 
         <FinalPoem 
-          lines={lines}
-          handleClickCallback={this.handleClickFinalPoem}
-          />
+        lines={lines}
+        handleClickCallback={this.handleClickFinalPoem}
+        finalized = {finalized}
+        />
 
       </div>
     );

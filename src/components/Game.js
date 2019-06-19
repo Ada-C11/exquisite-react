@@ -8,7 +8,18 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
   }
+
+  onPlayerFormButton = (event, full) => {
+    event.preventDefault();
+    console.log("Game")
+    console.log(full)
+
+
+  }
+
+
 
   render() {
 
@@ -34,7 +45,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm onPlayerFormButtonCallBack={this.onPlayerFormButton}/>
 
         <FinalPoem />
 

@@ -13,6 +13,7 @@ class Game extends Component {
       mostRecentLine: '',
       finalPoem: [],
       showPoem: false,
+      playerTurn: 1,
     }
   }
 
@@ -23,6 +24,7 @@ class Game extends Component {
     this.setState({
       mostRecentLine: poemLine,
       finalPoem: finalPoem,
+      playerTurn: this.state.playerTurn + 1,
     });
     console.log('recent line is:', this.state.mostRecentLine);
     console.log('final poem is', this.state.finalPoem)
@@ -58,7 +60,7 @@ class Game extends Component {
 
         <RecentSubmission showPoemState={this.state.showPoem} submission={this.state.mostRecentLine}/>
 
-        <PlayerSubmissionForm showPoemState={this.state.showPoem} onSubmitLineCallback={this.onSubmitLine}/>
+        <PlayerSubmissionForm playerTurn={this.state.playerTurn} showPoemState={this.state.showPoem} onSubmitLineCallback={this.onSubmitLine}/>
 
         <FinalPoem showPoemState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem}/>
 

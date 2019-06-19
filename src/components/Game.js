@@ -30,7 +30,6 @@ class Game extends Component {
 
   submit = () => {
     this.setState({isSubmitted: true })
-
   }
 
   render() {
@@ -42,6 +41,10 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const recentSubmission =  this.state.isSubmitted ? "" : <RecentSubmission lastLine={this.state.lastLine} />
+    const form = this.state.isSubmitted ? "" : <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/> 
+    
 
     return (
       <div className="Game">
@@ -55,9 +58,8 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission lastLine={this.state.lastLine} />
-
-        <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/>
+        {recentSubmission}
+        {form}
 
         <FinalPoem poem={this.state.poem} submitCallBack={this.state.submitCallBack} isSubmitted={this.state.isSubmitted}/>
 

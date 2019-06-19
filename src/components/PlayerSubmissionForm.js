@@ -16,6 +16,19 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+  // validations = {
+  //   adjectiveOne: /.+/,
+  //   nounOne: /.+/,
+  //   adverb: /.+/,
+  //   verb: /.+/,
+  //   adjectiveTwo: /.+/,,
+  //   nounTwo: /.+/,
+  // }
+
+  fieldValid = (fieldName) => {
+    // test returns a boolean, while match returns an array of matching characters or words etc
+    return /.+/.test( this.state[fieldName] );
+  }
  
 
   onChangeHandler = (event) => {
@@ -57,24 +70,28 @@ class PlayerSubmissionForm extends Component {
                 <div className="PlayerSubmissionForm__poem-inputs">
                   <label htmlFor="adjectiveOne">The </label>
                   <input
+                    className={this.fieldValid('adjectiveOne') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='adjectiveOne'
                     placeholder="adjective"
                     type="text"
                     onChange={this.onChangeHandler}
                     value={adjectiveOne}/>
                   <input
+                    className={this.fieldValid('nounOne') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='nounOne'
                     placeholder="noun"
                     type="text" 
                     onChange={this.onChangeHandler}
                     value={nounOne}/>
                   <input
+                    className={this.fieldValid('adverb') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='adverb'
                     placeholder="adverb"
                     type="text" 
                     onChange={this.onChangeHandler}
                     value={adverb}/>
                   <input
+                    className={this.fieldValid('verb') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='verb'
                     placeholder="verb"
                     type="text" 
@@ -82,12 +99,14 @@ class PlayerSubmissionForm extends Component {
                     value={verb}/>
                   <label htmlFor="adjectiveOne">the </label>
                   <input
+                    className={this.fieldValid('adjectiveTwo') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='adjectiveTwo'
                     placeholder="adjective"
                     type="text" 
                     onChange={this.onChangeHandler}
                     value={adjectiveTwo}/>
                   <input
+                    className={this.fieldValid('nounTwo') ? null : 'PlayerSubmissionFormt__input--invalid' }
                     name='nounTwo'
                     placeholder="noun"
                     type="text" 

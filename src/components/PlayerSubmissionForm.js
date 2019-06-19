@@ -85,7 +85,7 @@ class PlayerSubmissionForm extends Component {
             <div>
               <input
                 name="verb"
-                placeholder="noun"
+                placeholder="verb"
                 onChange={this.onChangeHandler}
                 value={this.state.verb}
                 className={!this.state.verb ? "PlayerSubmissionFormt__input--invalid": ""}

@@ -26,8 +26,6 @@ class FinalPoem extends React.Component {
       )
     })
 
-    // const { showAllPoems } = this.state;
-
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">

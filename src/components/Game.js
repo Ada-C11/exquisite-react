@@ -23,11 +23,9 @@ class Game extends Component {
   }
 
   addSubmission = (submission) => {
-    // add submission to allSubmissions
     const updatedAllSubmissions = this.state.allSubmissions
     updatedAllSubmissions.push(submission)
 
-    // change recent submission to recentSubmission
     this.setState({
       recentSubmission: submission,
       allSubmissions: updatedAllSubmissions
@@ -59,8 +57,8 @@ class Game extends Component {
         {this.state.recentSubmission && <RecentSubmission 
         showSubmission={this.state.recentSubmission} /> }
         
-        <PlayerSubmissionForm 
-        submitFormCallback={this.addSubmission}/>
+        {!this.state.showPoem && <PlayerSubmissionForm 
+        submitFormCallback={this.addSubmission}/>}
 
         <FinalPoem 
         allPoems={this.state.allSubmissions}

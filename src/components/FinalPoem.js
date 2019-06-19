@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
 
@@ -17,12 +18,12 @@ const FinalPoem = (props) => {
         <h3>Final Poem</h3>
         {fullPoem}
       </div>
-    </section>
+    </section>;
 
   const button = 
     <div className="FinalPoem__reveal-btn-container">
       <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.onRevealPoemCallback}/>
-    </div>
+    </div>;
 
   return (
     <div className="FinalPoem">
@@ -31,6 +32,12 @@ const FinalPoem = (props) => {
     
     </div>
   );
-}
+};
+
+FinalPoem.propTypes = {
+  onRevealPoemCallback: PropTypes.func,
+  poemRevealState: PropTypes.bool,
+  finalPoem: PropTypes.array,
+};
 
 export default FinalPoem;

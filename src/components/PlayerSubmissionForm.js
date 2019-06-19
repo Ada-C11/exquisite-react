@@ -16,6 +16,19 @@ class PlayerSubmissionForm extends Component {
     };
   }
 
+  validations = {
+    adjective1: /.+/, //anytime 1 or more times 
+    noun1: /.+/,
+    adverb: /.+/,
+    verb: /.+/,
+    adjective2: /.+/,
+    noun2: /.+/,
+  }
+
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName])
+  }
+
   onChangeHandler = (event) => {
     const field = {}
     field[event.target.name] = event.target.value
@@ -58,24 +71,28 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               onChange={this.onChangeHandler}
               value={this.state.adjective1}
+              className={this.fieldValid("adjective1") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
             <input
               name="noun1"
               placeholder="noun"
               onChange={this.onChangeHandler}
               value={this.state.noun1}
+              className={this.fieldValid("noun1") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
             <input
               name="adverb"
               placeholder="adverb"
               onChange={this.onChangeHandler}
               value={this.state.adverb}
+              className={this.fieldValid("adverb") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
             <input
               name="verb"
               placeholder="verb"
               onChange={this.onChangeHandler}
               value={this.state.verb}
+              className={this.fieldValid("verb") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
             the
             <input
@@ -83,12 +100,14 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               onChange={this.onChangeHandler}
               value={this.state.adjective2}
+              className={this.fieldValid("adjective2") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
             <input
               name="noun2"
               placeholder="noun" 
               onChange={this.onChangeHandler}
               value={this.state.noun2}
+              className={this.fieldValid("noun2") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
           </div>

@@ -71,13 +71,13 @@ class Game extends Component {
     }
 
     this.setState({
+      mostRencentSubmission: '',
+      finalPoem: [],
       poem: poemBuilt,
       finalPoemClicked: clicked,
-      mostRencentSubmission: '',
       finalPoemButtonValue: value,
     })
     
-
   }
 
   render() {

@@ -33,17 +33,6 @@ class Game extends Component {
   }
   render() {
 
-    const exampleFormat = FIELDS.map((field) => {
-      if (field.key) {
-        return field.placeholder;
-      } else {
-        return field;
-      }
-    }).join(" ");
-
-
-
-
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -53,7 +42,7 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          {exampleFormat}
+
         </p>
 
         <RecentSubmission gameComplete={this.state.complete} verse={this.state.recentSubmission} />

@@ -10,15 +10,7 @@ class PlayerSubmissionForm extends Component {
       fields: this.props.fields,
       playerNumber: 1,
       ...newFields
-      // first: "",
-      // second: "",
-      // third: "",
-      // fourth: "",
-      // fifth: "",
-      // sixth: ""
     }
-    // this.setFieldsState(this.props.fields);
-
   }
 
   newFieldsState = (fields) => {
@@ -29,27 +21,21 @@ class PlayerSubmissionForm extends Component {
       }
     });
     return (newState)
-
   }
 
   validateInput = (input) => {
     const valid = (!input) ? "PlayerSubmissionFormt__input--invalid" : "";
     return (valid)
   }
+
   onInputChange = (event) => {
-    // console.log(event.target.value)
-    // console.log(event.target.name)
-    console.log(this.state[event.target.name])
     const updatedState = {};
-    const field = event.target.name;
-    const value = event.target.value;
-    updatedState[field] = value;
+    updatedState[event.target.name] = event.target.value;
     this.setState(updatedState);
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    const newPlayerNumber = this.state.playerNumber + 1
     const newState = this.newFieldsState(this.state.fields)
     let verse = "";
     this.state.fields.forEach((field) => {
@@ -59,27 +45,18 @@ class PlayerSubmissionForm extends Component {
         verse += this.state[field.key] + ' ';
       }
     })
-    // const verse = `The ${this.state.first} ${this.state.second} ${this.state.third} ${this.state.fourth} the ${this.state.fifth} ${this.state.sixth}.`
     this.setState({
-      playerNumber: newPlayerNumber,
+      playerNumber: this.state.playerNumber + 1,
       ...newState
-      // first: "",
-      // second: "",
-      // third: "",
-      // fourth: "",
-      // fifth: "",
-      // sixth: ""
     });
     this.props.addNewVerseCallback(verse);
   }
+
   generateForm = () => {
     return this.state.fields.map((field, i) => {
       if (typeof (field) == "string") {
-        // console.log(field);
         return (<span key={i}>{field}</span>)
       } else {
-        console.log("in generateForm")
-        console.log(field.key)
         return (
           <input
             key={i}
@@ -96,22 +73,16 @@ class PlayerSubmissionForm extends Component {
 
 
   render() {
-    // console.log(this.state.fields);
     const formInputs = this.generateForm();
-    console.log(formInputs)
     return (
       <div className={((this.props.gameComplete) ? "hidden" : "") + " PlayerSubmissionForm"}>
         <h3>Player Submission Form for Player #{this.state.playerNumber}</h3>
         <form
           className="PlayerSubmissionForm__form"
-          onSubmit={this.onFormSubmit}
-        >
-
+          onSubmit={this.onFormSubmit}>
           <div className="PlayerSubmissionForm__poem-inputs" >
             {formInputs}
-
           </div>
-
           <div className="PlayerSubmissionForm__submit">
             <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>

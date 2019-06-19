@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
   const poem = props.final.map((line, i) => {

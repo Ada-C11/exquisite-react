@@ -3,6 +3,7 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
+import PropTypes from 'prop-types';
 
 class Game extends Component {
 

@@ -8,22 +8,22 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = {
-      adjective1: '',
+      adj1: '',
       noun1: '',
-      adverb: '',
+      adv: '',
       verb: '',
-      adjective2: '',
+      adj2: '',
       noun2: '', 
     }
   }
 
   resetState = () => {
     this.setState({
-      adjective1: '',
+      adj1: '',
       noun1: '',
-      adverb: '',
+      adv: '',
       verb: '',
-      adjective2: '',
+      adj2: '',
       noun2: '', 
     })
   }
@@ -67,19 +67,19 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>
-            <input name='adjective1' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective1}/>
+            <input name='adj1' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adj1}/>
             </div>
             <div>
               <input name='noun1' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun1}/>
             </div>
             <div>
-              <input name='adverb' type="text" placeholder='adverb' onChange={this.onFormChange} value={this.state.adverb}/>
+              <input name='adv' type="text" placeholder='adverb' onChange={this.onFormChange} value={this.state.adv}/>
             </div>
             <div>
               <input name='verb' type="text" placeholder='verb' onChange={this.onFormChange} value={this.state.verb}/>
             </div>
             <div>
-            <input name='adjective2' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adjective2}/>
+            <input name='adj2' type="text" placeholder='adjective' onChange={this.onFormChange} value={this.state.adj2}/>
             </div>
             <div>
               <input name='noun2' type="text" placeholder='noun' onChange={this.onFormChange} value={this.state.noun2}/>

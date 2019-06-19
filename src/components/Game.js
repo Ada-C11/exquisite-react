@@ -54,7 +54,7 @@ class Game extends Component {
           { exampleFormat } 
         </p>
 
-        {this.state.recentSubmission && <RecentSubmission 
+        {this.state.recentSubmission && !this.state.showPoem && <RecentSubmission 
         showSubmission={this.state.recentSubmission} /> }
         
         {!this.state.showPoem && <PlayerSubmissionForm 

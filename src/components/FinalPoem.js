@@ -5,7 +5,7 @@ const FinalPoem = (props) => {
 
   let displayFinal = ''
   if (props.poemRevealState) {
-    const fullPoem = props.getFinalPoem.map((line, i) => {
+    const fullPoem = props.finalPoem.map((line, i) => {
       return (
         <p key={i}>
           {line}
@@ -24,7 +24,7 @@ const FinalPoem = (props) => {
       </section>
 
       <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.revealPoem}/>
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.onRevealPoemCallback}/>
       </div>
     </div>
   );

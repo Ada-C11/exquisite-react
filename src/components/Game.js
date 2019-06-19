@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      poem: [],
+      poem: [""],
       gameOver: false,
     }
   }
@@ -59,7 +59,7 @@ class Game extends Component {
         <PlayerSubmissionForm
           fields = {FIELDS}
           addLineCallback = {this.addLine}
-          currentPlayer = {this.state.poem.length + 1}
+          currentPlayer = {this.state.poem.length} // not plus one because starting out with empty string in poem array (for sake of proptypes in recent submission)
           gameOver = {this.state.gameOver} />
 
         <FinalPoem 

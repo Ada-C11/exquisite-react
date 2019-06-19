@@ -29,12 +29,26 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const newestSubIndex = this.state.submissions.length - 1
-    const newestSub = (allSubmissions) => {
-      if (allSubmissions.length > 0) {
-        return allSubmissions[newestSubIndex]
+
+    // const newestSub = (allSubmissions) => {
+    //   if (allSubmissions.length > 0) {
+    //     return allSubmissions[newestSubIndex]
+    //   } else {
+    //     return ""
+    //   }
+    // }
+
+    // <RecentSubmission newestSubmission={newestSub(this.state.submissions)} />
+
+    const mostRecentSubmission = () => {
+      if ((this.state.submissions).length > 0) {
+        const allSubmissions = this.state.submissions
+        const newestSubIndex = allSubmissions.length - 1
+        const newestSub = allSubmissions[newestSubIndex]
+
+        return <RecentSubmission newestSubmission={newestSub} />
       } else {
-        return ""
+        return ''
       }
     }
 
@@ -52,7 +66,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission newestSubmission={newestSub(this.state.submissions)} />
+          { mostRecentSubmission() }
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={playerID} />
 

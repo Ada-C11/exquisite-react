@@ -28,6 +28,14 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const newestSubIndex = this.state.submissions.length - 1
+    const newestSub = (allSubmissions) => {
+      if (allSubmissions.length > 0) {
+        return allSubmissions[newestSubIndex]
+      } else {
+        return ""
+      }
+    }
 
     console.log(this.state.submissions);
     return (
@@ -42,7 +50,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission newestSubmission={newestSub(this.state.submissions)} />
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
 

@@ -61,11 +61,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentPoem={this.state.recentPoem} />
+        {!this.state.revealPoem && <RecentSubmission recentPoem={this.state.recentPoem} />}
 
-        <PlayerSubmissionForm 
+        {!this.state.revealPoem && <PlayerSubmissionForm 
           onFormSubmitCallback={this.getRecentUserSubmission}
-          playerNumber={this.state.playerNum} />
+          playerNumber={this.state.playerNum} />}
 
         <FinalPoem 
           onRevealPoemCallback={this.changePoemRevealState}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
+
 
 class PlayerSubmissionForm extends Component {
 
@@ -99,5 +101,12 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  fields: PropTypes.array.isRequired,
+  addLineCallback: PropTypes.func.isRequired,
+  currentPlayer: PropTypes.number.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+};
 
 export default PlayerSubmissionForm;

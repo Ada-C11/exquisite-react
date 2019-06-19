@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 class FinalPoem extends Component {
   constructor(props) {
@@ -53,5 +54,10 @@ class FinalPoem extends Component {
     )
   };
 }
+
+FinalPoem.propTypes = {
+  poem: PropTypes.array,
+  gameOverCallback: PropTypes.func.isRequired,
+};
 
 export default FinalPoem;

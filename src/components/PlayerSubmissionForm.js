@@ -17,7 +17,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   validations = {
-    adjective1: /.+/, //anytime 1 or more times 
+    adjective1: /.+/, //anything 1 or more times 
     noun1: /.+/,
     adverb: /.+/,
     verb: /.+/,

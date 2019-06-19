@@ -8,10 +8,18 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+    }
+  }
+
+  addSubmission = (newSubmission) => {
+    this.setState({
+      submissions: [...this.state.submissions, newSubmission],
+    })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -20,6 +28,8 @@ class Game extends Component {
       }
     }).join(" ");
 
+
+    console.log(this.state.submissions);
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -34,7 +44,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
 
         <FinalPoem />
 

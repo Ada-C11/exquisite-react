@@ -8,10 +8,23 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      submissionList: [],
+      hidden: false,
+    }
   }
 
-  render() {
+  addSentence = (sentence) => {
+    const submissionList = this.state.submissionList;
+    submissionList.push(sentence);
+    this.setState({submissionList});
+  }
 
+  displayFinalPoem = (poem) => {
+    this.setState({hidden:true})
+  }
+  
+  render() {
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -20,6 +33,17 @@ class Game extends Component {
       }
     }).join(" ");
 
+    const poem = this.state.submissionList.map((submission) => {
+      return FIELDS.map((field) => {
+        if (field.key) {
+          return submission[field.key];
+        } else {
+          return field;
+        }
+      }).join(" ");
+    });
+    
+    const displayType = this.state.hidden? 'hidden' : '' 
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -31,13 +55,14 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        <div className={displayType}>
+          <RecentSubmission recentSubmission={poem[poem.length-1]} />
 
-        <RecentSubmission />
+          <PlayerSubmissionForm  addSentenceCallback={this.addSentence} fields={FIELDS}/>
+        </div>
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
-
+          <FinalPoem poem={poem} displayButton={this.state.hidden} displayFinalPoemCallback={this.displayFinalPoem}/>
+        
       </div>
     );
   }

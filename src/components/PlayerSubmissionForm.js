@@ -5,9 +5,7 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      ...this.initialState(),
-    }
+    this.state = this.initialState();
   }
 
   initialState = () => {
@@ -39,9 +37,7 @@ class PlayerSubmissionForm extends Component {
     }).join(" ");
     this.props.addRecentSubmissionCallback(sentence);
     
-    this.setState({
-      ...this.initialState()
-    });
+    this.setState(this.initialState());
   }
   render() {
     const fields = this.props.fields.map((field) => {

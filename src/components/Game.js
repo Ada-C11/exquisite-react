@@ -16,7 +16,7 @@ class Game extends Component {
 
   addLine = (line) => {
     const lines = this.state.lines;
-    lines.push(line);
+    lines.push(<p key={this.state.lines.length + 1}>{line}</p>);
     this.setState({
       lines,
     });
@@ -65,7 +65,8 @@ class Game extends Component {
 
         <FinalPoem 
           lines={lines}
-          handleClickCallback={this.handleClickFinalPoem}/>
+          handleClickCallback={this.handleClickFinalPoem}
+          />
 
       </div>
     );

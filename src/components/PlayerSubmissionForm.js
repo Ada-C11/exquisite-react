@@ -43,7 +43,6 @@ class PlayerSubmissionForm extends Component {
       this.props.addLineCallback(constructedLine);// to do next 
     }
 
-
   render() {
 
     return (

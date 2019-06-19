@@ -43,3 +43,8 @@
 input {
   height: 40px;
 }
+
+.valid {
+background-color: white;
+}
+

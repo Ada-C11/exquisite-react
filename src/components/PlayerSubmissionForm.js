@@ -17,6 +17,19 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+  validations = {
+    adjective1: /.+/,
+    noun1: /.+/,
+    adverb: /.+/,
+    verb: /.+/,
+    adjective2: /.+/,
+    noun2: /.+/,
+  }
+
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName]);
+  }
+
 
   onChangeHandler = (event) => {
     const field = {}
@@ -49,6 +62,8 @@ class PlayerSubmissionForm extends Component {
     });
   }
 
+ 
+
   render() {
 
     const { adjective1, noun1, adverb, verb, adjective2, noun2 } = this.state;
@@ -69,14 +84,16 @@ class PlayerSubmissionForm extends Component {
               size='10'
               value={adjective1}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('adjective1') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
             <input
               name='noun1'
-              placeholder= 'noun'
+              placeholder='noun'
               size='10'
               value={noun1}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('noun1') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
             <input
@@ -85,6 +102,7 @@ class PlayerSubmissionForm extends Component {
               size='10'
               value={adverb}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('adverb') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
             <input
@@ -93,6 +111,7 @@ class PlayerSubmissionForm extends Component {
               size='10'
               value={verb}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('verb') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
             <p>the</p>
@@ -102,6 +121,7 @@ class PlayerSubmissionForm extends Component {
               size='10'
               value={adjective2}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('adjective2') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
 
             <input
@@ -110,12 +130,13 @@ class PlayerSubmissionForm extends Component {
               size='10'
               value={noun2}
               onChange={this.onChangeHandler}
+              className={this.fieldValid('noun2') ? 'valid' : 'PlayerSubmissionFormt__input--invalid'}
             />
           </div>
 
-            <div className="PlayerSubmissionForm__submit">
-              <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-            </div>
+          <div className="PlayerSubmissionForm__submit">
+            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+          </div>
         </form>
       </div>
     );

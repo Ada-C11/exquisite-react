@@ -65,7 +65,7 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        {(!finalDisplay && player < 1) && <RecentSubmission
+        {(!finalDisplay && recentLine !== '') && <RecentSubmission
           line={recentLine} />}
 
         {!finalDisplay && <PlayerSubmissionForm

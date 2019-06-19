@@ -5,11 +5,11 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       inputs: [],
+      revealFinalPoem: false,
     }
   }
 
@@ -18,6 +18,12 @@ class Game extends Component {
     inputs.push(input);
     this.setState({
       inputs,
+    })
+  }
+
+  displayPoem = (display) => {
+    this.setState({
+      revealFinalPoem: display,
     })
   }
 
@@ -44,11 +50,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission mostRecentInput={ inputs[inputs.length - 1] }/>
+        <RecentSubmission mostRecentInput={ inputs[inputs.length - 1] } hidden={this.state.revealFinalPoem}/>
 
-        <PlayerSubmissionForm fields={FIELDS} inputStorage={this.storeInputs}/>
+        <PlayerSubmissionForm fields={FIELDS} inputStorage={this.storeInputs} hidden={this.state.revealFinalPoem}/>
 
-        <FinalPoem allInputs={this.state.inputs}/>
+        <FinalPoem allInputs={this.state.inputs} hiddenCallback={this.displayPoem} hidden={this.state.revealFinalPoem}/>
 
       </div>
     );

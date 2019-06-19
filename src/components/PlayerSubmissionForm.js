@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
-
   constructor({props}) {
     super(props);
     this.state = {
@@ -11,10 +10,8 @@ class PlayerSubmissionForm extends Component {
       noun1: '',
       adv: '',
       verb: '',
-      input6: 'the',
       adj2: '',
       noun2: '',
-      input9: '.', 
     }
   }
 
@@ -71,6 +68,9 @@ class PlayerSubmissionForm extends Component {
 
 
   render() {
+    if(this.props.hidden) {
+      return null;
+    }
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{ this.state.numPlayers }</h3>

@@ -3,8 +3,8 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
   
-    const fullPoem = props.sentences.map((sentence)=>{
-      return (<p key={props.sentences.indexOf(sentence)}>{sentence}</p>);
+    const fullPoem = props.sentences.map((sentence, index)=>{
+      return (<p key={index}>{sentence}</p>);
     });
 
     const showPoemButton = (

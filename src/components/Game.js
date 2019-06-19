@@ -3,6 +3,7 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
+import { thisTypeAnnotation } from '@babel/types';
 
 class Game extends Component {
 
@@ -10,20 +11,29 @@ class Game extends Component {
     super(props);
 
     this.state ={
-      finalPoem: [],
+      poem: [],
+      poemRevealed: false,
     }
-  }
+  };
 
   addLine = (poemVerse) => {
     // const poemVerse = this.state.
-    let finalPoem = this.state.finalPoem;
+    let updatedState = {...this.state};
+    let updatedPoem = updatedState.poem
 
-    finalPoem.push(poemVerse)
+    updatedPoem.push(poemVerse)
     this.setState({
-      finalPoem,
+      updatedPoem,
+    });
+    console.log(this.poem)
+  };
+
+  revealPoem = () => {
+    this.setState({
+      poemRevealed: true
     })
-    console.log(finalPoem)
   }
+
 
   render() {
 
@@ -34,6 +44,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+     
 
     return (
       <div className="Game">
@@ -47,12 +59,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {/* <RecentSubmission line={ this.state.finalPoem.pop()}/>   */}
-        <RecentSubmission lastVerse={this.state.finalPoem[this.state.finalPoem.length - 1]} />
+        {/* <RecentSubmission line={ this.state.poem.pop()}/>   */}
+        <RecentSubmission lastVerse={this.state.poem[this.state.poem.length - 1]} />
  
-        <PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.finalPoem.length } />
+        <PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.poem.length } fields={FIELDS}/>
 
-        <FinalPoem  />
+        <FinalPoem poem={ this.state.poem } onRevealPoemCallback={ this.revealPoem } poemRevealed={this.state.poemRevealed} />
 
       </div>
     );
@@ -62,15 +74,15 @@ class Game extends Component {
 const FIELDS = [
   "The",
   {
-    key: 'adj1',
+    key: 'adjective',
     placeholder: 'adjective',
   },
   {
-    key: 'noun1',
+    key: 'noun',
     placeholder: 'noun',
   },
   {
-    key: 'adv',
+    key: 'adverb',
     placeholder: 'adverb',
   },
   {
@@ -79,7 +91,7 @@ const FIELDS = [
   },
   "the",
   {
-    key: 'adj2',
+    key: 'adjective2',
     placeholder: 'adjective',
   },
   {

@@ -26,10 +26,6 @@ class Game extends Component {
       recentSubmission: submission,
       allSubmissions: updatedAllSubmissions
     })
-
-    console.log('recentSubmission:', this.state.recentSubmission)
-    console.log('allSubmissions:', this.state.allSubmissions)
-    console.log('updatedAllSubmissions:', updatedAllSubmissions)
   }
 
   render() {
@@ -41,12 +37,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
-
-    // const formatPoems = this.state.allSubmissions.map((poem) => {
-    //   return Object.values(poem)
-    // }).join();
     
-
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -59,9 +50,9 @@ class Game extends Component {
           { exampleFormat } 
         </p>
 
-        <RecentSubmission 
-        showSubmission={this.state.recentSubmission} />
-
+        {this.state.recentSubmission && <RecentSubmission 
+        showSubmission={this.state.recentSubmission} /> }
+        
         <PlayerSubmissionForm 
         submitFormCallback={this.addSubmission}/>
 

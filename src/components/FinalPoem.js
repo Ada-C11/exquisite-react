@@ -1,7 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
 
-// const FinalPoem = (props) => {
 class FinalPoem extends React.Component {
 
   constructor(props) {
@@ -42,14 +41,15 @@ class FinalPoem extends React.Component {
 
     const { showAllPoems } = this.state;
 
-   
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
       </section>
 
-      <div> {showAllPoems ? formatPoem : displayButton} </div>
+      <div> 
+        {showAllPoems ? formatPoem : displayButton} 
+      </div>
       
     </div>
   );

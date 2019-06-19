@@ -23,7 +23,6 @@ class Game extends Component {
     this.setState({ currentPlayer: updatedPlayer });
     this.state.poem.push(line)
     const newPoem = this.state.poem
-    console.log(newPoem)
     this.setState({poem: newPoem})
     this.setState({lastLine: line})
   }

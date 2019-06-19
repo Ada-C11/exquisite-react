@@ -31,7 +31,7 @@ class Game extends Component {
     });
   }
 
-  // Works, but requires that the button in FinalPoem be moved to Game
+  // This works but requires that the button in FinalPoem be moved to Game and the component to be moved inside this function for rendering and then calling this function where the FinalPoem component was orignally called in Game.
   // renderFinalPoem = () => {
   //   if (this.state.displayFinalPoem !== false){
   //     return(

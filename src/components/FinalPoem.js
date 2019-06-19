@@ -13,11 +13,22 @@ const FinalPoem = (props) => {
     <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.finishPoemCallback} />
   </div>)
 
-  const poemContent = props.revealed ? poem : poemButton
+  let poemContent;
+  let poemClass; 
+
+  if (props.revealed) {
+    poemContent = poem;
+    poemClass = "FinalPoem__poem"
+  }
+  else {
+    poemContent = poemButton;
+    poemClass = 'FinalPoem__unrevealed'
+  }
+
 
   return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
+      <section className={poemClass}>
         <h3>Final Poem</h3>
         {props.peom}
       </section>

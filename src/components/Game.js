@@ -8,9 +8,49 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      finished: false,
+    }
+  }
+
+
+  // converts submissions from object to string
+  submissionToString = (submission) => {
+    let string = ''
+
+    Object.values(submission).forEach((word, i) => {
+      string = `${string} ${word} `;
+      if ( i === 3 ) {
+        string += 'the ';
+      };
+    });
+    
+    string = `The ${string}.`
+    return string;
+  }
+
+  onSubmitLine = (submission) => {
+    
+    const submissions = this.state.submissions
+    submissions.push(this.submissionToString(submission))
+
+    this.setState({
+      submissions,
+    })
+  }
+
+  onFinished = () => {
+    const newState = !this.state.finished
+
+    this.setState({
+      finished: newState
+    });
   }
 
   render() {
+    const { submissions, finished} = this.state
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +72,22 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+          mostRecentSubmission={submissions[submissions.length - 1]}
+          finished={finished}
+        />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+          playerNum={submissions.length + 1}
+          onSubmitLineCallback={this.onSubmitLine}
+          finished={finished}
+        />
 
-        <FinalPoem />
+        <FinalPoem 
+          submissions={submissions}
+          onFinishedCallback={this.onFinished}
+          finished={finished}
+        />
 
       </div>
     );

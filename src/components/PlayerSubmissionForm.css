@@ -35,6 +35,7 @@
   background-color: #FFE9E9;
 }
 
-.PlayerSubmissionForm__input--invalid::placeholder {
+/* https://stackoverflow.com/questions/31312709/placeholder-css-not-working-in-chrome-after-update */
+input[placeholder]::-webkit-input-placeholder {
   color: black;
 }

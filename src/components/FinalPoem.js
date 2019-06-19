@@ -11,7 +11,7 @@ const FinalPoem = (props) => {
 
   return (
     <div className="FinalPoem">
-      {/* if displayPoem is true, then show the full poem */}
+      {/* if displayPoem is true, then show the full poem -> this is an inline If statement without the If keyword */}
       {props.displayPoem && <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
           {fullPoem}

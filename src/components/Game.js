@@ -16,10 +16,10 @@ class Game extends Component {
       displayFinalPoem: false,
     }
   }
-  addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
+  addLine = ({ adj1, noun1, adv, verb, adj2, noun2}) => {
     let currentLine = this.state.recentLine;
 
-    let newLine = `The ${adjective} ${noun} ${adverb} ${verb} the ${adjective2} ${noun2}`;
+    let newLine = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2}`;
 
     currentLine = newLine;
     this.state.fullPoem.push(currentLine);
@@ -46,6 +46,7 @@ class Game extends Component {
     });
   }
 
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -68,14 +69,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission 
+        {!this.state.displayFinalPoem && <RecentSubmission 
           mostRecentLine={this.state.recentLine}
-        />
+        />}
 
-        <PlayerSubmissionForm 
+        {/* When the Reveal Poem button is clicked, the form is hidden */}
+        {!this.state.displayFinalPoem && <PlayerSubmissionForm 
           addLineCallback={this.addLine}
           playerNumber={this.state.playerNumber}
-        />
+        />}
 
         <FinalPoem
           poem={this.state.fullPoem}  

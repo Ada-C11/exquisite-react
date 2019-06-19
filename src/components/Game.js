@@ -8,17 +8,30 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: "",
+      finalPoem: [],
+      complete: false,
+      fields: FIELDS
+    }
   }
 
-  render() {
 
-    const exampleFormat = FIELDS.map((field) => {
-      if (field.key) {
-        return field.placeholder;
-      } else {
-        return field;
-      }
-    }).join(" ");
+  addNewVerse = (verse) => {
+    this.setState({
+      recentSubmission: verse,
+      finalPoem: [...this.state.finalPoem, verse]
+    });
+
+  }
+
+  finalizePoem = () => {
+    this.setState({
+      complete: true
+    })
+  }
+  render() {
 
     return (
       <div className="Game">
@@ -29,14 +42,14 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission gameComplete={this.state.complete} verse={this.state.recentSubmission} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm gameComplete={this.state.complete} addNewVerseCallback={this.addNewVerse} fields={FIELDS} />
 
-        <FinalPoem />
+        <FinalPoem gameComplete={this.state.complete} verses={this.state.finalPoem} finalizePoemCallback={this.finalizePoem} />
 
       </div>
     );

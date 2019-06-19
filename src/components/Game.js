@@ -38,6 +38,12 @@ class Game extends Component {
       return this.state.lastLine;
     }
 
+    const returnRecentSubmission = () => {
+      if (this.state.poem.length > 0) {
+        return (<RecentSubmission line={updatedLastLine()}/>)
+      };
+    }
+
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -58,7 +64,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission line={updatedLastLine()}/>
+        <section>{returnRecentSubmission()}</section>
 
         <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
 

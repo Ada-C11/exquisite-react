@@ -13,6 +13,8 @@ class Game extends Component {
       poem: [],
       updateTurnCallBack: this.updateTurn,
       lastLine: "",
+      isSubmitted: false,
+      submitCallBack: this.submit
     };
   }
 
@@ -24,6 +26,11 @@ class Game extends Component {
     console.log(newPoem)
     this.setState({poem: newPoem})
     this.setState({lastLine: line})
+  }
+
+  submit = () => {
+    this.setState({isSubmitted: true })
+
   }
 
   render() {
@@ -52,7 +59,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/>
 
-        <FinalPoem poem={this.state.poem}/>
+        <FinalPoem poem={this.state.poem} submitCallBack={this.state.submitCallBack} isSubmitted={this.state.isSubmitted}/>
 
       </div>
     );

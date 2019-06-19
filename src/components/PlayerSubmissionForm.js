@@ -6,35 +6,62 @@ class PlayerSubmissionForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      adjective1: "",
-      noun1: "",
-      adverb: "",
-      verb: "",
-      adjective2: "",
-      noun2: "",
-    };
+    const initialState = {};
+    props.fields.forEach((field) => {
+      if (field.key) {
+        initialState[field.key] = "";
+      }
+    });
+    this.state = initialState;
   }
+
+  // this.state = {
+  //   adjective1: "",
+  //   noun1: "",
+  //   adverb: "",
+  //   verb: "",
+  //   adjective2: "",
+  //   noun2: "",
+  //   // player: 1,
+  //   // addNewLineCallback: this.addNewLine,
+  // };
+
 
   onValueChange = (event) => {
     console.log(`${event.target} Updated ${event.target.value}`);
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+
+    const fields = {};
+    fields[event.target.name] = event.target.value;
+    this.setState(fields);
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    const newLine = {
-      adjective1: this.state.adjective1,
-      noun1: this.state.noun1,
-      adverb: this.state.adverb,
-      verb: this.state.verb,
-      adjective2: this.state.adjective2,
-      noun2: this.state.noun2,
-    }
+    let newSubmission = "";
+    this.props.fields.forEach((field) => {
+      if (field.key) {
+        newSubmission += this.state[field.key];
+      } else {
+        return field;
+      }
+      return newSubmission;
+    });
+    this.props.addNewLineCallback(newSubmission);
 
+    // const newLine = {
+    //   adjective1: this.state.adjective1,
+    //   noun1: this.state.noun1,
+    //   adverb: this.state.adverb,
+    //   verb: this.state.verb,
+    //   adjective2: this.state.adjective2,
+    //   noun2: this.state.noun2,
+    //   player: this.state.player,
+    // }
+
+
+
+    // Reset the Form
     this.setState({
       adjective1: "",
       noun1: "",
@@ -43,15 +70,13 @@ class PlayerSubmissionForm extends Component {
       adjective2: "",
       noun2: "",
     });
-
-    this.props.addNewLineCallback(newLine);
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{}</h3>
+        <h3>Player Submission Form for Player #{this.props.index}</h3>
 
         <form
           className="PlayerSubmissionForm__form"

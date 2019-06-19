@@ -11,15 +11,21 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
-    }
+    };
   }
 
-  addNewLine = (newLine) => {
-    const submissions = this.state.submissions;
-    submissions.push(newLine);
 
-    this.setState({ submissions })
-  }
+  addNewLine = (line) => {
+    console.log(line);
+    const newSubmission = this.state.submissions;
+    newSubmission.push(line);
+
+    this.setState({
+      submissions: newSubmission,
+    })
+  };
+
+
 
   render() {
 
@@ -30,6 +36,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
 
     return (
       <div className="Game">
@@ -43,11 +50,11 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission submission={this.state.mostRecentLine} />
 
-        <PlayerSubmissionForm addNewLineCallback={this.addNewLine} />
+        <PlayerSubmissionForm fields={FIELDS} addNewLineCallback={this.addNewLine} player={this.props.index} />
 
-        <FinalPoem />
+        <FinalPoem revealFinalPoemCallback={this.state.submissions} />
 
       </div>
     );

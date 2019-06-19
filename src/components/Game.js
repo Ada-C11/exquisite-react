@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       submissions: [],
+      showPoem: false,
     }
   }
 
@@ -18,6 +19,12 @@ class Game extends Component {
     this.setState({
       submissions: [...this.state.submissions, newSentence],
     })
+  }
+
+  showFinalPoem = (event) => {
+    event.preventDefault();
+
+    this.setState({ showPoem: true })
   }
 
   render() {
@@ -70,7 +77,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={playerID} />
 
-        <FinalPoem submissions={this.state.submissions} />
+        <FinalPoem submissions={ this.state.submissions } showPoem={this.state.showPoem} showFinalPoem={this.showFinalPoem} />
 
       </div>
     );

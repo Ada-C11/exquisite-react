@@ -40,6 +40,9 @@ class Game extends Component {
     />)
 
     const submissionSection = this.state.revealed ? <div></div> : submissionForm
+    
+    const sentences = this.state.sentences;
+    const recentSubmission = !this.state.revealed && sentences.length > 0 ? <RecentSubmission submission = {sentences[sentences.length - 1]}/> :  <div></div>
 
     // chains words together from form 
     const exampleFormat = FIELDS.map((field) => {
@@ -63,7 +66,7 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        {recentSubmission }
 
         {/* <PlayerSubmissionForm 
           addSentenceCallback = {this.addSentence}

@@ -38,7 +38,6 @@ class PlayerSubmissionForm extends Component {
 
       updatedState[field] = value;
       this.setState({poemLine: updatedState});
-      console.log(this.state.poemLine);
     }
 
     // The onInputChange function and its use above and below is courtesy of Ada Developers' Academy instructors, 

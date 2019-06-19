@@ -24,7 +24,7 @@ class PlayerSubmissionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onPlayerSubmissionFormCallback({
+    this.props.onSubmitLineCallback({
       adjective1: this.state.adjective1,
       noun1: this.state.noun1,
       adverb: this.state.adverb,

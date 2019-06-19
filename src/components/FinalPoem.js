@@ -3,21 +3,25 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
-  let formattedPoem = '';
+  let displayPoem = '';
+  let revealPoemButton = ''
 
-  if (props.revealState){ //equals true 
-    formattedPoem = props.finalPoem.map((line, i) => {
+  const onClickFinalPoem = () => {
+    props.showFinalCallback()
+  }
+
+
+  if (props.showPoemState) { //equals true 
+    displayPoem = props.finalPoem.map((line, i) => {
       return (
         <p key={i}>{line}</p>
       )
     })
   } else {
-    formattedPoem = ''
-  }
-
-
-  const onClickFinalPoem = () => {
-    props.showFinalCallback()
+    displayPoem = ''
+    revealPoemButton = <div className="FinalPoem__reveal-btn-container">
+      <input onClick={onClickFinalPoem} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+    </div>
   }
 
   console.log('final poem in FinalPoem.js is', props.finalPoem)
@@ -27,13 +31,9 @@ const FinalPoem = (props) => {
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-        {/* {displayFinal} */}
-        {formattedPoem}
+        {displayPoem}
       </section>
-
-      <div className="FinalPoem__reveal-btn-container">
-        <input onClick={onClickFinalPoem} type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-      </div>
+      {revealPoemButton}
     </div>
   );
 }

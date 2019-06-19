@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       poem: [],
+      lastLine: '',
       numOfPlayers: 1,
     };
   }
@@ -21,15 +22,20 @@ class Game extends Component {
       const updatedState = { 
         poem: this.state.poem,
         numOfPlayers: this.state.numOfPlayers,
+        lastLine: this.state.lastLine,
        };
       updatedState.poem.push(line);
       updatedState.numOfPlayers += 1;
+      updatedState.lastLine = line;
       this.setState(updatedState);
-      console.log(`The poem so far: ${this.state.poem}`)
     };
 
     const updatedPlayerNumber = () => {
       return this.state.numOfPlayers;
+    }
+
+    const updatedLastLine = () => {
+      return this.state.lastLine;
     }
 
     const exampleFormat = FIELDS.map((field) => {
@@ -52,7 +58,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission line={updatedLastLine()}/>
 
         <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
 

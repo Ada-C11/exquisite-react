@@ -1,5 +1,6 @@
 import React from 'react';
 import './RecentSubmission.css';
+import PropTypes from 'prop-types';
 
 const RecentSubmission = (props) => {
   return (
@@ -10,5 +11,9 @@ const RecentSubmission = (props) => {
     </div>
   );
 }
+
+RecentSubmission.propTypes = {
+  line: PropTypes.string.isRequired,
+};
 
 export default RecentSubmission;

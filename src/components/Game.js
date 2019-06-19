@@ -33,13 +33,9 @@ class Game extends Component {
   }
 
   onShowPoem = () => {
-    console.log(`I am in show poem before: ${this.state.finalDisplay}` );
-    
     this.setState({
       finalDisplay: true
     })
-    
-    console.log(`I am in show poem after: ${this.state.finalDisplay}` );
   }
 
   render() {

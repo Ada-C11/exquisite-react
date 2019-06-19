@@ -68,7 +68,9 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+    
     const formFields = this.props.fields.map((field, i) => {
+      const className = this.state[field.key] ? 'PlayerSubmissionFormt__input' : 'PlayerSubmissionFormt__input--invalid';
       if (field.key) {
       return (
       <input
@@ -78,6 +80,7 @@ class PlayerSubmissionForm extends Component {
       value={this.state[field.key]}
       onChange={this.onInputChange}
       placeholder={field.placeholder}
+      className = {className}
       />
       )}
       else {
@@ -93,48 +96,8 @@ class PlayerSubmissionForm extends Component {
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
-            {
-              formFields
-            }
-{/* 
-          The
-          <input
-              name="adj1"
-              type="text"
-              value={this.state.ajd1}
-              onChange={this.onInputChange}
-              placeholder='adjective' />
-            <input
-              name="noun1"
-              type="text"
-              value={this.state.noun1}
-              onChange={this.onInputChange}
-              placeholder='noun' />
-            <input
-              name="adv"
-              type="text"
-              value={this.state.adv}
-              onChange={this.onInputChange}
-              placeholder='adverb' />
-            <input
-              name="verb"
-              type="text"
-              value={this.state.verb}
-              onChange={this.onInputChange}
-              placeholder='verb' />
-            the
-          <input
-              name="adj2"
-              type="text"
-              value={this.state.ajd2}
-              onChange={this.onInputChange}
-              placeholder='adjective' />
-            <input
-              name="noun2"
-              type="text"
-              value={this.state.noun2}
-              onChange={this.onInputChange}
-              placeholder='noun' /> */}
+            {formFields}
+
           </div>
 
           <div className="PlayerSubmissionForm__submit">

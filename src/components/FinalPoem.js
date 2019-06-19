@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+class FinalPoem extends Component {
 
-  const poemToDisplay = props.poem.map((line, i) => {
-    return (<li key={i} className="FinalPoem__line">{line}</li>)
-  });
+  constructor(props) {
+    super(props);
 
-  console.log(`Here's the poem: ${poemToDisplay}`);
+    this.state = {
+      poem: props.poem,
+      revealSelf: false,
+    }
+  };
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
-        <ul>{poemToDisplay}</ul>
-      </section>
+  render() {
+    const poemToDisplay = this.state.poem.map((line, i) => {
+      return (<li key={i} className="FinalPoem__line">{line}</li>)
+    });
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+    const handleClick = () => {
+      this.setState({revealSelf: true});
+    }
+  
+    return (
+      <div className="FinalPoem">
+        
+          {this.state.revealSelf ? (
+            <section className="FinalPoem__poem">
+              <h3>Final Poem</h3>
+              <ul>{poemToDisplay}</ul>
+            </section>
+          ) : (<section className="FinalPoem__poem"></section>)
+          }
+
+        <div className="FinalPoem__reveal-btn-container">
+          <input type="button" onClick={handleClick} value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FinalPoem;

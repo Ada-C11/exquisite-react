@@ -10,52 +10,40 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      // recentLine: 'I am a test!',
       recentLine: '',
       fullPoem: [],
       playerNumber: 1,
-      display: false,
+      displayFinalPoem: false,
     }
   }
   addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
-    // console.log(' I am addLine!');
     let currentLine = this.state.recentLine;
-    // let playerTurn = this.state.playerNumber;
 
     let newLine = `The ${adjective} ${noun} ${adverb} ${verb} the ${adjective2} ${noun2}`;
 
-    // console.log(newLine);
-
     currentLine = newLine;
     this.state.fullPoem.push(currentLine);
-
-    // console.log(currentLine);
 
     this.setState({
       recentLine: currentLine,
       fullPoem: this.state.fullPoem,
       playerNumber: this.state.playerNumber + 1,
     });
-
-    // console.log(this.state.recentLine);
-    // console.log(this.state.fullPoem);
   }
 
-  renderFinalPoem = () => {
-    console.log(this.state.fullPoem);
+  // Works, but requires that the button in FinalPoem be moved to Game
+  // renderFinalPoem = () => {
+  //   if (this.state.displayFinalPoem !== false){
+  //     return(
+  //       < FinalPoem poem={this.state.fullPoem} />
+  //     );
+  //   }
+  // }
 
-    if (this.state.display !== false){
-      return(
-        < FinalPoem poem={this.state.fullPoem} />
-      );
-    }
-  }
-
-  toggleRevealPoemButton = () => {
+  toggleRevealPoem = () => {
     this.setState({
-      display: !this.state.display,
+      displayFinalPoem: !this.state.displayFinalPoem,
     });
-    
   }
 
   render() {
@@ -89,13 +77,18 @@ class Game extends Component {
           playerNumber={this.state.playerNumber}
         />
 
+        <FinalPoem
+          poem={this.state.fullPoem}  
+          displayPoem={this.state.displayFinalPoem}
+          toggleRevealPoemCallback={this.toggleRevealPoem}
+        />
 
-         {/* Renders the Final Poem component by calling the function */}
-          {this.renderFinalPoem()}
+         {/* Renders the Final Poem component by calling the renderFinalPoem function */}
+          {/* {this.renderFinalPoem()} */}
 
-        <div className="FinalPoem__reveal-btn-container">
-          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={this.toggleRevealPoemButton} />
-        </div>
+        {/* <div className="FinalPoem__reveal-btn-container">
+          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={this.toggleRevealPoem} />
+        </div> */}
 
       </div>
     );

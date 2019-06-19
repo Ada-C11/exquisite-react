@@ -5,12 +5,30 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
+  constructor() {
+    super();
+    this.state = {
+      inputs: [],
+      revealFinalPoem: false,
+    }
+  }
 
-  constructor(props) {
-    super(props);
+  storeInputs = (input) => {
+    const inputs = this.state.inputs;
+    inputs.push(input);
+    this.setState({
+      inputs,
+    })
+  }
+
+  displayPoem = (display) => {
+    this.setState({
+      revealFinalPoem: display,
+    })
   }
 
   render() {
+    const { inputs } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +50,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission mostRecentInput={this.state.inputs.length === 0 ? '' : this.state.inputs[inputs.length - 1] } hidden={this.state.revealFinalPoem}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields={FIELDS} inputStorage={this.storeInputs} hidden={this.state.revealFinalPoem}/>
 
-        <FinalPoem />
+        <FinalPoem allInputs={this.state.inputs} hiddenCallback={this.displayPoem} hidden={this.state.revealFinalPoem}/>
 
       </div>
     );

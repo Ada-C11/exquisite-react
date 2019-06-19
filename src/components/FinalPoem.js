@@ -1,20 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
-const FinalPoem = (props) => {
+class FinalPoem extends Component {
+  constructor (props) {
+    super(props);
+  }
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+  displayPoem = () => {
+    const poem = this.props.allInputs.map((input, i) => {
+      return(
+        <div key={i}>{input}</div>
+      )
+    });
+    return poem;
+  }
 
-      </section>
+  onRevealButtonClick = () => {
+    this.props.hiddenCallback(true);
+  }
+  
+  render() {
+    if(!this.props.hidden) {
+      return(
+        <div className="FinalPoem__reveal-btn-container">
+          <input 
+            type="button" 
+            value="We are finished: Reveal the Poem" 
+            className="FinalPoem__reveal-btn"
+            onClick={this.onRevealButtonClick}
+          />
+        </div>
+      )
+    } else {
+      return(
+        <div className="FinalPoem">
+          <section className="FinalPoem__poem">
+            <h3>Final Poem</h3>
+            {this.displayPoem()}
+          </section>
+        </div>
+      );
+    }
+  }
+}
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-      </div>
-    </div>
-  );
+FinalPoem.propTypes = {
+  hidden: PropTypes.bool.isRequired,
+  hiddenCallback: PropTypes.func.isRequired,
+  allInputs: PropTypes.array.isRequired,
 }
 
 export default FinalPoem;

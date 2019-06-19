@@ -30,17 +30,19 @@ class PlayerSubmissionForm extends Component {
       adverb: this.state.adverb,
       verb: this.state.verb,
       adjective2: this.state.adjective2,
-      noun2: this.state.location,
+      noun2: this.state.noun2,
     });
-    this.setState({
-      adjective1: '',
-      noun1: '',
-      adverb: '',
-      verb: '',
-      adjective2: '',
-      noun2: '',
-    });
+    // uncomment these lines after i take out the hard coded data 
+    // this.setState({
+    //   adjective1: '',
+    //   noun1: '',
+    //   adverb: '',
+    //   verb: '',
+    //   adjective2: '',
+    //   noun2: '',
+    // });
   }
+
 
   render() {
 
@@ -51,41 +53,43 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
+            The 
             <input
               placeholder="adjective"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.adjective1}
               />
             <input
               placeholder="noun"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.noun1}
               />
             <input
               placeholder="adverb"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.adverb}
               />
             <input
               placeholder="verb"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.verb}
               />
+              the 
             <input
               placeholder="adjective"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.adjective2}
               />
             <input
               placeholder="noun"
               type="text" 
               onChange={this.onChangeHandler}
-              value={this.state.name}
+              value={this.state.noun2}
               />
 
           </div>

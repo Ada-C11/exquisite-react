@@ -12,18 +12,29 @@ class Game extends Component {
     this.state = {
       mostRecentLine: '',
       finalPoem: [],
+      showPoem: false,
     }
   }
 
-
-  onPlayerSubmissionForm = (submission) => {
-    console.log('submission pressed')
-    console.log(submission)
+  onShowFinalPoem = () => {
     this.setState({
-      mostRecentLine: `The ${submission.adjective1} ${submission.noun1} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}`
+      showPoem: true, 
     })
   }
 
+  onPlayerSubmissionForm = (submission) => {
+    const poemLine = `The ${submission.adjective1} ${submission.noun1} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}.`
+    const fullPoem = this.state.finalPoem;
+    fullPoem.push(poemLine)
+    this.setState({
+      mostRecentLine: poemLine,
+      finalPoem: fullPoem,
+    });
+    console.log('recent line is:', this.state.mostRecentLine);
+    console.log('final poem is', this.state.finalPoem)
+  }
+
+  
 
   render() {
 
@@ -51,7 +62,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm onPlayerSubmissionFormCallback={this.onPlayerSubmissionForm}/>
 
-        <FinalPoem />
+        <FinalPoem revealState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem}/>
 
       </div>
     );

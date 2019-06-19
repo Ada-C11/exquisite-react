@@ -6,11 +6,40 @@ import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentLine: '',
+      poem: [],
+      finalDisplay: false,
+      player: 1
+    }
+  }
+
+  onSubmitLine = ({ adjective1, noun1, adverb, verb, adjective2, noun2 }) => {
+
+    const newLine = 'The ' + adjective1 + ' ' + noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2 + ".";
+    this.state.poem.push(newLine);
+
+    this.setState({
+      recentLine: newLine,
+      poem: this.state.poem,
+      player: this.state.player + 1
+    
+    })
+
+  }
+
+  onShowPoem = () => {
+    this.setState({
+      finalDisplay: true
+    })
   }
 
   render() {
+    const { recentLine, poem, finalDisplay, player } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -29,14 +58,20 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        {(!finalDisplay && recentLine !== '') && <RecentSubmission
+          line={recentLine} />}
 
-        <PlayerSubmissionForm />
+        {!finalDisplay && <PlayerSubmissionForm
+          onSubmitLineCallback={this.onSubmitLine}
+          playerNumber={player} />}
 
-        <FinalPoem />
+        <FinalPoem
+          finalPoem={poem}
+          onShowPoemCallback={this.onShowPoem}
+          display={finalDisplay} />
 
       </div>
     );

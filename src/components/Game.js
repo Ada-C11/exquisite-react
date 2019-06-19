@@ -8,6 +8,30 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      mostRecentLine: '',
+      finalPoem: [],
+      showPoem: false,
+      playerTurn: 1,
+    }
+  }
+
+  onSubmitLine = (submission) => {
+    const poemLine = `The ${submission.adjective1} ${submission.noun1} ${submission.adverb} ${submission.verb} the ${submission.adjective2} ${submission.noun2}.`
+    const finalPoem = this.state.finalPoem;
+    finalPoem.push(poemLine)
+    this.setState({
+      mostRecentLine: poemLine,
+      finalPoem: finalPoem,
+      playerTurn: this.state.playerTurn + 1,
+    });
+  }
+
+  onShowFinalPoem = () => {
+    this.setState({
+      showPoem: true,
+    })
   }
 
   render() {
@@ -29,14 +53,14 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        {(this.state.mostRecentLine !== '' && !this.state.showPoem) && <RecentSubmission submission={this.state.mostRecentLine} />}
 
-        <PlayerSubmissionForm />
+        {!this.state.showPoem && <PlayerSubmissionForm playerTurn={this.state.playerTurn} onSubmitLineCallback={this.onSubmitLine} />}
 
-        <FinalPoem />
+        <FinalPoem showPoemState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem} />
 
       </div>
     );

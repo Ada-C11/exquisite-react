@@ -61,7 +61,7 @@ class Game extends Component {
 
         <RecentSubmission recent={this.state.recentSubmission}/>
 
-    {!this.state.showFinal && <PlayerSubmissionForm newSubmissionCallback={this.addSubmission} playerNumber={this.state.player}/> }
+        {!this.state.showFinal && <PlayerSubmissionForm newSubmissionCallback={this.addSubmission} playerNumber={this.state.player}/> }
 
         <FinalPoem final={this.state.finalPoem} show={this.state.showFinal} showFinalCallback={this.showFinalPoem}/>
 

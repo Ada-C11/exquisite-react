@@ -11,6 +11,8 @@ const RecentSubmission = (props) => {
   );
 }
 
-
+RecentSubmission.propTypes = {
+  recent: PropTypes.string,
+};
 
 export default RecentSubmission;

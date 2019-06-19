@@ -25,4 +25,10 @@ const FinalPoem = (props) => {
   );
 }
 
+FinalPoem.propTypes = {
+  final: PropTypes.array,
+  show: PropTypes.bool,
+  showFinalCallback: PropTypes.func,
+};
+
 export default FinalPoem;

@@ -127,4 +127,9 @@ class PlayerSubmissionForm extends Component {
   }
 }
 
+PlayerSubmissionForm.propTypes = {
+  newSubmissionCallback: PropTypes.func,
+  playerNumber: PropTypes.number,
+};
+
 export default PlayerSubmissionForm;

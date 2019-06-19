@@ -25,7 +25,7 @@ class PlayerSubmissionForm extends Component {
 
   createLine = () => {
     const poemLine = this.state.poemLine;
-    const line = `${poemLine["adjective1"]} ${poemLine["noun1"]} ${poemLine["adverb"]} ${poemLine["verb"]} ${poemLine["adjective2"]} ${poemLine["noun2"]}`;
+    const line = `The ${poemLine["adjective1"]} ${poemLine["noun1"]} ${poemLine["adverb"]} ${poemLine["verb"]} the ${poemLine["adjective2"]} ${poemLine["noun2"]}.`;
     return line;
   };
   

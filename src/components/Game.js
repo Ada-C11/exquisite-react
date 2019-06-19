@@ -25,6 +25,7 @@ class Game extends Component {
       updatedState.poem.push(line);
       updatedState.numOfPlayers += 1;
       this.setState(updatedState);
+      console.log(`The poem so far: ${this.state.poem}`)
     };
 
     const updatedPlayerNumber = () => {
@@ -55,7 +56,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.poem}/>
 
       </div>
     );

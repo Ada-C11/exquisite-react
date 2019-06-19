@@ -28,7 +28,6 @@ class PlayerSubmissionForm extends Component {
     const line = `The ${poemLine["adjective1"]} ${poemLine["noun1"]} ${poemLine["adverb"]} ${poemLine["verb"]} the ${poemLine["adjective2"]} ${poemLine["noun2"]}.`;
     return line;
   };
-  
 
   render() {
     const onInputChange = (event) => {
@@ -55,8 +54,16 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adjective2: '',
       noun2: ''},
-    });
-  };
+      });
+    };
+
+    const toggleClassName = (value) => {
+      if (value === '') {
+        return "PlayerSubmissionForm__input--invalid"
+      } else {
+        return ''
+      };
+    }
 
     return (
       <div className="PlayerSubmissionForm">
@@ -72,23 +79,27 @@ class PlayerSubmissionForm extends Component {
               placeholder="adjective"
               value={this.state.poemLine.adjective1}
               type="text"
+              className={toggleClassName(this.state.poemLine.adjective1)}
               onChange={onInputChange} />
             <input
               name="noun1"
               placeholder="noun"
               value={this.state.poemLine.noun1}
+              className={toggleClassName(this.state.poemLine.noun1)}
               type="text"
               onChange={onInputChange} />
             <input
               name="adverb"
               placeholder="adverb"
               value={this.state.poemLine.adverb}
+              className={toggleClassName(this.state.poemLine.adverb)}
               type="text"
               onChange={onInputChange} />
             <input
               name="verb"
               placeholder="verb"
               value={this.state.poemLine.verb}
+              className={toggleClassName(this.state.poemLine.verb)}
               type="text"
               onChange={onInputChange} />
             <span>the</span>
@@ -96,12 +107,14 @@ class PlayerSubmissionForm extends Component {
               name="adjective2"
               placeholder="adjective"
               value={this.state.poemLine.adjective2}
+              className={toggleClassName(this.state.poemLine.adjective2)}
               type="text"
               onChange={onInputChange} />
             <input
               name="noun2"
               placeholder="noun"
               value={this.state.poemLine.noun2}
+              className={toggleClassName(this.state.poemLine.noun2)}
               type="text"
               onChange={onInputChange} />
             <span>.</span>

@@ -9,21 +9,34 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lines: []
+      lines: [],
+      disPlayLines: false
     };
   }
 
   addLine = (line) => {
     const lines = this.state.lines;
     lines.push(line);
-    // console.log(line);
     this.setState({
       lines,
     });
   }
 
+  handleClickFinalPoem = () => {
+    this.setState({
+      disPlayLines: true
+    })
+  }
+
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
+    let lines;
+    if (this.state.disPlayLines){
+      lines = this.state.lines;
+    } else {
+      lines = '';
+    }
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -50,7 +63,9 @@ class Game extends Component {
         <PlayerSubmissionForm 
           addLineCallback={this.addLine}/>
 
-        <FinalPoem />
+        <FinalPoem 
+          lines={lines}
+          handleClickCallback={this.handleClickFinalPoem}/>
 
       </div>
     );

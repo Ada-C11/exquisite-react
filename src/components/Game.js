@@ -19,7 +19,7 @@ class Game extends Component {
 
   onSubmitLine = ({ adjective1, noun1, adverb, verb, adjective2, noun2 }) => {
 
-    const newLine = 'The ' + adjective1 + ' ' + noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2;
+    const newLine = 'The ' + adjective1 + ' ' + noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2 + ".";
     this.state.poem.push(newLine);
 
     this.setState({

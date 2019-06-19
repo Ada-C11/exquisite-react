@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       finalPoem: [],
+      isFinal: false,
     };
   }
 
@@ -28,6 +29,13 @@ class Game extends Component {
     })
   }
 
+  displayFinalPoem = (event) => {
+    event.preventDefault();
+    this.setState({
+      isFinal: true,
+    })
+  }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -37,6 +45,8 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const displaySubmission = this.state.finalPoem.length > 0 && !this.state.isSubmitted ? <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/> : '';
 
     return (
       <div className="Game">
@@ -50,11 +60,13 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/>
+        { displaySubmission }
 
         <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
+
+        <FinalPoem poem={ this.state.finalPoem } finalPoemCallback={this.displayFinalPoem} isFinal={this.state.isFinal}/>
         
-        <FinalPoem poem={this.state.finalPoem}/>
+        {/* <FinalPoem poem={this.state.finalPoem} finalPoemCallback={this.displayFinalPoem}/> */}
 
       </div>
     );

@@ -11,7 +11,8 @@ class Game extends Component {
 
     this.state = {
       finalPoem: [],
-      showFinal: false
+      showFinal: false,
+      showForm: true
     };
   }
 
@@ -24,8 +25,10 @@ class Game extends Component {
   }
 
   showFinalPoem = () => {
+    const doesShow = this.state.showForm
     this.setState({
-      showFinal: true
+      showFinal: true,
+      showForm: !doesShow
     })
   }
 
@@ -49,13 +52,15 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-
-        <RecentSubmission lastLine={this.state.finalPoem[this.state.finalPoem.length - 1]} />
-            
-        <PlayerSubmissionForm
-          addLineCallback={this.addLine}
-          player={this.state.finalPoem.length} />
-
+        {this.state.showForm ? 
+          <div>
+            <RecentSubmission lastLine={this.state.finalPoem[this.state.finalPoem.length - 1]} />
+                
+            <PlayerSubmissionForm
+              addLineCallback={this.addLine}
+              player={this.state.finalPoem.length} />
+          </div> : null
+        }
         <FinalPoem allLines={this.state.finalPoem}
           showFinalPoemCallback={this.showFinalPoem}
           showPoemStatus={this.state.showFinal}/>

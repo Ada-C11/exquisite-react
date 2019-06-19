@@ -13,7 +13,8 @@ class PlayerSubmissionForm extends Component {
       verb: "",
       adjective2: "",
       noun2: "",
-      currentplayer: 1
+      currentplayer: 1,
+      pink: "pink"
     }
   }
 
@@ -23,6 +24,11 @@ class PlayerSubmissionForm extends Component {
     const field = event.target.name;
     const value = event.target.value;
 
+    if (value !== "") {
+      this.setState({
+        pink: ""
+      })
+    }
     updatedState[field] = value;
     this.setState(updatedState);
   }
@@ -47,7 +53,7 @@ class PlayerSubmissionForm extends Component {
       adverb: this.state.adverb,
       verb: this.state.verb,
       adjective2: this.state.adjective2,
-      noun2: this.state.noun2, 
+      noun2: this.state.noun2,
     }
 
     console.log(newLine)
@@ -58,6 +64,7 @@ class PlayerSubmissionForm extends Component {
     });
 
     this.props.addLineCallback(newLine);
+    this.props.recentSubmission(newLine);
 
     this.clearForm()
   }
@@ -65,30 +72,36 @@ class PlayerSubmissionForm extends Component {
   render() {
 
     return (
-      <div className="PlayerSubmissionForm">
+      <div className={!this.props.isFinalPoemClicked ? "PlayerSubmissionForm" : "hidden"}>
         <h3>Player Submission Form for Player #{this.state.currentplayer}</h3>
 
-        <form className="PlayerSubmissionForm__form" onSubmit={ this.onFormSubmit } >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <div>
-              <input name="adjective1" value={this.state.adjective1} placeholder="adjective" type="text" onChange={this.onInputChange} />
+              The
             </div>
             <div>
-              <input name="noun1" value={this.state.noun1} placeholder="noun" type="text" onChange={this.onInputChange} />
+              <input name="adjective1" value={this.state.adjective1} placeholder="adjective" type="text" onChange={this.onInputChange} className={this.state.pink} />
             </div>
             <div>
-              <input name="adverb" value={this.state.adverb} placeholder="adverb" type="text" onChange={this.onInputChange} />
+              <input name="noun1" value={this.state.noun1} placeholder="noun" type="text" onChange={this.onInputChange} className={this.state.pink} />
             </div>
             <div>
-              <input name="verb" value={this.state.verb} placeholder="verb" type="text" onChange={this.onInputChange} />
+              <input name="adverb" value={this.state.adverb} placeholder="adverb" type="text" onChange={this.onInputChange} className={this.state.pink} />
             </div>
             <div>
-              <input name="adjective2" value={this.state.adjective2} placeholder="adjective" type="text" onChange={this.onInputChange} />
+              <input name="verb" value={this.state.verb} placeholder="verb" type="text" onChange={this.onInputChange} className={this.state.pink} />
             </div>
             <div>
-              <input name="noun2" value={this.state.noun2} placeholder="noun" type="text" onChange={this.onInputChange} />
-            </div> 
+              the
+            </div>
+            <div>
+              <input name="adjective2" value={this.state.adjective2} placeholder="adjective" type="text" onChange={this.onInputChange} className={this.state.pink} />
+            </div>
+            <div>
+              <input name="noun2" value={this.state.noun2} placeholder="noun" type="text" onChange={this.onInputChange} className={this.state.pink} />
+            </div>
 
           </div>
 

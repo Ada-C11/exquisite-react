@@ -11,7 +11,8 @@ class Game extends Component {
 
     this.state = {
       submissions: [] ,
-
+      recentSubmission: "",
+      isFinalPoemClicked: false
     }
   }
 
@@ -21,6 +22,20 @@ class Game extends Component {
 
     this.setState(newState);
     console.log(this.state.submissions)
+  }
+
+  newRecentSubmission = (submission) => {
+    console.log(submission)
+    this.setState({
+      recentSubmission: submission,
+    });
+  }
+
+  finalPoemClickedFunc = () => {
+    this.setState({
+      isFinalPoemClicked: true,
+    });
+    console.log(this.state.isFinalPoemClicked)
   }
 
   render() {
@@ -45,11 +60,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission line={this.state.recentSubmission} numberofSubmissions={this.state.submissions.length} isFinalPoemClicked={this.state.isFinalPoemClicked} />
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} />
+        <PlayerSubmissionForm addLineCallback={this.addLine} recentSubmission={this.newRecentSubmission} isFinalPoemClicked={this.state.isFinalPoemClicked}  />
 
-        <FinalPoem poem={this.state.submissions} />
+        <FinalPoem poem={this.state.submissions} finalPoemClicked={this.finalPoemClickedFunc} isFinalPoemClicked={this.state.isFinalPoemClicked}  />
 
       </div>
     );

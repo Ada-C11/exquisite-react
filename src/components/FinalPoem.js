@@ -7,14 +7,17 @@ const FinalPoem = (props) => {
     console.log(props.poem)
     const fullPoem = lines.map((line) => {
       console.log(line)
-      return (<div> {line.adjective1} {line.noun1} {line.adverb} {line.verb} {line.adjective2} {line.noun2}
+      return (<div> The {line.adjective1} {line.noun1} {line.adverb} {line.verb} the {line.adjective2} {line.noun2}
       </div>);
     });
     return fullPoem
   }
 
+  // let display = 'hidden';
   const onButtonClick = () => {
-    
+    props.finalPoemClicked()
+
+    console.log(props.isFinalPoemClicked)
   }
 
   return (
@@ -23,11 +26,11 @@ const FinalPoem = (props) => {
         <h3>Final Poem</h3>
 
       </section>
-
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={ onButtonClick } />
+      
+      <div className={!props.isFinalPoemClicked ? "FinalPoem__reveal-btn-container" : "hidden"}>
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={onButtonClick} />
       </div>
-      <div className="FinalPoem__poem">
+      <div className={props.isFinalPoemClicked ? "FinalPoem__poem" : "hidden"}>
         {poem(props.poem)}
       </div>
     </div>

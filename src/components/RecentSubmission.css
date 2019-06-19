@@ -6,3 +6,9 @@
   text-align: center;
   line-height: 3rem;
 }
+
+
+.hidden { 
+  display: none; 
+}
+

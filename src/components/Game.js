@@ -5,7 +5,6 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -59,8 +58,6 @@ class Game extends Component {
       }
     }
 
-    const playerID = this.state.submissions.length + 1;
-
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -75,7 +72,7 @@ class Game extends Component {
 
           { mostRecentSubmission() }
 
-        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={playerID} />
+          { this.state.showPoem ? "" : <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={this.state.submissions.length + 1} /> }
 
         <FinalPoem submissions={ this.state.submissions } showPoem={this.state.showPoem} showFinalPoem={this.showFinalPoem} />
 

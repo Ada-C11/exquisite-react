@@ -37,7 +37,8 @@ class Game extends Component {
       }
     }
 
-    console.log(this.state.submissions);
+    const playerID = this.state.submissions.length + 1;
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -52,7 +53,7 @@ class Game extends Component {
 
         <RecentSubmission newestSubmission={newestSub(this.state.submissions)} />
 
-        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
+        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={playerID} />
 
         <FinalPoem />
 

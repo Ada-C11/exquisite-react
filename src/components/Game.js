@@ -46,7 +46,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const displaySubmission = this.state.finalPoem.length > 0 && !this.state.isSubmitted ? <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/> : '';
+    const displaySubmission = this.state.finalPoem.length > 0 && !this.state.isFinal ? <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/> : '';
 
     return (
       <div className="Game">

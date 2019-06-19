@@ -26,6 +26,10 @@ class PlayerSubmissionForm extends Component {
     return value;
   }
 
+  isValid = (field) => {
+    return field.length > 0 ? true : false;
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const poemLine = this.props.fields.map((field) => {
@@ -59,8 +63,7 @@ class PlayerSubmissionForm extends Component {
           value={ this.state[field.key] }
           onChange={ (event) => { this.onChangeHandler(event.target.value, field.key) } }
           type="text"
-          className="PlayerSubmissionForm__input"
-          // className={this.isValidInput(this.state[field.name]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
+          className={this.isValid(this.state[field.key]) ? "PlayerSubmissionForm__input" : "PlayerSubmissionForm__input--invalid"}
         />;
       } else {
         return field;
@@ -72,7 +75,6 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{ this.state.player }</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
-        {/* {validForm ? this.handleSubmit : console.log('please enter all form data')}> */}
 
           <div className="PlayerSubmissionForm__poem-inputs">
 

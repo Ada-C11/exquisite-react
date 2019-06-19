@@ -58,7 +58,7 @@ class Game extends Component {
         <div className={displayType}>
           <RecentSubmission recentSubmission={poem[poem.length-1]} />
 
-          <PlayerSubmissionForm  addSentenceCallback={this.addSentence}/>
+          <PlayerSubmissionForm  addSentenceCallback={this.addSentence} fields={FIELDS}/>
         </div>
 
           <FinalPoem poem={poem} displayButton={this.state.hidden} displayFinalPoemCallback={this.displayFinalPoem}/>

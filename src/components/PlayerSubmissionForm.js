@@ -61,6 +61,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adjective"
                 onChange={this.onChangeHandler}
                 value={this.state.adjective}
+                className={!this.state.adjective ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>
@@ -69,6 +70,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.noun}
+                className={!this.state.noun ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>
@@ -77,6 +79,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adverb"
                 onChange={this.onChangeHandler}
                 value={this.state.adverb}
+                className={!this.state.adverb ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>
@@ -85,6 +88,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.verb}
+                className={!this.state.verb ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>
@@ -96,6 +100,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adjective"
                 onChange={this.onChangeHandler}
                 value={this.state.adjective2}
+                className={!this.state.adjective2 ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>
@@ -104,6 +109,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="noun"
                 onChange={this.onChangeHandler}
                 value={this.state.noun2}
+                className={!this.state.noun2 ? "PlayerSubmissionFormt__input--invalid": ""}
               />
             </div>
             <div>

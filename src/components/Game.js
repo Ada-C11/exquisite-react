@@ -11,7 +11,7 @@ class Game extends Component {
 
     this.state = {
       playerNum: 1,
-      recentPoem: "",
+      recentPoem: '',
       finalPoem: [],
       revealPoem: false,
     };

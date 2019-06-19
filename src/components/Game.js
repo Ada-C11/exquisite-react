@@ -48,6 +48,8 @@ class Game extends Component {
 
     const displaySubmission = this.state.finalPoem.length > 0 && !this.state.isFinal ? <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/> : '';
 
+    const displaySubmissionForm = !this.state.isFinal ? <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/> : '';
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -62,12 +64,10 @@ class Game extends Component {
 
         { displaySubmission }
 
-        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/>
+        { displaySubmissionForm }
 
         <FinalPoem poem={ this.state.finalPoem } finalPoemCallback={this.displayFinalPoem} isFinal={this.state.isFinal}/>
         
-        {/* <FinalPoem poem={this.state.finalPoem} finalPoemCallback={this.displayFinalPoem}/> */}
-
       </div>
     );
   }

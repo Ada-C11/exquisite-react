@@ -13,12 +13,14 @@ class Game extends Component {
       // recentLine: 'I am a test!',
       recentLine: '',
       fullPoem: [],
+      playerNumber: 1,
       display: false,
     }
   }
   addLine = ({adjective, noun, adverb, verb, adjective2, noun2}) => {
     // console.log(' I am addLine!');
     let currentLine = this.state.recentLine;
+    // let playerTurn = this.state.playerNumber;
 
     let newLine = `The ${adjective} ${noun} ${adverb} ${verb} the ${adjective2} ${noun2}`;
 
@@ -32,6 +34,7 @@ class Game extends Component {
     this.setState({
       recentLine: currentLine,
       fullPoem: this.state.fullPoem,
+      playerNumber: this.state.playerNumber + 1,
     });
 
     // console.log(this.state.recentLine);
@@ -83,6 +86,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm 
           addLineCallback={this.addLine}
+          playerNumber={this.state.playerNumber}
         />
 
 

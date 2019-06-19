@@ -14,8 +14,9 @@ class Game extends Component {
   }
 
   addSubmission = (newSubmission) => {
+    const newSentence = Object.values(newSubmission).join(" ")
     this.setState({
-      submissions: [...this.state.submissions, newSubmission],
+      submissions: [...this.state.submissions, newSentence],
     })
   }
 

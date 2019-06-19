@@ -3,15 +3,13 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
- 
-
   const onClickFinalPoem = () => {
     props.showFinalCallback()
   }
 
   const finalDisplay = () => {
     if (props.showPoemState) { //equals true 
-      return  props.finalPoem.map(
+      return props.finalPoem.map(
         (line, i) => <p key={i}>{line}</p>
       )
     } else {
@@ -21,18 +19,12 @@ const FinalPoem = (props) => {
         </div>
       )
     }
-
   }
-
-
-  console.log('final poem in FinalPoem.js is', props.finalPoem)
-
 
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-        {/* {displayPoem} */}
       </section>
       {finalDisplay()}
     </div>

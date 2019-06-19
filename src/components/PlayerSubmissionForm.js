@@ -103,12 +103,11 @@ class PlayerSubmissionForm extends Component {
             />
             <input
               name="noun2"
-              placeholder="noun" 
+              placeholder="noun"
               onChange={this.onChangeHandler}
               value={this.state.noun2}
               className={this.fieldValid("noun2") ? 'PlayerSubmissionForm__input--invalid::placeholder' : 'PlayerSubmissionFormt__input--invalid'}
             />.
-
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -32,7 +32,7 @@ class Game extends Component {
 
   onShowFinalPoem = () => {
     this.setState({
-      showPoem: true, 
+      showPoem: true,
     })
   }
 
@@ -55,14 +55,14 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
-        {(this.state.mostRecentLine !== '' && !this.state.showPoem) && <RecentSubmission submission={this.state.mostRecentLine}/>}
+        {(this.state.mostRecentLine !== '' && !this.state.showPoem) && <RecentSubmission submission={this.state.mostRecentLine} />}
 
-        {!this.state.showPoem && <PlayerSubmissionForm playerTurn={this.state.playerTurn}  onSubmitLineCallback={this.onSubmitLine}/>}
+        {!this.state.showPoem && <PlayerSubmissionForm playerTurn={this.state.playerTurn} onSubmitLineCallback={this.onSubmitLine} />}
 
-        <FinalPoem showPoemState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem}/>
+        <FinalPoem showPoemState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem} />
 
       </div>
     );

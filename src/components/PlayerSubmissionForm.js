@@ -21,7 +21,6 @@ class PlayerSubmissionForm extends Component {
     field[event.target.name] = event.target.value;
 
     this.setState(field);
-    console.log(field)
   }
 
   handleSubmit = (event) => {
@@ -44,6 +43,11 @@ class PlayerSubmissionForm extends Component {
       adjective2: '',
       noun2: '',
     });
+
+
+    // Refactor this line
+    // const poemVerse = 'The ' + this.state.adjective + ' ' + this.state.noun + ' ' + this.state.adverb + ' ' + this.state.verb + ' the ' + this.state.adjective2 + ' ' + this.state.noun2 + '.';
+    // this.props.addLineCallback(poemVerse);
   }
  
 
@@ -51,7 +55,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.props.playerNumber  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.playerNumber + 1}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
 
@@ -89,18 +93,18 @@ class PlayerSubmissionForm extends Component {
             <label>the</label>
               <input
                 name="adjective2"
-                placeholder="adjective"
+                placeholder="adjective2"
                 type="text"
                 required
                 onChange={this.onChangeHandler}
-                value={this.state.adjective} />
+                value={this.state.adjective2} />
             <input
               name="noun2"
-              placeholder="noun"
+              placeholder="noun2"
               type="text" 
               required
               onChange={this.onChangeHandler}
-              value={this.state.noun} />
+              value={this.state.noun2} />
             <label>.</label>
           </div>
 

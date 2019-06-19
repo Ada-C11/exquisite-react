@@ -20,9 +20,17 @@ class PlayerSubmissionForm extends Component {
   
     const field = event.target.name;
     const value = event.target.value;
+
+    if(value !== ""){
+      event.target.className = "test"
+    }
+    else{
+      event.target.className = "PlayerSubmissionFormt__input--invalid"
+    }
   
     updatedState[field] = value;
     this.setState(updatedState);
+
   }
 
   onFormSubmit = (event) => {
@@ -41,6 +49,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+    const initialClass = "PlayerSubmissionFormt__input--invalid"
 
     return (
       <div className="PlayerSubmissionForm">
@@ -55,24 +64,28 @@ class PlayerSubmissionForm extends Component {
             }
             The
             <input
+              className={initialClass}
               placeholder="adjective"
               name="adj1"
               type="text"
               value={this.state.adj1} 
               onChange={this.onInputChange}/>
             <input
+              className={initialClass}
               placeholder="noun"
               name="noun1"
               type="text"
               value={this.state.noun1}
               onChange={this.onInputChange} />
             <input
+              className={initialClass}
               placeholder="adverb"
               name="adv"
               type="text" 
               value={this.state.adv}
               onChange={this.onInputChange}/>
             <input
+              className={initialClass}
               placeholder="verb"
               name="verb"
               type="text"
@@ -80,12 +93,14 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onInputChange}/>
             the
             <input
+              className={initialClass}
               placeholder="adjective"
               name="adj2"
               type="text"
               value={this.state.adj2}
               onChange={this.onInputChange} />
             <input
+              className={initialClass}
               placeholder="noun"
               name="noun2"
               type="text"

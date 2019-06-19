@@ -5,15 +5,7 @@ import './FinalPoem.css';
 
 class FinalPoem extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSubmitted: false
-    }
-  }
-
   reveal = () => {
-    // this.setState({isSubmitted: true })
     this.props.submitCallBack()
   }
 

@@ -42,7 +42,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-    const recentSubmission =  this.state.isSubmitted ? "" : <RecentSubmission lastLine={this.state.lastLine} />
+    const recentSubmission =  this.state.isSubmitted === false && this.state.currentPlayer > 1 ? <RecentSubmission lastLine={this.state.lastLine} /> : ""
     const form = this.state.isSubmitted ? "" : <PlayerSubmissionForm id={this.state.currentPlayer} updateTurnCallBack={this.state.updateTurnCallBack}/> 
     
 

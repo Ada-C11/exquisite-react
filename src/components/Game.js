@@ -64,7 +64,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <section>{returnRecentSubmission()}</section>
+        {returnRecentSubmission()}
 
         <PlayerSubmissionForm onSubmitCallback={addPoemLine} numOfPlayers={updatedPlayerNumber} />
 

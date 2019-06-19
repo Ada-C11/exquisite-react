@@ -8,6 +8,8 @@ const FinalPoem = (props) => {
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
 
+        { props.submissions }
+
       </section>
 
       <div className="FinalPoem__reveal-btn-container">

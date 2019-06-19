@@ -6,12 +6,15 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = {
+      the: "The",
       adjective1: "",
       noun1: "",
       adverb1: "",
       verb1: "",
+      the2: "the",
       adjective2: "",
       noun2: "",
+      end: ".",
       isDirty: false,
       playerCount: 1
     };
@@ -30,7 +33,6 @@ class PlayerSubmissionForm extends Component {
   hasValidInput = () => {
     return (
       this.state.adjective1 !== "" &&
-      this.state.Adjective1 !== "" &&
       this.state.Noun1 !== "" &&
       this.state.Adverb1 !== "" &&
       this.state.Verb1 !== "" &&
@@ -43,12 +45,15 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
 
     const newLine = {
+      the: this.state.the,
       adjective1: this.state.adjective1,
       noun1: this.state.noun1,
       adverb1: this.state.adverb1,
       verb1: this.state.verb1,
+      the2: this.state.the2,
       adjective2: this.state.adjective2,
-      noun2: this.state.noun2
+      noun2: this.state.noun2,
+      end: this.state.end
     };
 
     if (this.hasValidInput()) {
@@ -134,6 +139,7 @@ class PlayerSubmissionForm extends Component {
               placeholder="noun"
               className={this.state.noun2 === "" ? "invalid" : "valid"}
             />
+            <span>.</span>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -21,17 +21,23 @@ class Game extends Component {
 
   joinWords = field => {
     return (
+      field.the +
+      " " +
       field.adjective1 +
       " " +
       field.noun1 +
       " " +
       field.adverb1 +
       " " +
+      field.verb1 +
+      " " +
+      field.the2 +
+      " " +
       field.adjective2 +
       " " +
       field.noun2 +
       " " +
-      field.verb1
+      field.end
     );
   };
 
@@ -46,11 +52,9 @@ class Game extends Component {
 
   render() {
     if (this.state.iscomplete) {
-      const poem = this.state.finalPoem
-        .map(field => {
-          return this.joinWords(field);
-        })
-        .join(" ");
+      const poem = this.state.finalPoem.map(field => {
+        return <p>{this.joinWords(field)}</p>;
+      });
 
       return (
         <div className="Game">

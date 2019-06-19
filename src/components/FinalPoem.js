@@ -9,6 +9,7 @@ class FinalPoem extends Component {
     this.state = {
       poem: props.poem,
       revealSelf: false,
+      hideSubmissionForm: props.poemRevealedCallback,
     }
   };
 
@@ -19,6 +20,7 @@ class FinalPoem extends Component {
 
     const handleClick = () => {
       this.setState({revealSelf: true});
+      this.state.hideSubmissionForm();
     }
   
     return (
@@ -29,12 +31,12 @@ class FinalPoem extends Component {
               <h3>Final Poem</h3>
               <ul>{poemToDisplay}</ul>
             </section>
-          ) : (<section className="FinalPoem__poem"></section>)
+          ) : (<div className="FinalPoem__reveal-btn-container">
+                <input type="button" onClick={handleClick} value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+              </div>)
           }
 
-        <div className="FinalPoem__reveal-btn-container">
-          <input type="button" onClick={handleClick} value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-        </div>
+        
       </div>
     );
   }

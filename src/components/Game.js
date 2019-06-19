@@ -61,7 +61,6 @@ class Game extends Component {
         submitFormCallback={this.addSubmission}/>}
 
         <FinalPoem 
-        allPoems={this.state.allSubmissions}
         allSubmissionsString={this.state.allSubmissions}
         showAllPoemsCallback={this.showAllPoems}
         showPoemStatus={this.state.showPoem}

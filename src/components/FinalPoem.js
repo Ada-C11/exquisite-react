@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
 
@@ -13,6 +14,8 @@ const FinalPoem = (props) => {
     <div className="FinalPoem__reveal-btn-container">
       <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.toggleRevealPoemCallback} />
     </div>
+
+
   return (
     <div className="FinalPoem">
       {/* if displayPoem is true, then show the full poem -> this is an inline If statement without the If keyword */}
@@ -22,10 +25,16 @@ const FinalPoem = (props) => {
       </section>}
 
       <div>
-        {props.displayPoem ? fullPoem  : displayPoemButton }
+        { props.displayPoem ? fullPoem  : displayPoemButton }
       </div>
     </div>
   );
+}
+
+FinalPoem.propTypes = {
+  poem: PropTypes.array.isRequired,
+  displayFinalPoem: PropTypes.bool.isRequired,
+  toggleRevealPoem: PropTypes.func.isRequired,
 }
 
 export default FinalPoem;

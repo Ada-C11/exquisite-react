@@ -4,13 +4,14 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
+
 class Game extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      recentLine: '',
+      recentLine: undefined,
       fullPoem: [],
       playerNumber: 1,
       displayFinalPoem: false,
@@ -69,7 +70,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {!this.state.displayFinalPoem && <RecentSubmission 
+        {!this.state.displayFinalPoem && this.state.recentLine && <RecentSubmission
           mostRecentLine={this.state.recentLine}
         />}
 
@@ -126,5 +127,7 @@ const FIELDS = [
   },
   ".",
 ];
+
+
 
 export default Game;

@@ -3,21 +3,8 @@ import './FinalPoem.css';
 
 class FinalPoem extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showAllPoems: false,
-      allPoems: this.props.allSubmissionsString
-    }
-  }
-  
   showAllPoems = () => {
-    console.log(this.state.showAllPoems)
-
-    this.setState({
-      showAllPoems: true
-    })
-    console.log('all of the submissions: ', this.props.allSubmissionsString)
+    this.props.showAllPoemsCallback()
   }
 
   render() {
@@ -39,7 +26,7 @@ class FinalPoem extends React.Component {
       )
     })
 
-    const { showAllPoems } = this.state;
+    // const { showAllPoems } = this.state;
 
   return (
     <div className="FinalPoem">
@@ -48,7 +35,7 @@ class FinalPoem extends React.Component {
       </section>
 
       <div> 
-        {showAllPoems ? formatPoem : displayButton} 
+        {this.props.showPoemStatus ? formatPoem : displayButton} 
       </div>
       
     </div>

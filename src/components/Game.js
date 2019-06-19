@@ -12,8 +12,14 @@ class Game extends Component {
     this.state = {
       recentSubmission: undefined,
       allSubmissions: [],
-      // showPoem: false
+      showPoem: false
     }
+  }
+
+  showAllPoems = () => {
+    this.setState({
+      showPoem: true
+    })
   }
 
   addSubmission = (submission) => {
@@ -59,6 +65,8 @@ class Game extends Component {
         <FinalPoem 
         allPoems={this.state.allSubmissions}
         allSubmissionsString={this.state.allSubmissions}
+        showAllPoemsCallback={this.showAllPoems}
+        showPoemStatus={this.state.showPoem}
         />
 
       </div>

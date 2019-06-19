@@ -38,11 +38,3 @@
 .PlayerSubmissionForm__input--invalid::placeholder {
   color: black;
 }
-
-.invalid {
-  background-color: lightpink;
-}
-
-.valid {
-  background-color:#ffe9e9
-}

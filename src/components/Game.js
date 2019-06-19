@@ -58,9 +58,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission showPoemState={this.state.showPoem} submission={this.state.mostRecentLine}/>
+        {(this.state.mostRecentLine !== '' && !this.state.showPoem) && <RecentSubmission submission={this.state.mostRecentLine}/>}
 
-        <PlayerSubmissionForm playerTurn={this.state.playerTurn} showPoemState={this.state.showPoem} onSubmitLineCallback={this.onSubmitLine}/>
+        {!this.state.showPoem && <PlayerSubmissionForm playerTurn={this.state.playerTurn}  onSubmitLineCallback={this.onSubmitLine}/>}
 
         <FinalPoem showPoemState={this.state.showPoem} showFinalCallback={this.onShowFinalPoem} finalPoem={this.state.finalPoem}/>
 

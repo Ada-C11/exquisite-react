@@ -13,13 +13,13 @@ class Game extends Component {
     this.state = {
       recentLine: '',
       poem: [],
-
+      finalDisplay: false,
     }
   }
 
   onSubmitLine = ({ adjective1, noun1, adverb, verb, adjective2, noun2 }) => {
 
-    const newLine = 'The ' + adjective1 + ' '+ noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2;
+    const newLine = 'The ' + adjective1 + ' ' + noun1 + ' ' + adverb + ' ' + verb + ' the ' + adjective2 + ' ' + noun2;
     this.state.poem.push(newLine);
 
     this.setState({
@@ -29,12 +29,18 @@ class Game extends Component {
 
   }
 
-  // onAddPoemLine = () => {
-
-  // }
+  onShowPoem = () => {
+    console.log(`I am in show poem before: ${this.state.finalDisplay}` );
+    
+    this.setState({
+      finalDisplay: true
+    })
+    
+    console.log(`I am in show poem after: ${this.state.finalDisplay}` );
+  }
 
   render() {
-    const { recentLine, poem } = this.state;
+    const { recentLine, poem, finalDisplay } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -56,14 +62,16 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission
-          line={recentLine} />
+        {!finalDisplay && <RecentSubmission
+          line={recentLine} />}
 
-        <PlayerSubmissionForm
-          onSubmitLineCallback={this.onSubmitLine} />
+        {!finalDisplay && <PlayerSubmissionForm
+          onSubmitLineCallback={this.onSubmitLine} />}
 
         <FinalPoem
-          finalPoem={poem} />
+          finalPoem={poem}
+          onShowPoemCallback={this.onShowPoem}
+          display={finalDisplay} />
 
       </div>
     );

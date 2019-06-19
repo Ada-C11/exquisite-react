@@ -56,7 +56,7 @@ class PlayerSubmissionForm extends Component {
     return (
 
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{}</h3>
+        <h3>Player Submission Form for Player #{this.props.playerNumber}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
@@ -111,11 +111,11 @@ class PlayerSubmissionForm extends Component {
               value={noun2}
               onChange={this.onChangeHandler}
             />
+          </div>
 
             <div className="PlayerSubmissionForm__submit">
               <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
             </div>
-          </div>
         </form>
       </div>
     );

@@ -4,7 +4,6 @@ import './FinalPoem.css';
 const FinalPoem = (props) => {
 
   const showPoem = () => {
-    console.log('In show poem');
     props.onShowPoemCallback();
 
   }
@@ -17,17 +16,6 @@ const FinalPoem = (props) => {
       <p key={i}>{line}</p>
     );
   })
-
-  // let fullPoem;
-
-  // if (true) {
-  //   fullPoem = props.finalPoem.map((line, i) => {
-  //     return (
-  //       <p key={i}>{line}</p>
-  //       );
-  //     })} else {
-  //       fullPoem = ''
-  //     }
 
 
   return (

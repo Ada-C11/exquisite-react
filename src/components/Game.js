@@ -14,6 +14,7 @@ class Game extends Component {
       recentLine: '',
       poem: [],
       finalDisplay: false,
+      player: 1
     }
   }
 
@@ -24,7 +25,9 @@ class Game extends Component {
 
     this.setState({
       recentLine: newLine,
-      poem: this.state.poem
+      poem: this.state.poem,
+      player: this.state.player + 1
+    
     })
 
   }
@@ -40,7 +43,7 @@ class Game extends Component {
   }
 
   render() {
-    const { recentLine, poem, finalDisplay } = this.state;
+    const { recentLine, poem, finalDisplay, player } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -62,11 +65,12 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        {!finalDisplay && <RecentSubmission
+        {(!finalDisplay && player < 1) && <RecentSubmission
           line={recentLine} />}
 
         {!finalDisplay && <PlayerSubmissionForm
-          onSubmitLineCallback={this.onSubmitLine} />}
+          onSubmitLineCallback={this.onSubmitLine}
+          playerNumber={player} />}
 
         <FinalPoem
           finalPoem={poem}

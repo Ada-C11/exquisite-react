@@ -8,9 +8,21 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      inputs: [],
+    }
+  }
+
+  storeInputs = (input) => {
+    const inputs = this.state.inputs;
+    inputs.push(input);
+    this.setState({
+      inputs,
+    })
   }
 
   render() {
+    const { inputs } = this.state;
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +44,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission mostRecentInput={ inputs[inputs.length - 1] }/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields={FIELDS} inputStorage={this.storeInputs}/>
 
-        <FinalPoem />
+        <FinalPoem allInputs={this.state.inputs}/>
 
       </div>
     );

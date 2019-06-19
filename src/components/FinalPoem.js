@@ -4,11 +4,16 @@ import './FinalPoem.css';
 const FinalPoem = (props) => {
   
   const buttonStyle = props.displayButton ? "hidden" : "FinalPoem__reveal-btn-container"
+  const poemStyle = props.displayButton ? "FinalPoem__poem" : "hidden"
+  const poemLine = props.poem.map((line) => {
+    return <div>{line}</div>
+  });
+  
   return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
+      <section className={poemStyle}>
         <h3>Final Poem</h3>
-        {props.poem}
+        {poemLine}
       </section>
 
       <div className={buttonStyle}>

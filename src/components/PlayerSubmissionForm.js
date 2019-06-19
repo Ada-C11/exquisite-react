@@ -20,20 +20,18 @@ class PlayerSubmissionForm extends Component {
   }
 
   onInputChange = (event) => {
-    // console.log(`Name Field updated ${event.target.value}`);
     const updatedState = {};
     
     const field = event.target.name;
     const value = event.target.value;
-    event.target.className = "PlayerSubmissionFormt__input--valid";
-
     updatedState[field] = value;
     this.setState(updatedState);
+    value? event.target.className = "PlayerSubmissionFormt__input--valid" : event.target.className = "PlayerSubmissionFormt__input--invalid"
   };
 
   onFormSubmit = (event) => {
     event.preventDefault();
-
+    
     const newSubmission = {
       adj1: this.state.adj1,
       noun1: this.state.noun1,
@@ -61,28 +59,27 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    let inputClass = "PlayerSubmissionFormt__input--invalid"
 
     return (
       <div className="PlayerSubmissionForm" >
         <h3>Player Submission Form for Player #{ this.state.playerCount }</h3>
 
-        <form className="PlayerSubmissionForm__form">
+        <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
             <span>The</span>
-            <input placeholder="adjective" name="adj1" type="text" onChange={this.onInputChange} value={this.state.adj1} className={inputClass}/>
-            <input placeholder="noun" name="noun1" type="text" onChange={this.onInputChange} value={this.state.noun1} className={inputClass}/>
-            <input placeholder="adverb" name="adv" type="text" onChange={this.onInputChange} value={this.state.adv} className={inputClass}/>
-            <input placeholder="verb" name="verb" type="text" onChange={this.onInputChange} value={this.state.verb} className={inputClass} />
+            <input placeholder="adjective" name="adj1" type="text" onChange={this.onInputChange} value={this.state.adj1} className={"PlayerSubmissionFormt__input--invalid"}/>
+            <input placeholder="noun" name="noun1" type="text" onChange={this.onInputChange} value={this.state.noun1} className={"PlayerSubmissionFormt__input--invalid"}/>
+            <input placeholder="adverb" name="adv" type="text" onChange={this.onInputChange} value={this.state.adv} className={"PlayerSubmissionFormt__input--invalid"}/>
+            <input placeholder="verb" name="verb" type="text" onChange={this.onInputChange} value={this.state.verb} className={"PlayerSubmissionFormt__input--invalid"} />
             <span>the</span>
-            <input placeholder="adjective" name="adj2" type="text" onChange={this.onInputChange} value={this.state.adj2} className={inputClass} />
-            <input placeholder="noun" name="noun2" type="text" onChange={this.onInputChange} value={this.state.noun2} className={inputClass}/>
+            <input placeholder="adjective" name="adj2" type="text" onChange={this.onInputChange} value={this.state.adj2} className={"PlayerSubmissionFormt__input--invalid"} />
+            <input placeholder="noun" name="noun2" type="text" onChange={this.onInputChange} value={this.state.noun2} className={"PlayerSubmissionFormt__input--invalid"}/>
             <span>.</span>
           </div>
 
           <div className="PlayerSubmissionForm__submit" >
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" onClick={this.onFormSubmit} />
+            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
         </form>
       </div>

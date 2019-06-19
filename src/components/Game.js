@@ -8,10 +8,30 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poem: [""],
+      gameOver: false,
+    }
+  }
+
+  addLine = (line) => {
+    const newPoem = this.state.poem;
+
+    newPoem.push(line);
+
+    this.setState({
+      poem: newPoem,
+    })
+  }
+
+  onGameOver = () => {
+    this.setState ({
+      gameOver: true,
+    });
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -32,11 +52,19 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission
+          line = {this.state.poem[this.state.poem.length - 1]}
+          gameOver = {this.state.gameOver} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          fields = {FIELDS}
+          addLineCallback = {this.addLine}
+          currentPlayer = {this.state.poem.length} // not plus one because starting out with empty string in poem array (for sake of proptypes in recent submission)
+          gameOver = {this.state.gameOver} />
 
-        <FinalPoem />
+        <FinalPoem 
+          poem = {this.state.poem}
+          gameOverCallback = {this.onGameOver} />
 
       </div>
     );

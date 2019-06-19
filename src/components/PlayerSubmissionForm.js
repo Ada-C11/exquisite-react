@@ -16,6 +16,19 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+  validations = {
+    adj1: /.+/,
+    noun1: /.+/,
+    adv: /.+/,
+    verb: /.+/,
+    adj2: /.+/,
+    noun2: /.+/,
+  }
+
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName]);
+  }
+
   onChangeHandler = (event) => {
     const field = {}
     field[event.target.name] = event.target.value;
@@ -43,6 +56,7 @@ class PlayerSubmissionForm extends Component {
       noun2: '',
     });
   }
+  
 
   render() {
 
@@ -59,14 +73,16 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adjective"
                 onChange={this.onChangeHandler}
                 value={this.state.adj1}
+                className={this.fieldValid('adj1') ? 'valid' : 'invalid'}
                 required
               />
-              <label htmlFor="noun"></label>
+              <label htmlFor="noun1"></label>
               <input
                 name="noun1"
                 placeholder="noun"
                 value={this.state.noun1}
                 onChange={this.onChangeHandler}
+                className={this.fieldValid('noun1') ? 'valid' : 'invalid'}
                 required
               />
               <label htmlFor="adv"></label>
@@ -75,6 +91,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adverb"
                 value={this.state.adv}
                 onChange={this.onChangeHandler}
+                className={this.fieldValid('adv') ? 'valid' : 'invalid'}
                 required
               />
 
@@ -84,6 +101,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="verb"
                 value={this.state.verb}
                 onChange={this.onChangeHandler}
+                className={this.fieldValid('verb') ? 'valid' : 'invalid'}
                 required
               />    
               <label htmlFor="adj2">the</label>
@@ -92,6 +110,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="adjective"
                 value={this.state.adj2}
                 onChange={this.onChangeHandler}
+                className={this.fieldValid('adj2') ? 'valid' : 'invalid'}
                 required
               />
               <label htmlFor="noun2"></label>
@@ -100,6 +119,7 @@ class PlayerSubmissionForm extends Component {
                 placeholder="noun"
                 value={this.state.noun2}
                 onChange={this.onChangeHandler}
+                className={this.fieldValid('noun2') ? 'valid' : 'invalid'}
                 required
               />
               <label>.</label>

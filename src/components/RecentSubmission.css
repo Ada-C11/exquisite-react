@@ -6,3 +6,7 @@
   text-align: center;
   line-height: 3rem;
 }
+
+.invalid {
+  background-color: rgba(235, 128, 128, 0.762);
+}

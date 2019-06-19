@@ -2,7 +2,7 @@ import React from 'react';
 import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
-  console.log(props.lastLine)
+
   if (props.lastLine) {
   return (
     <div className="RecentSubmission">

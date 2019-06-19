@@ -3,8 +3,8 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
-  const displayLines = props.submissions.map((line) => {
-    return <p>{line}</p>
+  const displayLines = props.submissions.map((line, i) => {
+    return <p key={i}>{line}</p>
   })
 
   return (

@@ -3,7 +3,6 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
-import { throwStatement } from '@babel/types';
 
 class Game extends Component {
 

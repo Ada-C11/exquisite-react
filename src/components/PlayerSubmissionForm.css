@@ -39,10 +39,10 @@
   color: black;
 }
 
-.input.valid {
+input.valid {
   background: lightgreen;
 }
 
-.input.invalid {
+input.invalid {
   background: pink;
 }

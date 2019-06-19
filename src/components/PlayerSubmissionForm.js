@@ -27,6 +27,18 @@ class PlayerSubmissionForm extends Component {
     this.setState(updatedState);
   };
 
+  hasValidInput = () => {
+    return (
+      this.state.adjective1 !== "" &&
+      this.state.Adjective1 !== "" &&
+      this.state.Noun1 !== "" &&
+      this.state.Adverb1 !== "" &&
+      this.state.Verb1 !== "" &&
+      this.state.Adjective2 !== "" &&
+      this.state.Noun2 !== ""
+    );
+  };
+
   onFormSubmit = event => {
     event.preventDefault();
 
@@ -39,37 +51,26 @@ class PlayerSubmissionForm extends Component {
       noun2: this.state.noun2
     };
 
-    if (this.hasValidInput) {
+    if (this.hasValidInput()) {
       this.props.addLineCallback(newLine);
+
+      this.setState(prevState => {
+        return {
+          playerCount: prevState.playerCount + 1,
+          adjective1: "",
+          noun1: "",
+          adverb1: "",
+          verb1: "",
+          adjective2: "",
+          noun2: "",
+          isDirty: false
+        };
+      });
+    } else {
+      this.setState({
+        isDirty: true
+      });
     }
-
-    this.setState({
-      adjective1: "",
-      noun1: "",
-      adverb1: "",
-      verb1: "",
-      adjective2: "",
-      noun2: "",
-      isDirty: true
-    });
-
-    this.setState(prevState => {
-      return {
-        playerCount: prevState.playerCount + 1
-      };
-    });
-  };
-
-  hasValidInput = () => {
-    return (
-      this.state.adjective1 !== "" &&
-      this.state.Adjective1 !== "" &&
-      this.state.Noun1 !== "" &&
-      this.state.Adverb1 !== "" &&
-      this.state.Verb1 !== "" &&
-      this.state.Adjective2 !== "" &&
-      this.state.Noun2 !== ""
-    );
   };
 
   nameRequired = () => {
@@ -94,7 +95,7 @@ class PlayerSubmissionForm extends Component {
               value={this.state.adjective1}
               onChange={this.onInputChange}
               placeholder="adjective"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.adjective1 === "" ? "invalid" : "valid"}
             />
 
             <input
@@ -102,21 +103,21 @@ class PlayerSubmissionForm extends Component {
               value={this.state.noun1}
               onChange={this.onInputChange}
               placeholder="noun"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.noun1 === "" ? "invalid" : "valid"}
             />
             <input
               name="adverb1"
               value={this.state.adverb1}
               onChange={this.onInputChange}
               placeholder="adverb"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.adverb1 === "" ? "invalid" : "valid"}
             />
             <input
               name="verb1"
               value={this.state.verb1}
               onChange={this.onInputChange}
               placeholder="verb"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.verb1 === "" ? "invalid" : "valid"}
             />
             <span>the</span>
             <input
@@ -124,21 +125,21 @@ class PlayerSubmissionForm extends Component {
               value={this.state.adjective2}
               onChange={this.onInputChange}
               placeholder="adjective"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.adjective2 === "" ? "invalid" : "valid"}
             />
             <input
               name="noun2"
               value={this.state.noun2}
               onChange={this.onInputChange}
               placeholder="noun"
-              className={this.hasValidInput() ? "valid" : "invalid"}
+              className={this.state.noun2 === "" ? "invalid" : "valid"}
             />
           </div>
 
           <div className="PlayerSubmissionForm__submit">
             <input
               onClick={this.onFormSubmit}
-              type="submit"
+              type="button"
               value="Submit Line"
               className="PlayerSubmissionForm__submit-btn"
             />

@@ -4,7 +4,7 @@ import "./FinalPoem.css";
 const FinalPoem = props => {
 
   const onSelectClicked = () => {
-    this.onPoemCompleteCallback();
+    props.onPoemCompleteCallback();
   };
 
   return (

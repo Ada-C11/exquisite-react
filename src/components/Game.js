@@ -10,72 +10,98 @@ class Game extends Component {
 
     this.state = {
       finalPoem: [],
-      iscomplete: false
+      iscomplete: false,
+      recentSubmission: ""
     };
   }
 
   onPoemComplete = () => {
-    this.setState({ finalPoem: this.state.finalPoem });
+    this.setState({ iscomplete: true });
+  };
+
+  joinWords = field => {
+    return (
+      field.adjective1 +
+      " " +
+      field.noun1 +
+      " " +
+      field.adverb1 +
+      " " +
+      field.adjective2 +
+      " " +
+      field.noun2 +
+      " " +
+      field.verb1
+    );
   };
 
   addLine = line => {
-    const newState = this.state;
-    newState.finalPoem.push(line);
+    const currentState = this.state;
 
-    this.setState(newState);
-
-    console.log(this.state.finalPoem);
+    this.setState({
+      finalPoem: [...currentState.finalPoem, line],
+      recentSubmission: this.joinWords(line)
+    });
   };
 
   render() {
-    const poem = this.state.finalPoem
-      .map(field => {
-        if (this.state.iscomplete === true) {
-          return (
-            field.adjective1 +
-            " " +
-            field.noun1 +
-            " " +
-            field.adverb1 +
-            " " +
-            field.adjective2 +
-            " " +
-            field.noun2 +
-            " " +
-            field.verb1
-          );
-        } else {
-          return field;
-        }
-      })
-      .join(" ");
+    if (this.state.iscomplete) {
+      const poem = this.state.finalPoem
+        .map(field => {
+          return this.joinWords(field);
+        })
+        .join(" ");
 
-    return (
-      <div className="Game">
-        <h2>Game</h2>
+      return (
+        <div className="Game">
+          <h2>Game</h2>
 
-        <p>
-          Each player should take turns filling out and submitting the form
-          below. Each turn should be done individually and <em>in secret!</em>{" "}
-          Take inspiration from the revealed recent submission. When all players
-          are finished, click the final button on the bottom to reveal the
-          entire poem.
-        </p>
+          <p>
+            Each player should take turns filling out and submitting the form
+            below. Each turn should be done individually and <em>in secret!</em>{" "}
+            Take inspiration from the revealed recent submission. When all
+            players are finished, click the final button on the bottom to reveal
+            the entire poem.
+          </p>
 
-        <p>Please follow the following format for your poetry submission:</p>
+          <FinalPoem
+            wholePoem={poem}
+            onPoemCompleteCallback={this.onPoemComplete}
+          />
+        </div>
+      );
+    } else {
+      const recentSubmission =
+        this.state.finalPoem.length === 0 ? null : (
+          <RecentSubmission recentSubmission={this.state.recentSubmission} />
+        );
 
-        <p className="Game__format-example">{}</p>
+      return (
+        <div className="Game">
+          <h2>Game</h2>
 
-        <RecentSubmission />
+          <p>
+            Each player should take turns filling out and submitting the form
+            below. Each turn should be done individually and <em>in secret!</em>{" "}
+            Take inspiration from the revealed recent submission. When all
+            players are finished, click the final button on the bottom to reveal
+            the entire poem.
+          </p>
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} />
+          <p>Please follow the following format for your poetry submission:</p>
 
-        <FinalPoem
-          wholePoem={this.finalPoem}
-          onPoemCompleteCallback={this.onPoemComplete}
-        />
-      </div>
-    );
+          <p className="Game__format-example">
+            {"The adjective noun adverb verb the adjective noun"}
+          </p>
+
+          {recentSubmission}
+
+          <PlayerSubmissionForm addLineCallback={this.addLine} />
+
+          <FinalPoem onPoemCompleteCallback={this.onPoemComplete} />
+        </div>
+      );
+    }
   }
 }
 

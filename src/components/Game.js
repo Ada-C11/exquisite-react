@@ -10,7 +10,8 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      submissions: []
+      submissions: [],
+      finished: false,
     }
   }
 
@@ -19,11 +20,14 @@ class Game extends Component {
   submissionToString = (submission) => {
     let string = ''
 
-    Object.values(submission).forEach((word) => {
+    Object.values(submission).forEach((word, i) => {
       string = `${string} ${word} `;
+      if ( i === 3 ) {
+        string += 'the ';
+      };
     });
     
-    string = `${string}.`
+    string = `The ${string}.`
     return string;
   }
 
@@ -37,8 +41,16 @@ class Game extends Component {
     })
   }
 
+  onFinished = () => {
+    const newState = !this.state.finished
+
+    this.setState({
+      finished: newState
+    });
+  }
+
   render() {
-    const { submissions } = this.state
+    const { submissions, finished} = this.state
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -62,15 +74,19 @@ class Game extends Component {
 
         <RecentSubmission 
           mostRecentSubmission={submissions[submissions.length - 1]}
+          finished={finished}
         />
 
         <PlayerSubmissionForm 
           playerNum={submissions.length + 1}
           onSubmitLineCallback={this.onSubmitLine}
+          finished={finished}
         />
 
         <FinalPoem 
           submissions={submissions}
+          onFinishedCallback={this.onFinished}
+          finished={finished}
         />
 
       </div>

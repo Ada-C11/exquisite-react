@@ -16,6 +16,8 @@ class PlayerSubmissionForm extends Component {
     }
   }
 
+ 
+
   onChangeHandler = (event) => {
     const field = {}
     field[event.target.name] = event.target.value
@@ -39,61 +41,67 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
-    const { onSubmitLineCallback, playerNum } = this.props
+    const { onSubmitLineCallback, playerNum, finished } = this.props
     const { adjectiveOne, nounOne, adverb, verb, adjectiveTwo, nounTwo } = this.state
 
-    return (
-      <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{playerNum}</h3>
+    return ( 
+      <div className='ConditionalSubmissionForm'>
+        {
+          !finished && (
+            <div className="PlayerSubmissionForm">
+              <h3>Player Submission Form for Player #{playerNum}</h3>
 
-        <form 
-          onSubmit={this.onClickSubmit} 
-          className="PlayerSubmissionForm__form" >
-          <div className="PlayerSubmissionForm__poem-inputs">
-            <label htmlFor="adjectiveOne">The </label>
-            <input
-              name='adjectiveOne'
-              placeholder="adjective"
-              type="text"
-              onChange={this.onChangeHandler}
-              value={adjectiveOne}/>
-            <input
-              name='nounOne'
-              placeholder="noun"
-              type="text" 
-              onChange={this.onChangeHandler}
-              value={nounOne}/>
-            <input
-              name='adverb'
-              placeholder="adverb"
-              type="text" 
-              onChange={this.onChangeHandler}
-              value={adverb}/>
-            <input
-              name='verb'
-              placeholder="verb"
-              type="text" 
-              onChange={this.onChangeHandler}
-              value={verb}/>
-            <label htmlFor="adjectiveOne">the </label>
-            <input
-              name='adjectiveTwo'
-              placeholder="adjective"
-              type="text" 
-              onChange={this.onChangeHandler}
-              value={adjectiveTwo}/>
-            <input
-              name='nounTwo'
-              placeholder="noun"
-              type="text" 
-              onChange={this.onChangeHandler}
-              value={nounTwo}/>
-          </div>
+              <form 
+                onSubmit={this.onClickSubmit} 
+                className="PlayerSubmissionForm__form" >
+                <div className="PlayerSubmissionForm__poem-inputs">
+                  <label htmlFor="adjectiveOne">The </label>
+                  <input
+                    name='adjectiveOne'
+                    placeholder="adjective"
+                    type="text"
+                    onChange={this.onChangeHandler}
+                    value={adjectiveOne}/>
+                  <input
+                    name='nounOne'
+                    placeholder="noun"
+                    type="text" 
+                    onChange={this.onChangeHandler}
+                    value={nounOne}/>
+                  <input
+                    name='adverb'
+                    placeholder="adverb"
+                    type="text" 
+                    onChange={this.onChangeHandler}
+                    value={adverb}/>
+                  <input
+                    name='verb'
+                    placeholder="verb"
+                    type="text" 
+                    onChange={this.onChangeHandler}
+                    value={verb}/>
+                  <label htmlFor="adjectiveOne">the </label>
+                  <input
+                    name='adjectiveTwo'
+                    placeholder="adjective"
+                    type="text" 
+                    onChange={this.onChangeHandler}
+                    value={adjectiveTwo}/>
+                  <input
+                    name='nounTwo'
+                    placeholder="noun"
+                    type="text" 
+                    onChange={this.onChangeHandler}
+                    value={nounTwo}/>
+                </div>
 
-          <div className="PlayerSubmissionForm__submit">
-            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
-          </div>
-        </form>
+                <div className="PlayerSubmissionForm__submit">
+                  <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+                </div>
+              </form>
+            </div>
+          )
+        }
       </div>
     );
   }

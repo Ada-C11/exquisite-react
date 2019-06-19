@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       submissionList: [],
+      hidden: false,
     }
   }
 
@@ -19,6 +20,9 @@ class Game extends Component {
     this.setState({submissionList});
   }
 
+  displayFinalPoem = (poem) => {
+    this.setState({hidden:true})
+  }
 
   render() {
     const recentSubmission = this.state.submissionList[this.state.submissionList.length-1]
@@ -31,7 +35,7 @@ class Game extends Component {
       }
     }).join(" ");
 
-
+    const displayType = this.state.hidden? 'hidden' : '' 
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -43,13 +47,14 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        <div className={displayType}>
+          <RecentSubmission recentSubmission={recentSubmission} />
 
-        <RecentSubmission recentSubmission={recentSubmission}/>
+          <PlayerSubmissionForm  addSentenceCallback={this.addSentence}/>
+        </div>
 
-        <PlayerSubmissionForm  addSentenceCallback={this.addSentence}/>
-
-        <FinalPoem />
-
+          <FinalPoem poem={this.state.submissionList} displayButton={this.state.hidden} displayFinalPoemCallback={this.displayFinalPoem}/>
+        
       </div>
     );
   }

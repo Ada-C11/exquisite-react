@@ -70,10 +70,6 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form">
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
             <span>The</span>
             <input placeholder="adjective" name="adj1" type="text" onChange={this.onInputChange} value={this.state.adj1} className={inputClass}/>
             <input placeholder="noun" name="noun1" type="text" onChange={this.onInputChange} value={this.state.noun1} className={inputClass}/>

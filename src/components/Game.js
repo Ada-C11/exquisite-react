@@ -59,8 +59,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        {/* <RecentSubmission line={ this.state.poem.pop()}/>   */}
-        <RecentSubmission lastVerse={this.state.poem[this.state.poem.length - 1]} />
+        <RecentSubmission currentPoem={this.state.poem} />
  
         <PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.poem.length } fields={FIELDS}/>
 

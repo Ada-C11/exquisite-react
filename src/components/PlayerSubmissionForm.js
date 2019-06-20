@@ -5,6 +5,7 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
     const initialState = {
       player: 1
     };
@@ -31,7 +32,6 @@ class PlayerSubmissionForm extends Component {
         clearedState[field.key] = "";
       }
     });
-    console.log(clearedState)
     this.setState(clearedState);
   }
 
@@ -48,8 +48,10 @@ class PlayerSubmissionForm extends Component {
       }
       return newSubmission;
     });
+
     let playerNumber = this.state.player;
     playerNumber += 1
+
     this.setState({
       player: playerNumber
     })
@@ -83,7 +85,7 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{this.state.player}</h3>
 
         <form
-          className="PlayerSubmissionForm__form"
+          className="PlayerSubmissionForm__input--invalid"
           onSubmit={this.onFormSubmit} >
 
           {formContent}

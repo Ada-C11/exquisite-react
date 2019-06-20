@@ -58,11 +58,12 @@ const poemFinished = () => {
         </p>
 
 
-
+        {!this.state.poemFinished &&
         <PlayerSubmissionForm
           // playerNumber={this.state.playerNumber}
           updatePoemLinesCallback={this.updatePoemLines}
           />
+        }
 
         <FinalPoem
           poemLines={this.state.poemLines}

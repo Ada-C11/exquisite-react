@@ -33,7 +33,7 @@ const onRevealFinalPoem = () => {
           className="FinalPoem__reveal-btn"
 
 
-          onClick={() => onRevealFinalPoem()}
+          onClick={onRevealFinalPoem}
           />
         }
 

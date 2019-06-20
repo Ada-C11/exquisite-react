@@ -35,7 +35,6 @@ class PlayerSubmissionForm extends Component {
     this.setState(clearedState);
   }
 
-
   onFormSubmit = (event) => {
     event.preventDefault();
 

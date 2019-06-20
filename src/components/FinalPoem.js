@@ -13,7 +13,6 @@ const FinalPoem = (props) => {
       />
     </div>;
 
-  /// Display poem lines ///
   const finalPoemLines = props.submissions.map((line, i) => {
     return <p key={i}>{line}</p>;
   });

@@ -27,16 +27,12 @@ class Game extends Component {
   showFinalPoem = (event) => {
     event.preventDefault();
 
-    // let poemState = this.state.poemFinished;
-    // poemState[event.target].poemFinished = true;
-
     this.setState({
       poemFinished: true
     })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -44,7 +40,6 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
-
 
     return (
       <div className="Game">

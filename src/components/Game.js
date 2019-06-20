@@ -11,19 +11,32 @@ class Game extends Component {
     this.state = {
       submissions: [],
       isSubmitted: false,
+      counter: 1,
     }
   }
 
-  addSubmission = (newSubmission)=> {
-    console.log(newSubmission)
+  addSubmission = (newSentence)=> {
+    console.log(newSentence)
     let nextSubmission = this.state.submissions
-    nextSubmission.push(newSubmission)
+    nextSubmission.push(newSentence)
     this.setState({
-      submissions: nextSubmission
+      submissions: nextSubmission,
+      counter: this.state.counter + 1
     }) 
     console.log(this.state.submissions)
 
   }
+  setSubmitted=()=> {
+    this.setState({
+      isSubmitted: true,
+      counter: 1,
+    })
+  }
+  
+
+
+
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -33,6 +46,9 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+    const playersubmissionform = this.state.isSubmitted? '' : <PlayerSubmissionForm onSubmissionCallback={this.addSubmission} Counter={this.state.counter}/>
+    const recentsubmission = this.state.isSubmitted? '' : <RecentSubmission recentSubmission= {this.state.submissions[this.state.submissions.length - 1]}  />
+
 
     return (
       <div className="Game">
@@ -45,12 +61,12 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        {recentsubmission}
+        {playersubmissionform}
+        
 
-        <RecentSubmission />
-
-        <PlayerSubmissionForm onSubmissionCallback={this.addSubmission} />
-
-        <FinalPoem />
+        <FinalPoem  poemCallback={this.setSubmitted} submissions={this.state.submissions} isSubmitted={this.state.isSubmitted} />
+        
 
       </div>
     );

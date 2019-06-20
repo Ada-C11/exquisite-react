@@ -12,14 +12,15 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      count: 0,
     }
   }
+
   onInputChange = (event) => {
     const updatedState = {};
   
     const field = event.target.name;
     const value = event.target.value;
+    
   
     updatedState[field] = value;
     this.setState(updatedState);
@@ -27,14 +28,16 @@ class PlayerSubmissionForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
   
-    const newSubmission = {
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2,
-    };
+    // const newSubmission = {
+    //   adj1: this.state.adj1,
+    //   noun1: this.state.noun1,
+    //   adv: this.state.adv,
+    //   verb: this.state.verb,
+    //   adj2: this.state.adj2,
+    //   noun2: this.state.noun2,
+    // };
+    const newSentence = "The " + this.state.adj1 + " " + this.state.noun1 + " " + this.state.adv + " " + this.state.verb + " the " + this.state.adj2 + " " + this.state.noun2
+    console.log(newSentence)
     
     
   
@@ -45,18 +48,20 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      count: this.state.count + 1
     });
    
-    this.props.onSubmissionCallback(newSubmission)
+    this.props.onSubmissionCallback(newSentence)
   
   }
+  
+  
 
   render() {
-
+    // let classname = "PlayerSubmissionFormt__input--invalid"
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{this.state.count}</h3>
+
+        <h3>Player Submission Form for Player #{this.props.Counter}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onFormSubmit} >
 
@@ -66,24 +71,28 @@ class PlayerSubmissionForm extends Component {
 
             <input
               placeholder="adjective"
+              className="PlayerSubmissionFormt__input--invalid"
               name="adj1"
               onChange={this.onInputChange}
               value={this.state.adj1}
               type="text" />
               <input
               placeholder="noun"
+              className="PlayerSubmissionFormt__input--invalid"
               name="noun1"
               onChange={this.onInputChange}
               value={this.state.noun1}
               type="text" />
               <input
               placeholder="adverb"
+              className="PlayerSubmissionFormt__input--invalid"
               name="adv"
               onChange={this.onInputChange}
               value={this.state.adv}
               type="text" />
               <input
               placeholder="verb"
+              className="PlayerSubmissionFormt__input--invalid"
               name="verb"
               onChange={this.onInputChange}
               value={this.state.verb}
@@ -91,12 +100,14 @@ class PlayerSubmissionForm extends Component {
               <span>the</span>
               <input
               placeholder="adjective"
+              className="PlayerSubmissionFormt__input--invalid"
               name="adj2"
               onChange={this.onInputChange}
               value={this.state.adj2}
               type="text" />
               <input
               placeholder="noun"
+              className="PlayerSubmissionFormt__input--invalid"
               name="noun2"
               onChange={this.onInputChange}
               value={this.state.noun2}

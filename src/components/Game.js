@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      playerNumber: 1,
+      // playerNumber: 1,
       poemLines: [],
       poemFinished: false,
     }
@@ -54,11 +54,15 @@ class Game extends Component {
 
 
         <PlayerSubmissionForm
-          playerNumber={this.state.playerNumber}
+          // playerNumber={this.state.playerNumber}
           updatePoemLinesCallback={this.updatePoemLines}
           />
 
-        <FinalPoem />
+        <FinalPoem
+          poemLines={this.state.poemLines}
+          poemFinished={this.state.poemFinished}
+          updatePoemLinesCallback={this.state.updatePoemLines}
+          />
 
       </div>
     );

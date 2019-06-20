@@ -59,11 +59,9 @@ class PlayerSubmissionForm extends Component {
     this.resetForm();
   }
 
-
-
   render() {
 
-    const formContent = this.props.fields.map((field, i) => {
+    const formFields = this.props.fields.map((field, i) => {
       if (field.key) {
         return <input
           key={i}
@@ -72,7 +70,7 @@ class PlayerSubmissionForm extends Component {
           value={this.state[field.key]}
           onChange={this.onValueChange}
           type="text"
-          className="PlayerSubmissionForm__input"
+          className={this.state[field.key].length > 0 ? "" : "PlayerSubmissionForm__input--invalid"}
         />;
       } else {
         return field;
@@ -85,11 +83,11 @@ class PlayerSubmissionForm extends Component {
         <h3>Player Submission Form for Player #{this.state.player}</h3>
 
         <form
-          className="PlayerSubmissionForm__input--invalid"
+          className="PlayerSubmissionForm"
           onSubmit={this.onFormSubmit} >
-
-          {formContent}
-
+          <div className="PlayerSubmissionForm__inputs" >
+            {formFields}
+          </div>
           <div className="PlayerSubmissionForm__submit">
             <input
               name="submit"
@@ -99,7 +97,7 @@ class PlayerSubmissionForm extends Component {
             />
           </div>
         </form>
-      </div>
+      </div >
     );
   }
 }

@@ -5,13 +5,28 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
-
   constructor(props) {
     super(props);
+    this.state = {
+      submissions: [],
+      showPoem: false,
+    }
+  }
+
+  addSubmission = (newSubmission) => {
+    const newSentence = Object.values(newSubmission).join(" ")
+    this.setState({
+      submissions: [...this.state.submissions, newSentence],
+    })
+  }
+
+  showFinalPoem = (event) => {
+    event.preventDefault();
+
+    this.setState({ showPoem: true })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -19,6 +34,29 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+
+    // const newestSub = (allSubmissions) => {
+    //   if (allSubmissions.length > 0) {
+    //     return allSubmissions[newestSubIndex]
+    //   } else {
+    //     return ""
+    //   }
+    // }
+
+    // <RecentSubmission newestSubmission={newestSub(this.state.submissions)} />
+
+    const mostRecentSubmission = () => {
+      if ((this.state.submissions).length > 0) {
+        const allSubmissions = this.state.submissions
+        const newestSubIndex = allSubmissions.length - 1
+        const newestSub = allSubmissions[newestSubIndex]
+
+        return <RecentSubmission newestSubmission={newestSub} />
+      } else {
+        return ''
+      }
+    }
 
     return (
       <div className="Game">
@@ -32,11 +70,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+          { mostRecentSubmission() }
 
-        <PlayerSubmissionForm />
+          { this.state.showPoem ? "" : <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission} playerID={this.state.submissions.length + 1} /> }
 
-        <FinalPoem />
+        <FinalPoem submissions={ this.state.submissions } showPoem={this.state.showPoem} showFinalPoem={this.showFinalPoem} />
 
       </div>
     );

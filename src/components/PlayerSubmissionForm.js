@@ -62,6 +62,10 @@ class PlayerSubmissionForm extends Component {
   }
 
   
+  toggleClassName = (field) => {
+    return (this.state[field.key] === '' ? 'PlayerSubmissionFormt__input--invalid' : 'PlayerSubmissionFormt__input')
+  }
+  
   render() {
     const formInputs = this.props.fields.filter(f => f.key).map((field) => {
       return <input
@@ -71,6 +75,7 @@ class PlayerSubmissionForm extends Component {
                 name={field.key}
                 value={this.state[field.key]}
                 onChange={this.onInputChange}
+                className={this.toggleClassName(field)}
               />
     })
 

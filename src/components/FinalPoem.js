@@ -2,20 +2,24 @@ import React from 'react';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-  if (props.allLines) {
+  const finalizedPoem = props.allLines.map((line, i) => {
     return (
-      <div className="FinalPoem">
-        <section className="FinalPoem__poem">
-          <h3>Final Poem</h3>
-
-        </section>
-
-        <div className="FinalPoem__reveal-btn-container">
-          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
-        </div>
-      </div>
+      <p key={ i }>{ line }</p>
     );
-  };
+  })
+
+  return (
+     <div className="FinalPoem">
+      { props.showPoem && <section className="FinalPoem__poem">
+        <h3>Final Poem</h3>
+          { finalizedPoem }
+      </section> }
+      { !props.printPoem && <div className="FinalPoem__reveal-btn-container">
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick = { props.onSubmitPoemCallback }/> 
+      </div> }
+    </div>
+  );
 }
+
 
 export default FinalPoem;

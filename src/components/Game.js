@@ -10,15 +10,21 @@ class Game extends Component {
     super(props);
     this.state = {
       finalPoem: [],
+      showPoem: false,
     };
   }
 
   addLine = (line) => {
-    console.log(line);
     const lines = this.state.finalPoem;
     lines.push(line);
     this.setState({
       lines,
+    });
+  }
+
+  printPoem = () => {
+    this.setState({
+      showPoem: true,
     });
   }
 
@@ -47,7 +53,7 @@ class Game extends Component {
         
         <PlayerSubmissionForm addLineCallback = { this.addLine } players = { this.state.finalPoem.length} />
 
-        <FinalPoem allLines={ this.state.finalPoem }/>
+        <FinalPoem allLines={ this.state.finalPoem } onSubmitPoemCallback={ this.printPoem } showPoem={ this.state.showPoem }/>
 
       </div>
     );

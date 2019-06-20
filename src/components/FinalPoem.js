@@ -12,6 +12,11 @@ const allPoemLines = props.poemLines.map((line, i) => {
   return <p key={i}> {line} </p>;
 });
 
+const onRevealFinalPoem = () => {
+
+  props.poemFinishedCallback(true);
+}
+
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
@@ -23,10 +28,16 @@ const allPoemLines = props.poemLines.map((line, i) => {
 
       <div className="FinalPoem__reveal-btn-container">
         {!props.poemFinished &&
-          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+          <input type="button"
+          value="We are finished: Reveal the Poem"
+          className="FinalPoem__reveal-btn"
+
+
+          onClick={() => onRevealFinalPoem()}
+          />
         }
 
-        {/* comment here */}
+
 
       </div>
     </div>

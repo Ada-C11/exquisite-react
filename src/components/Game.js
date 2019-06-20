@@ -39,6 +39,12 @@ class Game extends Component {
       }
     }).join(" ");
 
+const poemFinished = () => {
+  this.setState({
+    poemFinished: true
+  })
+}
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -62,6 +68,7 @@ class Game extends Component {
           poemLines={this.state.poemLines}
           poemFinished={this.state.poemFinished}
           updatePoemLinesCallback={this.state.updatePoemLines}
+          poemFinishedCallback={poemFinished}
           />
 
       </div>

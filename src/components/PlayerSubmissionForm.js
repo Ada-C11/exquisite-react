@@ -37,16 +37,6 @@ class PlayerSubmissionForm extends Component {
     })
     console.log(event)
     this.props.addLineCallback(nextVerse.join(" "))
-    
-    // this.props.addLineCallback({
-   
-    //   adjective: this.state.adjective,
-    //   noun: this.state.noun,
-    //   adverb: this.state.adverb,
-    //   verb: this.state.verb,
-    //   adjective2: this.state.adjective2,
-    //   noun2: this.state.noun2
-    // });
 
     this.setState({
       adjective: '',

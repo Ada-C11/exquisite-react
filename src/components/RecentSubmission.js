@@ -9,7 +9,6 @@ const RecentSubmission = (props) => {
       <div className="RecentSubmission">
         <h3>The Most Recent Submission</h3>
         <p className="RecentSubmission__submission">{currentVerses.pop()}</p>     
-           {/* The {props.lastVerse.adjective} {props.lastVerse.noun} {props.lastVerse.adverb} {props.lastVerse.verb} the {props.lastVerse.adjective2} {props.lastVerse.noun2}. */}
       </div>
   );
 }

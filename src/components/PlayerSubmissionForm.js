@@ -17,13 +17,45 @@ class PlayerSubmissionForm extends Component {
     return formFields;
   };
 
+  validations = () => {
+    const validations = {};
+    Object.keys(this.state).forEach(field => {
+      validations[field] = /.+/;
+    });
+    return validations;
+  };
+
+  isValid = (field, validations) => {
+    return validations[field.key].test(this.state[field.key]);
+  };
+
   handleInput = event => {
     const formField = {};
     formField[event.target.name] = event.target.value;
     this.setState(formField);
   };
 
-  createForm = () => {
+  handleSubmitPoem = event => {
+    event.preventDefault();
+    console.log(event);
+    console.log(event.target);
+    console.log(this.formatPoemLine(this.state));
+  };
+
+  formatPoemLine = poemState => {
+    let poemLine = this.props.format
+      .map(word => {
+        if (word.key) {
+          return this.state[word.key];
+        } else {
+          return word;
+        }
+      })
+      .join(' ');
+    return poemLine.slice(0, -3).concat(poemLine.slice(-1));
+  };
+  createFormBody = () => {
+    const validations = this.validations();
     console.log(this.state);
     return this.props.format.map((field, i) => {
       if (field.placeholder) {
@@ -35,6 +67,11 @@ class PlayerSubmissionForm extends Component {
             onChange={this.handleInput}
             value={this.state[field.key]}
             key={i}
+            className={
+              !this.isValid(field, validations)
+                ? 'PlayerSubmissionFormt__input--invalid'
+                : ''
+            }
           />
         );
       } else {
@@ -48,11 +85,13 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form">
+        <form
+          className="PlayerSubmissionForm__form"
+          onSubmit={this.handleSubmitPoem}
+        >
           <div className="PlayerSubmissionForm__poem-inputs">
-            {this.createForm()}
+            {this.createFormBody()}
           </div>
-
           <div className="PlayerSubmissionForm__submit">
             <input
               type="submit"

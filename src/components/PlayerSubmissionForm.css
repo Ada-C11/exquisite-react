@@ -38,3 +38,8 @@
 .PlayerSubmissionForm__input--invalid::placeholder {
   color: black;
 }
+
+.hidden {
+  display: none; 
+}
+

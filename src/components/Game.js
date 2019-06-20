@@ -8,6 +8,31 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [] ,
+      recentSubmission: "",
+      isFinalPoemClicked: false
+    }
+  }
+
+  addLine = (line) => {
+    const newState = this.state;
+    newState.submissions.push(line);
+
+    this.setState(newState);
+  }
+
+  newRecentSubmission = (submission) => {
+    this.setState({
+      recentSubmission: submission,
+    });
+  }
+
+  finalPoemClickedFunc = () => {
+    this.setState({
+      isFinalPoemClicked: true,
+    });
   }
 
   render() {
@@ -32,11 +57,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission line={this.state.recentSubmission} numberofSubmissions={this.state.submissions.length} isFinalPoemClicked={this.state.isFinalPoemClicked} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addLineCallback={this.addLine} recentSubmission={this.newRecentSubmission} isFinalPoemClicked={this.state.isFinalPoemClicked}  />
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.submissions} finalPoemClicked={this.finalPoemClickedFunc} isFinalPoemClicked={this.state.isFinalPoemClicked}  />
 
       </div>
     );

@@ -12,7 +12,6 @@ class Game extends Component {
     this.state = {
       poem: [],
       player: 0,
-      show: false
     }
   }
 
@@ -40,6 +39,7 @@ class Game extends Component {
     }).join(" ");
 
     console.log(this.state.poem[this.state.poem.length - 1]);
+    const startOfPoetry = this.state.poem.length === 0 ? false : true;
 
     return (
       <div className="Game">
@@ -53,8 +53,9 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
+         {startOfPoetry &&
         <RecentSubmission 
-         previousLine={this.state.poem[this.state.poem.length - 1]}/>
+         previousLine={this.state.poem[this.state.poem.length - 1]}/>}
 
 
         <PlayerSubmissionForm addLineCallback={this.addLine} playerNumber={this.state.player}/>

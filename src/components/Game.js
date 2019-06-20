@@ -8,9 +8,37 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poem: [],
+      finalized: false,
+    }
   }
 
+  addVerse = (newVerse) => {
+    const newState = {...this.state}
+    const updatedPoem = newState.poem
+    updatedPoem.push(newVerse)
+    this.setState(updatedPoem)
+  }
+
+  finalizePoem = () => {
+    if (this.state.poem.length >= 1) {
+      this.setState({finalized: true})
+    }
+  }
+ 
   render() {
+
+    const showMostRecent = () => {
+      if (this.state.poem.length >= 1 && !this.state.finalized) {
+        return <RecentSubmission 
+        poem={this.state.poem}
+      />
+      }
+    }
+
+    const playerNumber = this.state.poem.length
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +60,22 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { showMostRecent() }
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        
+        { !this.state.finalized &&
+          <PlayerSubmissionForm 
+            fields={FIELDS}
+            playerNumber={playerNumber}
+            formCallback={this.addVerse}
+          />
+        }
+      
+        <FinalPoem 
+          poem={this.state.poem}
+          finalized={this.state.finalized}
+          revealPoemCallback={this.finalizePoem}
+        />
 
       </div>
     );

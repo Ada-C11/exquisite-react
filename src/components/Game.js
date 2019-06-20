@@ -3,12 +3,35 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
+import { thisTypeAnnotation } from '@babel/types';
 
 class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state ={
+      poem: [],
+      poemRevealed: false,
+    }
+  };
+
+  addLine = (poemVerse) => {
+    let updatedState = {...this.state};
+    let updatedPoem = updatedState.poem
+
+    updatedPoem.push(poemVerse)
+    this.setState({
+      updatedPoem,
+    });
+  };
+
+  revealPoem = () => {
+    this.setState({
+      poemRevealed: true
+    })
   }
+
 
   render() {
 
@@ -20,6 +43,7 @@ class Game extends Component {
       }
     }).join(" ");
 
+     
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -32,11 +56,14 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        {(this.state.poem.length > 0 && !this.state.poemRevealed) && <RecentSubmission currentPoem={this.state.poem} />}
+ 
+        { !this.state.poemRevealed ? 
+          (<PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.poem.length } fields={FIELDS}/>) :
+          ('') }
 
-        <FinalPoem />
+        <FinalPoem poem={ this.state.poem } onRevealPoemCallback={ this.revealPoem } poemRevealed={this.state.poemRevealed} />
 
       </div>
     );
@@ -46,15 +73,15 @@ class Game extends Component {
 const FIELDS = [
   "The",
   {
-    key: 'adj1',
+    key: 'adjective',
     placeholder: 'adjective',
   },
   {
-    key: 'noun1',
+    key: 'noun',
     placeholder: 'noun',
   },
   {
-    key: 'adv',
+    key: 'adverb',
     placeholder: 'adverb',
   },
   {
@@ -63,7 +90,7 @@ const FIELDS = [
   },
   "the",
   {
-    key: 'adj2',
+    key: 'adjective2',
     placeholder: 'adjective',
   },
   {

@@ -30,17 +30,18 @@ class PlayerSubmissionForm extends Component {
       const constructedLine = `The ${this.state.adjective} ${this.state.noun} ${this.state.adverb}
       ${this.state.verb} ${this.state.secondAdjective} ${this.state.secondNoun}`
       
-      this.setState = {
+      this.setState({
         adjective: " ",
         noun: " ",
         adverb: " ",
         verb: " ",
         secondAdjective: "",
         secondNoun: "",
-      };
+      });
 
-      console.log("Line:", constructedLine);
+      //console.log("Line:", constructedLine);
       this.props.addLineCallback(constructedLine);// to do next 
+      console.log(this.state);
     }
 
   render() {
@@ -61,37 +62,37 @@ class PlayerSubmissionForm extends Component {
               placeholder="Adjective"
               name="adjective"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.state.adjective}
               type="text" />
               <input
               placeholder="Noun"
               name="noun"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.state.noun}
               type="text" />
               <input
               placeholder="Adverb"
               name="adverb"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.state.adverb}
               type="text" />
               <input
               placeholder="Verb"
               name="verb"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.state.verb}
               type="text" />
               <input
               placeholder="Adjective"
               name="secondAdjective"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.secondAdjective}
               type="text" />
               <input
               placeholder="Noun"
               name="secondNoun"
               type="text"
-              onChange={this.onWordInput}
+              onChange={this.secondNoun}
               type="text" />
 
           </div>

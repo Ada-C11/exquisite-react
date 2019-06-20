@@ -17,7 +17,6 @@ class Game extends Component {
   };
 
   addLine = (poemVerse) => {
-    // const poemVerse = this.state.
     let updatedState = {...this.state};
     let updatedPoem = updatedState.poem
 
@@ -25,7 +24,6 @@ class Game extends Component {
     this.setState({
       updatedPoem,
     });
-    console.log(this.poem)
   };
 
   revealPoem = () => {
@@ -46,7 +44,6 @@ class Game extends Component {
     }).join(" ");
 
      
-    // There's probably a much cleaner way to do the conditionals here.
     return (
       <div className="Game">
         <h2>Game</h2>

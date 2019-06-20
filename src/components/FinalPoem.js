@@ -6,7 +6,6 @@ const FinalPoem = (props) => {
     return (<p key={index}> {verse} </p>)
   })
 
-  console.log(props.poem)
   return (
     <div className="FinalPoem">
       {props.poemRevealed &&  <section className="FinalPoem__poem">

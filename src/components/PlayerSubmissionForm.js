@@ -36,7 +36,7 @@ class PlayerSubmissionForm extends Component {
         return field
       }
     })
-    console.log(event)
+
     this.props.addLineCallback(nextVerse.join(" "))
 
     this.setState({

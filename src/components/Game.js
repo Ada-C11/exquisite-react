@@ -4,10 +4,88 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
+
 class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = INITIAL_STATE;
+  }
+
+  renderRecentSubmission() {
+    if(this.state.mostRencentSubmission !== '' && this.state.finalPoemClicked === false) {
+      return (
+        <RecentSubmission mostRecentSubmission={this.state.mostRencentSubmission}/>
+      )
+    }
+  }
+
+  renderPlayerSubmissionForm(){
+    if(this.state.finalPoemClicked === false){
+      return (
+        <PlayerSubmissionForm onPlayerFormButtonCallback={this.onPlayerFormButton} fields={FIELDS}/>
+      )
+    }
+  }
+
+  renderFinalPoem(){
+   
+    console.log(this.state.finalPoem)
+    return(
+      <FinalPoem value={this.state.finalPoemButtonValue} onFinalPoemButtonCallback={this.onFinalPoemButton} poem={this.state.finalPoem} clicked={this.state.finalPoemClicked}/>
+    )
+  }
+
+  onPlayerFormButton = (event, submission) => {
+
+    event.preventDefault();
+    
+    let last = ''
+
+    Object.keys(submission).map(function(key){
+
+      if(key === 'adj1'){
+        last += 'The '
+      } else if (key === 'adj2') {
+        last += 'the'
+      }
+      return (last += submission[key] + ' ')
+
+    })
+
+    const newFinalPoem = [
+      ...this.state.finalPoem,
+      last
+    ];
+    this.setState({
+      finalPoem: newFinalPoem,
+      mostRencentSubmission: last,
+    })
+
+    this.renderPlayerSubmissionForm()
+
+  }
+
+  onFinalPoemButton = () => {
+
+    console.log(this.state.finalPoem)
+
+    let clicked;
+    let value = ''
+    
+
+    if (this.state.finalPoemClicked === false) {
+
+      clicked = true
+      value = "Play again!"
+    
+    }
+
+    this.setState(!clicked ? INITIAL_STATE : {
+      finalPoemClicked: clicked,
+      finalPoemButtonValue: value,
+    })
+    
   }
 
   render() {
@@ -32,16 +110,24 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {this.renderRecentSubmission()}
 
-        <PlayerSubmissionForm />
+        {this.renderPlayerSubmissionForm()}
 
-        <FinalPoem />
+        {this.renderFinalPoem()}
 
       </div>
     );
   }
 }
+
+const INITIAL_STATE = {
+  mostRencentSubmission: '',
+  finalPoem: [],
+  poem: '',
+  finalPoemClicked: false,
+  finalPoemButtonValue: "We are finished: Reveal the Poem",
+};
 
 const FIELDS = [
   "The",

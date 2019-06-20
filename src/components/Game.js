@@ -8,9 +8,49 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      lines: [],
+      finalized: false,
+    };
   }
 
+  addLine = (line) => {
+    const lines = this.state.lines;
+    lines.push(<p key={this.state.lines.length + 1}>{line}</p>);
+    this.setState({
+      lines,
+    });
+  }
+
+  handleClickFinalPoem = () => {
+    this.setState({
+      finalized: true,
+    });
+  }
+
+
   render() {
+    let lines;
+    let submissionForm;
+    let recentSubmission;
+    let finalized;
+    if (this.state.finalized){
+      lines = this.state.lines.reverse();
+      submissionForm = '';
+      finalized = true;
+    } else {
+      lines = null;
+      submissionForm = (<PlayerSubmissionForm 
+        addLineCallback={this.addLine}/>);
+      recentSubmission = (<RecentSubmission 
+        lastLine={this.state.lines.reverse().slice(0,1)}/>);
+      finalized = false;
+      
+    }
+
+    if (this.state.lines.length === 0) {
+      recentSubmission = '';
+    }
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
@@ -32,11 +72,15 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {recentSubmission}
 
-        <PlayerSubmissionForm />
+        {submissionForm}
 
-        <FinalPoem />
+        <FinalPoem 
+        lines={lines}
+        handleClickCallback={this.handleClickFinalPoem}
+        finalized = {finalized}
+        />
 
       </div>
     );

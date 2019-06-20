@@ -2,12 +2,19 @@ import React from 'react';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-  // revealFinalPoemCallback 
+
+  const finalPoemLines = props.submissions.map((line) => {
+    return <p>{line}</p>;
+  });
+
+  const onRevealFinalPoemClick = () => {
+    props.revealFinalPoemCallback(finalPoemLines)
+  }
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-
+        {props.finalPoemLines}
       </section>
 
       <div className="FinalPoem__reveal-btn-container">
@@ -15,7 +22,7 @@ const FinalPoem = (props) => {
           type="button"
           value="We are finished: Reveal the Poem"
           className="FinalPoem__reveal-btn"
-        // onClick=""
+          onClick={onRevealFinalPoemClick}
         />
       </div>
     </div>

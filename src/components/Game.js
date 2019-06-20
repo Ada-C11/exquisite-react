@@ -11,9 +11,9 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
+      poemFinished: false
     };
   }
-
 
   addNewLine = (line) => {
     console.log(line);
@@ -25,7 +25,13 @@ class Game extends Component {
     })
   };
 
+  showFinalPoem = (event) => {
+    // event.preventDefault();
 
+    this.setState({
+      poemFinished: true,
+    })
+  }
 
   render() {
 
@@ -50,11 +56,11 @@ class Game extends Component {
           {exampleFormat}
         </p>
 
-        <RecentSubmission submission={this.state.mostRecentLine} />
+        <RecentSubmission submission={this.state.submissions[this.state.submissions.length - 1]} />
 
-        <PlayerSubmissionForm fields={FIELDS} addNewLineCallback={this.addNewLine} player={this.props.index} />
+        <PlayerSubmissionForm fields={FIELDS} addNewLineCallback={this.addNewLine} />
 
-        <FinalPoem revealFinalPoemCallback={this.state.submissions} />
+        <FinalPoem poemFinished={this.state.poemFinished} submissions={this.state.submissions} revealFinalPoemCallback={this.showFinalPoem} />
 
       </div>
     );

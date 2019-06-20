@@ -8,6 +8,12 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      playerNumber: 1,
+      poemLines: [],
+      poemFinished: false,
+    }
   }
 
   render() {

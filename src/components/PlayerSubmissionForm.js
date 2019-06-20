@@ -15,8 +15,8 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      newPoemLine: 'new poem line initial value',
-      lastPoemLine: 'last poem line initial value',
+      // newPoemLine: 'new poem line initial value',
+      lastPoemLine: '',
 
       updatePoemLinesCallback: props.updatePoemLines,
       incrementPlayerNumberCallback: props.incrementPlayerNumberCallback
@@ -61,8 +61,9 @@ onFormSubmit = (event) => {
 
     return (
       <div className="PlayerSubmissionForm">
-      <RecentSubmission
-      lastPoemLine = {this.state.lastPoemLine} />
+
+        {this.state.lastPoemLine !== "" && (<RecentSubmission
+        lastPoemLine = {this.state.lastPoemLine} />)}
 
         <h3>Player Submission Form for Player #{ this.props.playerNumber }</h3>
 

@@ -8,6 +8,32 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      finalPoem: [],
+      isFinal: false,
+    };
+  }
+
+  recentSubmission = (poem) => {
+    const poemLength = poem.length - 1
+    const lastLine = poem[poemLength]
+    return lastLine
+  }
+
+  addSubmission = (line) => {
+    const currentPoem = this.state.finalPoem;
+    currentPoem.push(line);
+    this.setState({
+      finalPoem: currentPoem,
+    })
+  }
+
+  displayFinalPoem = (event) => {
+    event.preventDefault();
+    this.setState({
+      isFinal: true,
+    })
   }
 
   render() {
@@ -19,6 +45,10 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+    const displaySubmission = this.state.finalPoem.length > 0 && !this.state.isFinal ? <RecentSubmission recentLine={this.recentSubmission(this.state.finalPoem)}/> : '';
+
+    const displaySubmissionForm = !this.state.isFinal ? <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addSubmission}/> : '';
 
     return (
       <div className="Game">
@@ -32,12 +62,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        { displaySubmission }
 
-        <PlayerSubmissionForm />
+        { displaySubmissionForm }
 
-        <FinalPoem />
-
+        <FinalPoem poem={ this.state.finalPoem } finalPoemCallback={this.displayFinalPoem} isFinal={this.state.isFinal}/>
+        
       </div>
     );
   }

@@ -19,10 +19,12 @@ class Game extends Component {
 
   updatePoemLines = (newPoemLine) => {
     const newPoemLines = this.state.poemLines
-    newPoemLines.push(newPoemLine);
-    this.setState({
-      poemLines: newPoemLines
-    })
+    if (newPoemLine) {
+      newPoemLines.push(newPoemLine);
+      this.setState({
+        poemLines: newPoemLines
+      })
+    }
     console.log(this.state.poemLines);
   }
 

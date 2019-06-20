@@ -52,6 +52,7 @@ onFieldTyping = (event) => {
 onSubmitLine = (event) => {
   event.preventDefault();
 
+  // const newPoemLine = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`;
 
   this.setState ({
     adj1: '',
@@ -60,11 +61,14 @@ onSubmitLine = (event) => {
     verb: '',
     adj2: '',
     noun2: '',
+    // lastPoemLine: newPoemLine,
     lastPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`,
   })
-  console.log(`submit line state: ${this.state.lastPoemLine}`);
+  console.log(`last poem line in state ${this.state.lastPoemLine} - might not be done updating!`);
+  // console.log(`last submited line: ${newPoemLine}`);
   this.incrementPlayerNumber();
 
+  // this.props.updatePoemLinesCallback(newPoemLine);
   this.props.updatePoemLinesCallback(this.state.lastPoemLine);
 
 }

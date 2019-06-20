@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
-import PropTypes from 'prop-types';
-
+// import PropTypes from 'prop-types';
+import RecentSubmission from './RecentSubmission';
 
 class PlayerSubmissionForm extends Component {
 
@@ -15,8 +15,8 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      newPoemLine: '',
-      lastPoemLine: '',
+      newPoemLine: 'new poem line initial value',
+      lastPoemLine: 'last poem line initial value',
 
       updatePoemLinesCallback: props.updatePoemLines,
       incrementPlayerNumberCallback: props.incrementPlayerNumberCallback
@@ -37,14 +37,13 @@ onFieldTyping = (event) => {
   this.setState(field);
 }
 
+
+
+// console.log('newPoemLine is ' newPoemLine);
+
 onFormSubmit = (event) => {
   event.preventDefault();
   console.log(this.state);
-
-  // const newPoemLine = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv}`;
-  this.setState({
-    newPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv}`
-  })
 
   this.setState ({
     adj1: '',
@@ -53,7 +52,8 @@ onFormSubmit = (event) => {
     verb: '',
     adj2: '',
     noun2: '',
-    lastPoemLine: this.state.newPoemLine
+    lastPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`,
+    // lastPoemLine: this.state.newPoemLine
   })
 }
 
@@ -61,6 +61,9 @@ onFormSubmit = (event) => {
 
     return (
       <div className="PlayerSubmissionForm">
+      <RecentSubmission
+      lastPoemLine = {this.state.lastPoemLine} />
+
         <h3>Player Submission Form for Player #{ this.props.playerNumber }</h3>
 
         <form

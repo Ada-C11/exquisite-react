@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
-import RecentSubmission from './RecentSubmission';
+// import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
@@ -38,7 +38,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+
 
         <PlayerSubmissionForm />
 

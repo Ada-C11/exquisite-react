@@ -8,6 +8,27 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      RecentSubmission: '',
+      finalSubmission: [],
+    };
+  }
+
+  addLine = (line) => {
+    console.log(line);
+    console.log(line.adj1);
+    // console.log(this.state.line.adj1);
+    // const verse = `${this.state.line.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} ${this.state.adj2} ${this.state.noun2}`;
+    // console.log(verse);
+    const verse1 = `${line.adj1} ${line.noun1} ${line.adverb} ${line.verb} ${line.adj2} ${line.noun2}`;
+    console.log(verse1);
+    // students.push(student);
+    // this.setState({
+    //   students,
+    //   message: `${student.fullName} is added`,
+    //   // students: students,
+    // });
   }
 
   render() {
@@ -34,7 +55,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addLineCallback={this.addLine}/>
 
         <FinalPoem />
 

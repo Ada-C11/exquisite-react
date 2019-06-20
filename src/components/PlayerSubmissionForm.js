@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import setAllValuesTo from "object-set-all-values-to";
 
 class PlayerSubmissionForm extends Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
-      submission: '',
+      submission: {
+        adj1: '',
+        noun1: '', 
+        adv: '', 
+        verb: '', 
+        adj2: '', noun2: ''
+      },
       fullSubmission: '',
       name: '',
       turn: 1,
-      inputClassName: '--invalid',
-      onFormButtonCallback: this.props.onPlayerFormButtonCallback,
+      inputClassName: '--invalid'
     }
   }
 
@@ -19,111 +25,69 @@ class PlayerSubmissionForm extends Component {
 
     event.target.className = "PlayerSubmissionForm__input";
 
-    let tempSubmission = ' '
-
-    if (event.target.name === 'adjective1'){
-      tempSubmission = 'The '
-      tempSubmission += (event.target.value)
-    } else if (event.target.name === 'adjective2') {
-      tempSubmission = ' the '
-      tempSubmission += (event.target.value)
-    } else {
-      tempSubmission = ' '
-      tempSubmission += (event.target.value)
-    }
-
+    let submission = {
+      ...this.state.submission,
+      [event.target.name]: event.target.value
+    };
+    
     this.setState({
-      submission: tempSubmission,
-      name: event.target.name,
-      inputClassName: '',
-    })
+      submission
+    });
 
-    if (this.state.name !== event.target.name) {
-      
-      let insert = this.state.submission;
-      let fullSubmission = this.state.fullSubmission;
-      fullSubmission += insert;
-
-      this.setState({
-        fullSubmission,
-      })
-
-    }
+    console.log(submission)
+  
   }
 
   onSubmitForm = (event) => {
     event.preventDefault();
-  
-    let fullSubmission = this.state.fullSubmission
-    fullSubmission += this.state.submission
-    let turn = this.state.turn
-    turn += 1
-
+    const{
+      submission,
+      turn
+    } = this.state;
+    this.props.onPlayerFormButtonCallback(event, submission);
+    let newSub = setAllValuesTo(submission, '');
+    console.log(newSub === submission);
     this.setState({
-      submission: '',
+      submission: setAllValuesTo(submission, '') ,
       fullSubmission: '',
-      turn,
+      turn: turn + 1,
     })
-
-    this.state.onFormButtonCallback(event, fullSubmission);
-    this.myFormRef.reset();
   }
 
   
 
   render() {
 
+    let formFields = this.props.fields.map(field => {
+      if (typeof field === "string") {
+        return field;
+      } else {
+        const {
+          key,
+          placeholder
+        } = field;
+        return (
+          <input
+            key={key}
+            className="PlayerSubmissionForm__input--invalid"
+            name={key}
+            placeholder={placeholder}
+            value={this.state.submission[key]}
+            type="text" onChange={this.onChangeInput}
+          />
+        );
+      }
+
+    })
+
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{ this.state.turn }</h3>
 
-        <form className="PlayerSubmissionForm__form" ref={(el) => this.myFormRef = el}>
+        <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            
-              The 
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                name="adjective1"
-                placeholder="adjective"
-                type="text" onChange={this.onChangeInput}/>
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                name="noun1"
-                placeholder="noun"
-                type="text" onChange={this.onChangeInput}/>
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                name="adverb"
-                placeholder="adverb"
-                type="text" onChange={this.onChangeInput}/>
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                verb="verb"
-                placeholder="verb"
-                type="text" onChange={this.onChangeInput}/>
-              
-              the
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                name="adjective2"
-                placeholder="adjective"
-                type="text" onChange={this.onChangeInput}/>
-
-              <input
-                className="PlayerSubmissionForm__input--invalid"
-                name="noun2"
-                placeholder="noun"
-                type="text" onChange={this.onChangeInput}/>
-              
-              .
-            
+            { formFields }
           </div>
 
           <div className="PlayerSubmissionForm__submit">

@@ -4,19 +4,12 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
+
 class Game extends Component {
 
   constructor(props) {
-
     super(props);
-    this.state = {
-      mostRencentSubmission: '',
-      finalPoem: [],
-      poem: '',
-      finalPoemClicked: false,
-      finalPoemButtonValue: "We are finished: Reveal the Poem",
-    }
-
+    this.state = INITIAL_STATE;
   }
 
   renderRecentSubmission() {
@@ -30,50 +23,65 @@ class Game extends Component {
   renderPlayerSubmissionForm(){
     if(this.state.finalPoemClicked === false){
       return (
-        <PlayerSubmissionForm onPlayerFormButtonCallback={this.onPlayerFormButton}/>
+        <PlayerSubmissionForm onPlayerFormButtonCallback={this.onPlayerFormButton} fields={FIELDS}/>
       )
     }
   }
 
-  onPlayerFormButton = (event, full) => {
+  renderFinalPoem(){
+   
+    console.log(this.state.finalPoem)
+    return(
+      <FinalPoem value={this.state.finalPoemButtonValue} onFinalPoemButtonCallback={this.onFinalPoemButton} poem={this.state.finalPoem} clicked={this.state.finalPoemClicked}/>
+    )
+  }
+
+  onPlayerFormButton = (event, submission) => {
 
     event.preventDefault();
     
-    let finalPoem = this.state.finalPoem
-    finalPoem.push(full)
+    let last = ''
 
-    let last  = this.state.finalPoem[this.state.finalPoem.length - 1]
+    Object.keys(submission).map(function(key){
 
+      if(key === 'adj1'){
+        last += 'The '
+      } else if (key === 'adj2') {
+        last += 'the'
+      }
+      return (last += submission[key] + ' ')
+
+    })
+
+    const newFinalPoem = [
+      ...this.state.finalPoem,
+      last
+    ];
     this.setState({
-      finalPoem,
+      finalPoem: newFinalPoem,
       mostRencentSubmission: last,
     })
+
+    this.renderPlayerSubmissionForm()
 
   }
 
   onFinalPoemButton = () => {
 
-    let clicked = ''
+    console.log(this.state.finalPoem)
+
+    let clicked;
     let value = ''
-    let poemBuilt = ''
-    if (this.state.finalPoemClicked === false){
-      poemBuilt = ""
-      poemBuilt += this.state.finalPoem.map((line) => {
-      return (line + "\n")
-    }).join(" ")
+    
+
+    if (this.state.finalPoemClicked === false) {
 
       clicked = true
       value = "Play again!"
     
-    } else {
-      clicked = false
-      value = "We are finished: Reveal the Poem"
     }
 
-    this.setState({
-      mostRencentSubmission: '',
-      finalPoem: [],
-      poem: poemBuilt,
+    this.setState(!clicked ? INITIAL_STATE : {
       finalPoemClicked: clicked,
       finalPoemButtonValue: value,
     })
@@ -106,12 +114,20 @@ class Game extends Component {
 
         {this.renderPlayerSubmissionForm()}
 
-        <FinalPoem value={this.state.finalPoemButtonValue} onFinalPoemButtonCallback={this.onFinalPoemButton} poem={this.state.poem} />
+        {this.renderFinalPoem()}
 
       </div>
     );
   }
 }
+
+const INITIAL_STATE = {
+  mostRencentSubmission: '',
+  finalPoem: [],
+  poem: '',
+  finalPoemClicked: false,
+  finalPoemButtonValue: "We are finished: Reveal the Poem",
+};
 
 const FIELDS = [
   "The",

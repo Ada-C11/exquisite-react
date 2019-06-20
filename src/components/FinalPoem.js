@@ -11,17 +11,20 @@ const FinalPoem = (props) => {
 
   }
 
-  const lines = (word) => word.split("\n").map((t, i) => {
+
+  console.log(props.poem)
+
+  const lines = function () {
+    if (props.clicked){
+      return props.poem.map((poem, index) => <p key={index}>{poem}</p>)
+    }
+  }
   
-    return (<p key={i}>{t}</p>)
-
-  });
-
   return (
     <div className="FinalPoem">
       <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
-        {lines(props.poem)}
+        {lines()}
       </section>
 
       <div className="FinalPoem__reveal-btn-container">

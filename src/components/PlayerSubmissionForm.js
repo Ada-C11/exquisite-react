@@ -24,14 +24,9 @@ class PlayerSubmissionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
       
-    this.props.addLineCallback({
-      adj1: this.state.adj1,
-      noun1: this.state.noun1,
-      adv: this.state.adv,
-      verb: this.state.verb,
-      adj2: this.state.adj2,
-      noun2: this.state.noun2,
-    });
+    this.props.addLineCallback(
+      `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`
+    );
 
     this.setState({
       adj1: '',

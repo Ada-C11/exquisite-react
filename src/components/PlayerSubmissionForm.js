@@ -7,12 +7,12 @@ class PlayerSubmissionForm extends Component {
     super(props);
    
     this.state = {
-    adjective: " ",
-    noun: " ",
-    adverb: " ",
-    verb: " ",
-    secondAdjective: "",
-    secondNoun: "",
+    adjective: '',
+    noun: '',
+    adverb: '',
+    verb: '',
+    secondAdjective: '',
+    secondNoun: '',
   };
 }
     onWordInput = (event) => {
@@ -31,12 +31,12 @@ class PlayerSubmissionForm extends Component {
       ${this.state.verb} ${this.state.secondAdjective} ${this.state.secondNoun}`
       
       this.setState({
-        adjective: " ",
-        noun: " ",
-        adverb: " ",
-        verb: " ",
-        secondAdjective: "",
-        secondNoun: "",
+        adjective: '',
+        noun: '',
+        adverb: '',
+        verb: '',
+        secondAdjective: '',
+        secondNoun: '',
       });
 
       //console.log("Line:", constructedLine);
@@ -48,7 +48,7 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.playerNumber + 1}</h3>
 
         <form className="PlayerSubmissionForm__form" onSubmit={this.onSubmitForm}>
 
@@ -60,40 +60,46 @@ class PlayerSubmissionForm extends Component {
             The
             <input
               placeholder="Adjective"
-              name="adjective"
+              name='adjective'
               type="text"
-              onChange={this.state.adjective}
-              type="text" />
+              value = {this.state.adjective}
+              onChange={this.onWordInput}
+               />
               <input
               placeholder="Noun"
-              name="noun"
+              name='noun'
               type="text"
-              onChange={this.state.noun}
-              type="text" />
+              value={this.state.noun}
+              onChange={this.onWordInput}
+               />
               <input
               placeholder="Adverb"
-              name="adverb"
+              name='adverb'
               type="text"
-              onChange={this.state.adverb}
-              type="text" />
+              value={this.state.adverb}
+              onChange={this.onWordInput}
+               />
               <input
               placeholder="Verb"
-              name="verb"
+              name='verb'
               type="text"
-              onChange={this.state.verb}
-              type="text" />
+              value={this.state.verb}
+              onChange={this.onWordInput}
+               />
               <input
               placeholder="Adjective"
-              name="secondAdjective"
+              name='secondAdjective'
               type="text"
-              onChange={this.secondAdjective}
-              type="text" />
+              value={this.secondAdjective}
+              onChange={this.onWordInput}
+               />
               <input
               placeholder="Noun"
-              name="secondNoun"
+              name='secondNoun'
               type="text"
-              onChange={this.secondNoun}
-              type="text" />
+              value={this.secondNoun}
+              onChange={this.onWordInput}
+              />
 
           </div>
 

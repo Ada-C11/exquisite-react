@@ -14,14 +14,18 @@ class Game extends Component {
       poemLines: [],
       poemFinished: false,
     }
+    console.log(this.poemLines);
   }
 
-  // incrementPlayerNumber = () => {
-  //   const newPlayerNumber = this.state.playerNumber + 1;
-  //   this.setState({
-  //     playerNumber: {newPlayerNumber}
-  //   })
-  // }
+  updatePoemLines = (newPoemLine) => {
+    const newPoemLines = this.state.poemLines
+    newPoemLines.push(newPoemLine);
+    this.setState({
+      poemLines: newPoemLines
+    })
+    console.log(this.state.poemLines);
+  }
+
 
   render() {
 
@@ -48,8 +52,8 @@ class Game extends Component {
 
 
         <PlayerSubmissionForm
-          // {incrementPlayerNumberCallback = {this.incrementPlayerNumber}
-          // playerNumber = {this.state.playerNumber} }
+          playerNumber={this.state.playerNumber}
+          updatePoemLinesCallback={this.updatePoemLines}
           />
 
         <FinalPoem />

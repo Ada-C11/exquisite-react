@@ -30,14 +30,14 @@ class PlayerSubmissionForm extends Component {
 
 incrementPlayerNumber = () => {
     const newPlayerNumber = this.state.playerNumber + 1;
-    console.log(`new player number ${newPlayerNumber}`);
+    // console.log(`new player number ${newPlayerNumber}`);
     this.setState({
       playerNumber: newPlayerNumber
     })
   }
 
 onFieldTyping = (event) => {
-  console.log(`field updated: ${event.target.value}`);
+  // console.log(`field updated: ${event.target.value}`);
 
   const field = {};
   field[event.target.name] = event.target.value;
@@ -51,7 +51,7 @@ onFieldTyping = (event) => {
 
 onSubmitLine = (event) => {
   event.preventDefault();
-  console.log(this.state);
+
 
   this.setState ({
     adj1: '',
@@ -61,11 +61,11 @@ onSubmitLine = (event) => {
     adj2: '',
     noun2: '',
     lastPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`,
-    // lastPoemLine: this.state.newPoemLine
   })
-
+  console.log(`submit line state: ${this.state.lastPoemLine}`);
   this.incrementPlayerNumber();
 
+  this.props.updatePoemLinesCallback(this.state.lastPoemLine);
 
 }
 

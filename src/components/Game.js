@@ -8,7 +8,36 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
-  }
+
+    this.state = {
+      playerNum: 1,
+      recentPoem: '',
+      finalPoem: [],
+      revealPoem: false,
+    };
+  };
+
+  getRecentUserSubmission = (formInputSentence) => {
+    let currentPoemCollection = this.state.finalPoem;
+    currentPoemCollection.push(formInputSentence);
+
+    let nextPlayerNum = this.state.playerNum;
+    nextPlayerNum += 1
+
+    this.setState({
+      playerNum: nextPlayerNum,
+      recentPoem: formInputSentence,
+      finalPoem: currentPoemCollection
+    });
+
+    console.log(this.state.finalPoem);
+  };
+
+  changePoemRevealState = () => {
+    this.setState({
+      revealPoem: true,
+    });
+  };
 
   render() {
 
@@ -32,11 +61,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {!this.state.revealPoem && <RecentSubmission recentPoem={this.state.recentPoem} />}
 
-        <PlayerSubmissionForm />
+        {!this.state.revealPoem && <PlayerSubmissionForm 
+          onFormSubmitCallback={this.getRecentUserSubmission}
+          playerNumber={this.state.playerNum} />}
 
-        <FinalPoem />
+        <FinalPoem 
+          onRevealPoemCallback={this.changePoemRevealState}
+          poemRevealState={this.state.revealPoem}
+          finalPoem={this.state.finalPoem} />
 
       </div>
     );

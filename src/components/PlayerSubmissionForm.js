@@ -17,22 +17,22 @@ class PlayerSubmissionForm extends Component {
   }
 
   onValueChange = (event) => {
-    // console.log(`${event.target} Updated ${event.target.value}`);
+    console.log(`${event.target} Updated ${event.target.value}`);
 
     const fields = {};
-    console.log(event.target.name);
     fields[event.target.name] = event.target.value;
     this.setState(fields);
   }
 
   resetForm = () => {
-    const initialState = {};
+    const clearedState = {};
     this.props.fields.forEach((field) => {
       if (field.key) {
-        initialState[field.key] = "";
+        clearedState[field.key] = "";
       }
     });
-    this.setState({ initialState });
+    console.log(clearedState)
+    this.setState(clearedState);
   }
 
 
@@ -80,7 +80,6 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        console.log(this.state.player)
         <h3>Player Submission Form for Player #{this.state.player}</h3>
 
         <form

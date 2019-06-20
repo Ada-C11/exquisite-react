@@ -16,7 +16,6 @@ class Game extends Component {
   }
 
   addNewLine = (line) => {
-    console.log(line);
     const newSubmission = this.state.submissions;
     newSubmission.push(line);
 
@@ -26,7 +25,7 @@ class Game extends Component {
   };
 
   showFinalPoem = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
 
     this.setState({
       poemFinished: true,

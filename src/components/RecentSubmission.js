@@ -3,7 +3,6 @@ import './RecentSubmission.css';
 import PropTypes from 'prop-types';
 
 const RecentSubmission = (props) => {
-  console.log(props.numberofSubmissions)
   let display = ""
   if (props.numberofSubmissions < 1 || props.isFinalPoemClicked === true) {
     display = `hidden`
@@ -19,7 +18,7 @@ const RecentSubmission = (props) => {
 RecentSubmission.propTypes = {
   numberofSubmissions: PropTypes.number.isRequired,
   isFinalPoemClicked: PropTypes.bool,
-  line: PropTypes.array
+  line: PropTypes.string
 }
 
 export default RecentSubmission;

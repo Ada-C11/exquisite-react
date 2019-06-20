@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 const FinalPoem = (props) => {
 
   const poem = (lines) => {
-    console.log(props.poem)
     const fullPoem = lines.map((line) => {
-      console.log(line)
       return (<div> The {line.adjective1} {line.noun1} {line.adverb} {line.verb} the {line.adjective2} {line.noun2}
       </div>);
     });
@@ -18,7 +16,6 @@ const FinalPoem = (props) => {
   const onButtonClick = () => {
     props.finalPoemClicked()
 
-    console.log(props.isFinalPoemClicked)
   }
 
   return (

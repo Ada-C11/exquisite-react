@@ -21,11 +21,9 @@ class Game extends Component {
     newState.submissions.push(line);
 
     this.setState(newState);
-    console.log(this.state.submissions)
   }
 
   newRecentSubmission = (submission) => {
-    console.log(submission)
     this.setState({
       recentSubmission: submission,
     });
@@ -35,7 +33,6 @@ class Game extends Component {
     this.setState({
       isFinalPoemClicked: true,
     });
-    console.log(this.state.isFinalPoemClicked)
   }
 
   render() {

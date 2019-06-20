@@ -14,7 +14,7 @@ const FinalPoem = (props) => {
         <h3>Final Poem</h3>
           { finalizedPoem }
       </section> }
-      { !props.printPoem && <div className="FinalPoem__reveal-btn-container">
+      { !props.showPoem && <div className="FinalPoem__reveal-btn-container">
         <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick = { props.onSubmitPoemCallback }/> 
       </div> }
     </div>

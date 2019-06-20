@@ -49,9 +49,9 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-        <RecentSubmission lastLine={ this.state.finalPoem[this.state.finalPoem.length - 1] } />
+        { !this.state.showPoem && <RecentSubmission lastLine={ this.state.finalPoem[this.state.finalPoem.length - 1] } /> }
         
-        <PlayerSubmissionForm addLineCallback = { this.addLine } players = { this.state.finalPoem.length} />
+        { !this.state.showPoem && <PlayerSubmissionForm addLineCallback = { this.addLine } players = { this.state.finalPoem.length} /> }
 
         <FinalPoem allLines={ this.state.finalPoem } onSubmitPoemCallback={ this.printPoem } showPoem={ this.state.showPoem }/>
 

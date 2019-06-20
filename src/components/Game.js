@@ -8,10 +8,31 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      submissions: [],
+      poemFinished: false
+    };
+  }
+
+  addNewLine = (line) => {
+    const newSubmission = this.state.submissions;
+    newSubmission.push(line);
+
+    this.setState({
+      submissions: newSubmission,
+    })
+  };
+
+  showFinalPoem = (event) => {
+    event.preventDefault();
+
+    this.setState({
+      poemFinished: true
+    })
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -29,14 +50,23 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          {exampleFormat}
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission
+          submission={this.state.submissions[this.state.submissions.length - 1]}
+        />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          fields={FIELDS}
+          addNewLineCallback={this.addNewLine}
+        />
 
-        <FinalPoem />
+        <FinalPoem
+          poemFinished={this.state.poemFinished}
+          submissions={this.state.submissions}
+          showFinalPoem={this.showFinalPoem}
+        />
 
       </div>
     );

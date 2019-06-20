@@ -11,6 +11,7 @@ class Game extends Component {
 
     this.state = {
       poem: [],
+      finalized: false,
     }
   }
 
@@ -21,11 +22,16 @@ class Game extends Component {
     this.setState(updatedPoem)
   }
 
+  finalizePoem = () => {
+    if (this.state.poem.length >= 1) {
+      this.setState({finalized: true})
+    }
+  }
  
-
   render() {
+
     const showMostRecent = () => {
-      if (this.state.poem.length >= 1) {
+      if (this.state.poem.length >= 1 && !this.state.finalized) {
         return <RecentSubmission 
         poem={this.state.poem}
       />
@@ -52,23 +58,23 @@ class Game extends Component {
 
         <p className="Game__format-example">
           { exampleFormat }
-          {console.log(this.state.poem)}
-          {console.log(this.state.poem.length)}
         </p>
 
         { showMostRecent() }
-        {/* <RecentSubmission 
-          poem={this.state.poem}
-        /> */}
 
-        <PlayerSubmissionForm 
-          fields={FIELDS}
-          playerNumber={playerNumber}
-          formCallback={this.addVerse}
-        />
-
+        
+        { !this.state.finalized &&
+          <PlayerSubmissionForm 
+            fields={FIELDS}
+            playerNumber={playerNumber}
+            formCallback={this.addVerse}
+          />
+        }
+      
         <FinalPoem 
           poem={this.state.poem}
+          finalized={this.state.finalized}
+          revealPoemCallback={this.finalizePoem}
         />
 
       </div>

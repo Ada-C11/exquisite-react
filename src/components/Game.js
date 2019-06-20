@@ -46,7 +46,7 @@ class Game extends Component {
     }).join(" ");
 
      
-
+    // There's probably a much cleaner way to do the conditionals here.
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -59,9 +59,12 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
+
         {(this.state.poem.length > 0 && !this.state.poemRevealed) && <RecentSubmission currentPoem={this.state.poem} />}
  
-        <PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.poem.length } fields={FIELDS}/>
+        { !this.state.poemRevealed ? 
+          (<PlayerSubmissionForm addLineCallback={ this.addLine } playerNumber={ this.state.poem.length } fields={FIELDS}/>) :
+          ('') }
 
         <FinalPoem poem={ this.state.poem } onRevealPoemCallback={ this.revealPoem } poemRevealed={this.state.poemRevealed} />
 

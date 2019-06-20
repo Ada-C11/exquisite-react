@@ -19,7 +19,8 @@ class PlayerSubmissionForm extends Component {
   onChangeHandler = (event) => {
     const field = event.target.name;
     const value = event.target.value;
-    
+    event.target.className = ''
+
     const updatedState = {};
     updatedState[field] = value;
     this.setState(updatedState);
@@ -58,13 +59,13 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
           <div className="PlayerSubmissionForm__poem-inputs">
             <label>The</label> 
-            <input name="adjective" placeholder="adjective" type="text" onChange={this.onChangeHandler} value={this.state.adjective} required />
-            <input name="noun" placeholder="noun" type="text" required onChange={this.onChangeHandler} value={this.state.noun} />
-            <input name="adverb" placeholder="adverb" type="text" required  onChange={this.onChangeHandler} value={this.state.adverb} />
-            <input name="verb" placeholder="verb" type="text" required  onChange={this.onChangeHandler} value={this.state.verb}/>
+            <input name="adjective" placeholder="adjective" className="PlayerSubmissionFormt__input--invalid" type="text" onChange={this.onChangeHandler} value={this.state.adjective} required />
+            <input name="noun" placeholder="noun"  className="PlayerSubmissionFormt__input--invalid"type="text" required onChange={this.onChangeHandler} value={this.state.noun} />
+            <input name="adverb" placeholder="adverb" className="PlayerSubmissionFormt__input--invalid" type="text" required  onChange={this.onChangeHandler} value={this.state.adverb} />
+            <input name="verb" placeholder="verb" className="PlayerSubmissionFormt__input--invalid" type="text" required  onChange={this.onChangeHandler} value={this.state.verb}/>
             <label>the</label> 
-            <input name="adjective2" placeholder="adjective2" type="text"  required  onChange={this.onChangeHandler} value={this.state.adjective2} />
-            <input name="noun2" placeholder="noun2" type="text"  required onChange={this.onChangeHandler} value={this.state.noun2} />
+            <input name="adjective2" placeholder="adjective2" className="PlayerSubmissionFormt__input--invalid" type="text"  required  onChange={this.onChangeHandler} value={this.state.adjective2} />
+            <input name="noun2" placeholder="noun2" className="PlayerSubmissionFormt__input--invalid" type="text"  required onChange={this.onChangeHandler} value={this.state.noun2} />
             <label>.</label>
           </div>
           

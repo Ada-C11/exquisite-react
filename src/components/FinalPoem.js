@@ -17,7 +17,6 @@ const FinalPoem = (props) => {
       {!props.poemRevealed &&
       <div className="FinalPoem__reveal-btn-container">
         <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick= {props.onRevealPoemCallback} />
-
       </div>
       }
     </div>

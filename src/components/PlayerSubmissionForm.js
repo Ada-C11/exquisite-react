@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
+
+  static propTypes = {
+    addLineCallback: PropTypes.func,
+  }
 
   constructor(props) {
     super(props);
@@ -25,7 +30,6 @@ class PlayerSubmissionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const line = ["The", this.state.adj1, this.state.noun1, this.state.adv, this.state.verb, "the", this.state.adj2, this.state.noun2 + "."].join(" ");
-    // console.log(line);
     
     this.props.addLineCallback(line);
 
@@ -42,8 +46,6 @@ class PlayerSubmissionForm extends Component {
 
   render() {
 
-    // console.log(this.state);
-
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{ this.state.playerNum }</h3>
@@ -51,13 +53,8 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
             The
-
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="adj1"
               value={this.state.adj1}
               placeholder="adjective"
@@ -65,7 +62,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onChangeHandler} 
             />
 
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="noun1"
               value={this.state.noun1}
               placeholder="noun"
@@ -73,7 +70,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onChangeHandler} 
             />
 
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="adv"
               value={this.state.adv}
               placeholder="adverb"
@@ -81,7 +78,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onChangeHandler} 
             />
 
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="verb"
               value={this.state.verb}
               placeholder="verb"
@@ -91,7 +88,7 @@ class PlayerSubmissionForm extends Component {
 
             the 
 
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="adj2"
               value={this.state.adj2}
               placeholder="adjective"
@@ -99,7 +96,7 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onChangeHandler} 
             />
 
-            <input
+            <input className="PlayerSubmissionFormt__input--invalid"
               name="noun2"
               value={this.state.noun2}
               placeholder="noun"

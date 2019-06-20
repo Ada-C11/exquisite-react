@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = (props) => {
   
@@ -7,7 +8,6 @@ const FinalPoem = (props) => {
     props.handleClickCallback();
   }
 
-  // console.log(props.finalized);
   let buttonStyle = "FinalPoem__reveal-btn-container";
   let clickStyle = "FinalPoem__reveal-btn";
   if (props.finalized) {
@@ -26,6 +26,10 @@ const FinalPoem = (props) => {
       </div>
     </div>
   );
+}
+
+FinalPoem.propTypes = {
+  lines: PropTypes.array
 }
 
 export default FinalPoem;

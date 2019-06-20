@@ -30,22 +30,26 @@ class Game extends Component {
 
 
   render() {
-    // console.log(this.state);
     let lines;
     let submissionForm;
     let recentSubmission;
     let finalized;
     if (this.state.finalized){
-      lines = this.state.lines;
+      lines = this.state.lines.reverse();
       submissionForm = '';
       finalized = true;
     } else {
-      lines = '';
+      lines = null;
       submissionForm = (<PlayerSubmissionForm 
         addLineCallback={this.addLine}/>);
-      recentSubmission = (<RecentSubmission />);
+      recentSubmission = (<RecentSubmission 
+        lastLine={this.state.lines.reverse().slice(0,1)}/>);
       finalized = false;
       
+    }
+
+    if (this.state.lines.length === 0) {
+      recentSubmission = '';
     }
 
     const exampleFormat = FIELDS.map((field) => {

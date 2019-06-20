@@ -16,6 +16,13 @@ class Game extends Component {
     }
   }
 
+  // incrementPlayerNumber = () => {
+  //   const newPlayerNumber = this.state.playerNumber + 1;
+  //   this.setState({
+  //     playerNumber: {newPlayerNumber}
+  //   })
+  // }
+
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -40,7 +47,10 @@ class Game extends Component {
 
 
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          // {incrementPlayerNumberCallback = {this.incrementPlayerNumber}
+          // playerNumber = {this.state.playerNumber} }
+          />
 
         <FinalPoem />
 

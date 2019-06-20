@@ -15,7 +15,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
-      // newPoemLine: 'new poem line initial value',
+      playerNumber: 1,
       lastPoemLine: '',
 
       updatePoemLinesCallback: props.updatePoemLines,
@@ -26,6 +26,14 @@ class PlayerSubmissionForm extends Component {
     // };
     //
     // this.state = {...this.cleared}
+  }
+
+incrementPlayerNumber = () => {
+    const newPlayerNumber = this.state.playerNumber + 1;
+    console.log(`new player number ${newPlayerNumber}`);
+    this.setState({
+      playerNumber: newPlayerNumber
+    })
   }
 
 onFieldTyping = (event) => {
@@ -41,7 +49,7 @@ onFieldTyping = (event) => {
 
 // console.log('newPoemLine is ' newPoemLine);
 
-onFormSubmit = (event) => {
+onSubmitLine = (event) => {
   event.preventDefault();
   console.log(this.state);
 
@@ -55,6 +63,10 @@ onFormSubmit = (event) => {
     lastPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`,
     // lastPoemLine: this.state.newPoemLine
   })
+
+  this.incrementPlayerNumber();
+
+
 }
 
   render() {
@@ -62,14 +74,15 @@ onFormSubmit = (event) => {
     return (
       <div className="PlayerSubmissionForm">
 
-        {this.state.lastPoemLine !== "" && (<RecentSubmission
-        lastPoemLine = {this.state.lastPoemLine} />)}
+        {this.state.lastPoemLine !== "" && (
+          <RecentSubmission
+          lastPoemLine = {this.state.lastPoemLine} />)}
 
-        <h3>Player Submission Form for Player #{ this.props.playerNumber }</h3>
+        <h3>Player Submission Form for Player #{ this.state.playerNumber }</h3>
 
         <form
           className="PlayerSubmissionForm__form"
-          onSubmit={this.onFormSubmit} >
+          onSubmit={this.onSubmitLine} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
             The

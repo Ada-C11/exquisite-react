@@ -15,6 +15,7 @@ class PlayerSubmissionForm extends Component {
       verb: '',
       adj2: '',
       noun2: '',
+
       playerNumber: 1,
       lastPoemLine: '',
 
@@ -41,7 +42,7 @@ onFieldTyping = (event) => {
 
   const field = {};
   field[event.target.name] = event.target.value;
-
+  event.target.className=''
   this.setState(field);
 }
 
@@ -72,8 +73,11 @@ onSubmitLine = (event) => {
   // this.props.updatePoemLinesCallback(this.state.lastPoemLine);
 
 }
+// variable name for class of pink and for empty string
+// ternary for each input Line
 
   render() {
+
 
     return (
       <div className="PlayerSubmissionForm">
@@ -91,6 +95,7 @@ onSubmitLine = (event) => {
           <div className="PlayerSubmissionForm__poem-inputs">
             The
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="adjective"
               name="adj1"
               type="text"
@@ -98,6 +103,7 @@ onSubmitLine = (event) => {
               value={this.state.adj1}/>
 
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="noun"
               name="noun1"
               type="text"
@@ -105,6 +111,7 @@ onSubmitLine = (event) => {
               value={this.state.noun1} />
 
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="adverb"
               name="adv"
               type="text"
@@ -112,6 +119,7 @@ onSubmitLine = (event) => {
               value={this.state.adv} />
 
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="verb"
               name="verb"
               type="text"
@@ -121,6 +129,7 @@ onSubmitLine = (event) => {
               the
 
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="adjective"
               name="adj2"
               type="text"
@@ -128,6 +137,7 @@ onSubmitLine = (event) => {
               value={this.state.adj2} />
 
             <input
+              className='PlayerSubmissionFormt__input--invalid'
               placeholder="noun"
               name="noun2"
               type="text"

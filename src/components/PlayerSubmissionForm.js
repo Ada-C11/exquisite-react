@@ -7,12 +7,12 @@ class PlayerSubmissionForm extends Component {
     super(props);
    
     this.state = {
-    adjective: '',
-    noun: '',
-    adverb: '',
+    adj1: '',
+    noun1: '',
+    adv: '',
     verb: '',
-    secondAdjective: '',
-    secondNoun: '',
+    adj2: '',
+    noun2: '',
   };
 }
     onWordInput = (event) => {
@@ -37,12 +37,12 @@ class PlayerSubmissionForm extends Component {
       
       
       this.setState({
-        adjective: '',
-        noun: '',
-        adverb: '',
+        adj1: '',
+        noun1: '',
+        adv: '',
         verb: '',
-        secondAdjective: '',
-        secondNoun: '',
+        adj2: '',
+        noun2: '',
       });
 
       //console.log("Line:", constructedLine);
@@ -52,7 +52,7 @@ class PlayerSubmissionForm extends Component {
 
      validInput = (field) =>{
        const newState = {...this.state};
-       return newState[field]=== ''? "PlayerSubmissionFormt__input--invalid" : "";
+       return newState[field]=== ''? "PlayerSubmissionFormt__input--invalid" : '';
      }
 
    dryFields() {

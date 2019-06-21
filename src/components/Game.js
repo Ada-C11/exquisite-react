@@ -9,21 +9,28 @@ class Game extends Component {
     super();
     this.state = {
       recentSubmission: null,
-      finalSubmission: { poemComplete: false, poem: '' },
+      finalSubmission: { poemComplete: false, poem: [] },
       currentPlayer: 1,
     };
   }
 
-  onPoemSubmission = newLine => {
+  onPoemSubmission = lastLine => {
     let poem = this.state.finalSubmission.poem;
-    poem = poem.concat(' ').concat(newLine);
+    poem.push(lastLine);
     console.log(poem);
     this.setState({
-      recentSubmission: newLine,
+      recentSubmission: lastLine,
       finalSubmission: { poemComplete: false, poem: poem },
       currentPlayer: this.state.currentPlayer + 1,
     });
     console.log(this.state);
+  };
+
+  onFinalPoemDisplay = () => {
+    this.setState({
+      finalSubmission: { ...this.state.finalSubmission, poemComplete: true },
+    });
+    console.log(this.state.finalSubmission);
   };
 
   render() {
@@ -50,18 +57,22 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">{exampleFormat}</p>
-
-        {recentSubmission && (
-          <RecentSubmission recentSubmission={recentSubmission} />
+        {!finalSubmission.poemComplete &&
+          (recentSubmission && (
+            <RecentSubmission recentSubmission={recentSubmission} />
+          ))}
+        {!finalSubmission.poemComplete && (
+          <PlayerSubmissionForm
+            currentPlayer={currentPlayer}
+            format={FIELDS}
+            onPoemSubmissionCallback={this.onPoemSubmission}
+          />
         )}
 
-        <PlayerSubmissionForm
-          currentPlayer={currentPlayer}
-          format={FIELDS}
-          onPoemSubmissionCallback={this.onPoemSubmission}
+        <FinalPoem
+          {...finalSubmission}
+          finalPoemDisplayCallback={this.onFinalPoemDisplay}
         />
-
-        <FinalPoem {...finalSubmission} />
       </div>
     );
   }

@@ -13,19 +13,19 @@ class PlayerSubmissionForm extends Component {
         return field;
       } else {
       return (
-        <div key={i}>
-          <label adjective="fullName">{field.placeholder}</label>
-          <input name="fullName" />
-        </div> 
+          <input key={i} name={field.key} placeholder={field.placeholder} />
       )}
     });
 
     return fields
   }
 
-  // submitLine = () => {
-  //   this.props.onSubmit(line)
-  // }
+  submitLine = (event) => {
+    event.preventDefault();
+    let lineSubmission = ""
+
+    this.props.onSubmit(lineSubmission)
+  }
 
   render() {
 
@@ -36,12 +36,8 @@ class PlayerSubmissionForm extends Component {
         <form className="PlayerSubmissionForm__form" >
 
           <div className="PlayerSubmissionForm__poem-inputs">
-            
-          <form className="new-student-form">
             {/* Notes from https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/forms.md utilized */}
             {this.formInputs()}
-          </form> 
-
           </div>
 
           <div className="PlayerSubmissionForm__submit">

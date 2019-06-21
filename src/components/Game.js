@@ -8,8 +8,25 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
-  }
 
+    this.state = {
+      poem: []
+    }
+  }
+  //addPoemLine is a place holder function that add exampleFormat to the final poem
+  addPoemLineCallback = (words) => {
+     let line = FIELDS.map((field) => {
+       if(field.key) {
+         if (words[field.key] !== "") {
+         return words[field.key]
+         }
+       } else {
+         return field;
+       }                              
+     })
+    //  .join(" ");
+    console.log(line)
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -34,7 +51,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addPoemLineCallback={this.addPoemLineCallback} />
 
         <FinalPoem />
 

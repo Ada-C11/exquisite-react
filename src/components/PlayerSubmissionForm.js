@@ -5,25 +5,124 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    }
   }
+
+  validations = {
+    adj1: /.+/,
+    noun1: /.+/,
+    adv: /.+/,
+    verb: /.+/,
+    adj2: /.+/,
+    noun2: /.+/,
+  }
+
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName]);
+  }
+
+  onChangeHandler = (event) => {
+    const field = {}
+    field[event.target.name] = event.target.value;
+    this.setState(field);
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.props.addLineCallback({
+      adj1: this.state.adj1,
+      noun1: this.state.noun1,
+      adv: this.state.adv,
+      verb: this.state.verb,
+      adj2: this.state.adj2,
+      noun2: this.state.noun2,
+    });
+
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: '',
+    });
+  }
+  
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.player + 1 }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
+              <label htmlFor="adj1">The</label>
+              <input
+                name="adj1"
+                placeholder="adjective"
+                onChange={this.onChangeHandler}
+                value={this.state.adj1}
+                className={this.fieldValid('adj1') ? 'valid' : 'invalid'}
+                required
+              />
+              <label htmlFor="noun1"></label>
+              <input
+                name="noun1"
+                placeholder="noun"
+                value={this.state.noun1}
+                onChange={this.onChangeHandler}
+                className={this.fieldValid('noun1') ? 'valid' : 'invalid'}
+                required
+              />
+              <label htmlFor="adv"></label>
+              <input
+                name="adv"
+                placeholder="adverb"
+                value={this.state.adv}
+                onChange={this.onChangeHandler}
+                className={this.fieldValid('adv') ? 'valid' : 'invalid'}
+                required
+              />
 
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
-
+              <label htmlFor="verb"></label>
+              <input
+                name="verb"
+                placeholder="verb"
+                value={this.state.verb}
+                onChange={this.onChangeHandler}
+                className={this.fieldValid('verb') ? 'valid' : 'invalid'}
+                required
+              />    
+              <label htmlFor="adj2">the</label>
+              <input
+                name="adj2"
+                placeholder="adjective"
+                value={this.state.adj2}
+                onChange={this.onChangeHandler}
+                className={this.fieldValid('adj2') ? 'valid' : 'invalid'}
+                required
+              />
+              <label htmlFor="noun2"></label>
+              <input
+                name="noun2"
+                placeholder="noun"
+                value={this.state.noun2}
+                onChange={this.onChangeHandler}
+                className={this.fieldValid('noun2') ? 'valid' : 'invalid'}
+                required
+              />
+              <label>.</label>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

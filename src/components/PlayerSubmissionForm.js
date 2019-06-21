@@ -44,6 +44,11 @@ class PlayerSubmissionForm extends Component {
       console.log(this.state);
     }
 
+     validInput = (field) =>{
+       const newState = {...this.state};
+       return newState[field]=== ''? "PlayerSubmissionFormt__input--invalid" : "";
+     }
+
   render() {
 
     return (
@@ -64,37 +69,43 @@ class PlayerSubmissionForm extends Component {
               name='adjective'
               type="text"
               value = {this.state.adjective}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('adjective')}/>
               <input
               placeholder="Noun"
               name='noun'
               type="text"
               value={this.state.noun}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('noun')}/>
               <input
               placeholder="Adverb"
               name='adverb'
               type="text"
               value={this.state.adverb}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('adverb')}/>
               <input
               placeholder="Verb"
               name='verb'
               type="text"
               value={this.state.verb}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('verb')}/>
               <input
               placeholder="Adjective"
               name='secondAdjective'
               type="text"
               value={this.secondAdjective}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('secondAdjective')}/>
               <input
               placeholder="Noun"
               name='secondNoun'
               type="text"
               value={this.secondNoun}
-              onChange={this.onWordInput}/>
+              onChange={this.onWordInput}
+              className={this.validInput('secondNoun')}/>
               .
           </div>
 

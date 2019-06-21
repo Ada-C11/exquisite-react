@@ -40,6 +40,8 @@ class Game extends Component {
 
     console.log(this.state.poem[this.state.poem.length - 1]);
     const startOfPoetry = this.state.poem.length === 0 ? false : true;
+    const poetryInProgress = !this.state.finalize;
+
 
     return (
       <div className="Game">
@@ -57,10 +59,11 @@ class Game extends Component {
         <RecentSubmission 
          previousLine={this.state.poem[this.state.poem.length - 1]}/>}
 
+        {poetryInProgress &&  
+        <PlayerSubmissionForm 
+        addLineCallback={this.addLine} playerNumber={this.state.player}/>}
 
-        <PlayerSubmissionForm addLineCallback={this.addLine} playerNumber={this.state.player}/>
-
-        <FinalPoem poem={this.state.poem} revealPoem={this.state.show} revealPoemCallback={() =>this.setState({show: true})}/>
+        <FinalPoem poem={this.state.poem} revealPoem={this.state.finalize} revealPoemCallback={() =>this.setState({finalize: true})}/>
 
       </div>
     );

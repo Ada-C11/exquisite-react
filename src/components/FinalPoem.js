@@ -3,10 +3,10 @@ import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
-   const poemFull = props.poem.map((line)=>{
+   const poemFull = props.poem.map((line, index)=>{
     return (
-    <p>
-      {line}
+    <p key={index}>
+     {line}
     </p>
     )
 });

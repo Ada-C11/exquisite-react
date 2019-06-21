@@ -10,7 +10,8 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      poem: []
+      recentSubmission: "",
+      finalPoem: []
     }
   }
   //addPoemLine is a place holder function that add exampleFormat to the final poem
@@ -23,9 +24,10 @@ class Game extends Component {
        } else {
          return field;
        }                              
+     }).filter(word => word !== undefined ).join(" ");
+     this.setState({
+       recentSubmission: line
      })
-    //  .join(" ");
-    console.log(line)
   }
   render() {
 
@@ -49,7 +51,7 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission recentSubmission={this.state.recentSubmission}/>
 
         <PlayerSubmissionForm addPoemLineCallback={this.addPoemLineCallback} />
 

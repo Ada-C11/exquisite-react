@@ -3,6 +3,7 @@ import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
+import { isPatternLike } from '@babel/types';
 
 class Game extends Component {
 
@@ -10,26 +11,41 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      RecentSubmission: '',
+      playerCount: 1,
+      recentSubmission: '',
       finalSubmission: [],
+      displayFinal: false,
     };
   }
 
   addLine = (line) => {
-    console.log(line);
-    console.log(line.adj1);
-    // console.log(this.state.line.adj1);
-    // const verse = `${this.state.line.adj1} ${this.state.noun1} ${this.state.adverb} ${this.state.verb} ${this.state.adj2} ${this.state.noun2}`;
-    // console.log(verse);
-    const verse1 = `${line.adj1} ${line.noun1} ${line.adverb} ${line.verb} ${line.adj2} ${line.noun2}`;
-    console.log(verse1);
-    // students.push(student);
-    // this.setState({
-    //   students,
-    //   message: `${student.fullName} is added`,
-    //   // students: students,
-    // });
+    const verse = `${line.adj1} ${line.noun1} ${line.adverb} ${line.verb} the ${line.adj2} ${line.noun2}`;
+    const finalSubmission = this.state.finalSubmission;
+    finalSubmission.push(verse);
+    //this.state.playercount then setting it to just this.playercount
+    // why does it update asynchronously, like, I get it, but why does the final submission work and the others don't
+    // and why if I set it up like that with 
+    // let playerCount = this.state.playerCount;
+    // playerCount = playerCount + 1
+    // does it also not work setting state bellow iwth just playercount: playercount
+    this.setState({
+      playerCount: this.state.playerCount + 1,
+      recentSubmission: verse,
+      //not this.final submission, although that leaves it undefinied. why not just poop?
+      finalSubmission: finalSubmission,
+    })
+    console.log(this.state);
+    console.log("**********")
+    console.log(this.state.finalSubmission)
   }
+
+  showFinal = () => {
+    // going to toggle on that submit final button
+    this.setState({
+      displayFinal: true,
+    });
+  }
+
 
   render() {
 
@@ -53,11 +69,20 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {/* {console.log(this.state)} */}
+        {/* need a statement here that says will only show if state displayFinal is false and playerCount does not equal one then... render that below */}
+        {(!this.state.displayFinal && this.state.playerCount !== 1) &&<RecentSubmission line={this.state.recentSubmission} />}
+        {/* {console.log(this.state.playerCount)}
+        {console.log("heeere")}
+        {console.log(this.state.finalSubmission)}
+        {console.log(this.state.finalSubmission)} */}
+        {/* same conditional statement that has this disappear if displayFinal is true */}
+        {console.log(this.state.displayFinal)}
+        {(!this.state.displayFinal) &&
+        <PlayerSubmissionForm addLineCallback={this.addLine} count={this.state.playerCount}/>}
 
-        <PlayerSubmissionForm addLineCallback={this.addLine}/>
 
-        <FinalPoem />
+        <FinalPoem finalSubmission={this.state.finalSubmission} displayFinal={this.state.displayFinal} showFinalCallback={this.showFinal} />
 
       </div>
     );

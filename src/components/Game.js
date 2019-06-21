@@ -8,6 +8,20 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poem: []
+    }
+  }
+
+   addLine = (poemLine) => {
+    let poem = [...this.state.poem];
+
+     console.log(poemLine);
+    poem.push(poemLine)
+    this.setState({
+      poem: poem
+    });
   }
 
   render() {
@@ -34,7 +48,9 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm
+          addLine = {(poemLine) => this.addLine(poemLine)}
+          submissionNumber = {this.state.poem.length + 1}/>
 
         <FinalPoem />
 

@@ -28,15 +28,15 @@ class Game extends Component {
     // let playerCount = this.state.playerCount;
     // playerCount = playerCount + 1
     // does it also not work setting state bellow iwth just playercount: playercount
+    let { playerCount } = this.state;
+    playerCount += 1;
     this.setState({
-      playerCount: this.state.playerCount + 1,
+      playerCount,
       recentSubmission: verse,
       //not this.final submission, although that leaves it undefinied. why not just poop?
       finalSubmission: finalSubmission,
-    })
-    console.log(this.state);
-    console.log("**********")
-    console.log(this.state.finalSubmission)
+    });
+    
   }
 
   showFinal = () => {
@@ -48,6 +48,9 @@ class Game extends Component {
 
 
   render() {
+    console.log(this.state);
+    console.log("**********")
+    console.log(this.state.finalSubmission)
 
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {

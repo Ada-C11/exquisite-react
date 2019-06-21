@@ -10,14 +10,14 @@ const FinalPoem = (props) => {
   // why doesn't it need a callback
   // and why is everything props and not this.props
   // used to have a onClick={this.onClickShowPoem} on line 48
-  // const onClickShowPoem = () => {
+  const onClickShowPoem = () => {
     // when is it this.props vs just props?
     // stack overflow says its the same, buuuut isn't there something like 
     // So as the super(props) is called in the constructor. props and this.props are same. so,
     // just needs a this.? when theres a constructor? 
     // and we have constructors when we're saving state?
-    // props.showFinalCallback()
-  // }
+    props.showFinalCallback()
+  }
   //map the lines here
   //all p's so need to be in a div
   //this props?
@@ -45,13 +45,16 @@ const FinalPoem = (props) => {
       </section>
       {console.log(props.displayFinal)}
       {(!props.displayFinal) && <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.showFinalCallback} />
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={onClickShowPoem} />
       </div> }
       {(props.displayFinal) && < div > { formattedPoem } </div>}
       
     </div>
   );
 }
+
+// so I don't needs a this.onClickShowPoem BECAUSE its a not a member method, just a local variable, 
+// because its functional, use this for classical functions, and if its going to have state
 
 FinalPoem.propTypes = {
   // will be the array
@@ -65,60 +68,3 @@ FinalPoem.propTypes = {
 export default FinalPoem;
 
 
-// Here’s how you might use the ternary operator in a JSX expression:
-// const headline = (
-//   <h1>
-//     { age >= drinkingAge ? 'Buy Drink' : 'Do Teen Stuff' }
-//   </h1>
-// );
-
-
-// const img = <img src={pics[coinToss() === 'heads' ? 'kitty' : 'doggy']} />;
-
-// const tasty = (
-//   <ul>
-//     <li>Applesauce</li>
-//     { !baby && <li>Pizza</li> }
-//     { age > 15 && <li>Brussels Sprouts</li> }
-//     { age > 20 && <li>Oysters</li> }
-//     { age > 25 && <li>Grappa</li> }
-//   </ul>
-// );
-
-
-// const strings = ['Home', 'Shop', 'About Me'];
-
-// const listItems = strings.map(string => <li>{string}</li>);
-
-// <ul>{listItems}</ul>
-
-// On the last line of the example, note that {listItems} will evaluate to an array, because it’s the returned value of .map()! JSX <li>s don’t have to be in an array like this, but they can be.
-
-// // This is fine in JSX, not in an explicit array:
-
-// <ul>
-//   <li>item 1</li>
-//   <li>item 2</li>
-//   <li>item 3</li>
-// </ul>
-
-// // This is also fine!
-
-// const liArray = [
-//   <li>item 1</li>, 
-//   <li>item 2<li>, 
-//   <li>item 3</li>
-// ];
-
-// <ul>{liArray}</ul>
-
-
-// const peopleLis = people.map((person, i) => <li key={'person_'+i}>{person}</li>);
-
-// const h1 = <h1>Hello world</h1>;
-// can be rewritten without JSX, like this:
-// const h1 = React.createElement(
-//   "h1",
-//   null,
-//   "Hello, world"
-// );

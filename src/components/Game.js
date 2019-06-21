@@ -18,8 +18,8 @@ class Game extends Component {
     addLine = (newLine) => {
       const newState = {...this.state};
       const newPoem = newState.poem;
-      console.log("this is:", newLine);
-      console.log("this is a poem in array:",newPoem);
+      // console.log("this is:", newLine);
+      // console.log("this is a poem in array:",newPoem);
       newPoem.push(newLine);
 
       this.setState(newState);

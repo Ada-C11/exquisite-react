@@ -47,7 +47,7 @@ class PlayerSubmissionForm extends Component {
 
       //console.log("Line:", constructedLine);
       this.props.addLineCallback(constructedLine);// to do next 
-      console.log(this.state);
+      // console.log(this.state);
     }
 
      validInput = (field) =>{
@@ -58,7 +58,7 @@ class PlayerSubmissionForm extends Component {
    dryFields() {
      const exampleFormat= this.props.fields.map((field) => {
        if (field.key) {
-         console.log(field);
+        //  console.log(field);
          return <input 
          placeholder={field.placeholder}
          name={field.key}

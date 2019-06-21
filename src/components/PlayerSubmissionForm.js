@@ -17,7 +17,20 @@ class PlayerSubmissionForm extends Component {
 
     this.state = {...this.cleared, player: 1}
   }
-  //Add function to call the callback function from Game here
+  
+  validations = {
+    adj1: /.+/,
+    noun1: /.+/,
+    adv: /.+/, 
+    verb: /.+/, 
+    adj2: /.+/, 
+    noun2: /.+/
+  };
+
+  fieldValid = (fieldName) => {
+    return this.validations[fieldName].test(this.state[fieldName]);
+  };
+
   addWords  = (event) => {
     
     event.preventDefault();
@@ -60,28 +73,28 @@ class PlayerSubmissionForm extends Component {
               // Put your form inputs here... We've put in one below as an example
             }
             
-            <input
+            <input className={!this.fieldValid('adj1') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="adj1"
               placeholder="adjective"
               value={this.state.adj1}
               type="text" 
               onChange={this.onChangeHandler}
               />
-            <input
+            <input className={!this.fieldValid('noun1') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="noun1"
               placeholder="noun"
               value={this.state.noun1}
               type="text" 
               onChange={this.onChangeHandler}
               />      
-            <input
+            <input className={!this.fieldValid('adv') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="adv"
               placeholder="adverb"
               type="text" 
               value={this.state.adv}
               onChange={this.onChangeHandler}
               />
-            <input
+            <input className={!this.fieldValid('verb') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="verb"
               placeholder="verb"
               value={this.state.verb}
@@ -89,14 +102,14 @@ class PlayerSubmissionForm extends Component {
               onChange={this.onChangeHandler}
               />
             "the"
-            <input
+            <input className={!this.fieldValid('adj2') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="adj2"
               placeholder="adjective"
               value={this.state.adj2}
               type="text"
               onChange={this.onChangeHandler}
               />
-            <input
+            <input className={!this.fieldValid('noun2') ? 'PlayerSubmissionFormt__input--invalid' : ''}
               name="noun2"
               placeholder="noun"
               value={this.state.noun2}

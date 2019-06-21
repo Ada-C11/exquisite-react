@@ -11,7 +11,7 @@ class Game extends Component {
 
     this.state = {
       poem: [],
-      finished: false,
+      finished: undefined,
     }
   }
 
@@ -51,11 +51,11 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        {!this.state.poem.length > 1 && <RecentSubmission />}
 
-        <PlayerSubmissionForm fields={FIELDS} onSubmitCallback={this.onSubmit} onFinishCallback={this.onFinish}/>
+        <PlayerSubmissionForm fields={FIELDS} onSubmitCallback={this.onSubmit} onFinishCallback={this.onFinish} player={this.state.poem.length}/>
 
-        <FinalPoem />
+        {this.state.finished && <FinalPoem />}
 
       </div>
     );

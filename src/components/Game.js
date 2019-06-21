@@ -17,20 +17,17 @@ class Game extends Component {
   onPoemSubmission = lastLine => {
     let poem = this.state.finalSubmission.poem;
     poem.push(lastLine);
-    console.log(poem);
     this.setState({
       recentSubmission: lastLine,
       finalSubmission: { poemComplete: false, poem: poem },
       currentPlayer: this.state.currentPlayer + 1,
     });
-    console.log(this.state);
   };
 
   onFinalPoemDisplay = () => {
     this.setState({
       finalSubmission: { ...this.state.finalSubmission, poemComplete: true },
     });
-    console.log(this.state.finalSubmission);
   };
 
   render() {
@@ -61,6 +58,7 @@ class Game extends Component {
           (recentSubmission && (
             <RecentSubmission recentSubmission={recentSubmission} />
           ))}
+
         {!finalSubmission.poemComplete && (
           <PlayerSubmissionForm
             currentPlayer={currentPlayer}

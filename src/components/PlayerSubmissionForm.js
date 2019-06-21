@@ -27,7 +27,6 @@ class PlayerSubmissionForm extends Component {
   };
 
   isValid = (field, validations) => {
-    console.log(field);
     return validations[field].test(this.state[field]);
   };
 

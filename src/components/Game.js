@@ -14,6 +14,18 @@ class Game extends Component {
     };
   }
 
+  onPoemSubmission = newLine => {
+    let poem = this.state.finalSubmission.poem;
+    poem = poem.concat(' ').concat(newLine);
+    console.log(poem);
+    this.setState({
+      recentSubmission: newLine,
+      finalSubmission: { poemComplete: false, poem: poem },
+      currentPlayer: this.state.currentPlayer + 1,
+    });
+    console.log(this.state);
+  };
+
   render() {
     const { recentSubmission, finalSubmission, currentPlayer } = this.state;
     const exampleFormat = FIELDS.map(field => {
@@ -23,7 +35,6 @@ class Game extends Component {
         return field;
       }
     }).join(' ');
-
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -44,7 +55,11 @@ class Game extends Component {
           <RecentSubmission recentSubmission={recentSubmission} />
         )}
 
-        <PlayerSubmissionForm currentPlayer={currentPlayer} format={FIELDS} />
+        <PlayerSubmissionForm
+          currentPlayer={currentPlayer}
+          format={FIELDS}
+          onPoemSubmissionCallback={this.onPoemSubmission}
+        />
 
         <FinalPoem {...finalSubmission} />
       </div>

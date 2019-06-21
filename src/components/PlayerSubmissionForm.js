@@ -26,7 +26,8 @@ class PlayerSubmissionForm extends Component {
   };
 
   isValid = (field, validations) => {
-    return validations[field.key].test(this.state[field.key]);
+    console.log(field);
+    return validations[field].test(this.state[field]);
   };
 
   handleInput = event => {
@@ -37,9 +38,20 @@ class PlayerSubmissionForm extends Component {
 
   handleSubmitPoem = event => {
     event.preventDefault();
-    console.log(event);
-    console.log(event.target);
-    console.log(this.formatPoemLine(this.state));
+    let isValid = true;
+    Object.keys(this.state).forEach(field => {
+      if (!this.isValid(field, this.validations())) {
+        isValid = false;
+      }
+    });
+    if (isValid) {
+      this.props.onPoemSubmissionCallback(this.formatPoemLine(this.state));
+      this.setState({ ...this.stateFields(), errorMessage: null });
+    } else {
+      this.setState({
+        errorMessage: '⚠️ Please fill out all fields to submit Line. ⚠️',
+      });
+    }
   };
 
   formatPoemLine = poemState => {
@@ -52,11 +64,11 @@ class PlayerSubmissionForm extends Component {
         }
       })
       .join(' ');
-    return poemLine.slice(0, -3).concat(poemLine.slice(-1));
+    return poemLine.slice(0, -2).concat(poemLine.slice(-1));
   };
+
   createFormBody = () => {
     const validations = this.validations();
-    console.log(this.state);
     return this.props.format.map((field, i) => {
       if (field.placeholder) {
         return (
@@ -68,7 +80,7 @@ class PlayerSubmissionForm extends Component {
             value={this.state[field.key]}
             key={i}
             className={
-              !this.isValid(field, validations)
+              !this.isValid(field.key, validations)
                 ? 'PlayerSubmissionFormt__input--invalid'
                 : ''
             }
@@ -83,8 +95,12 @@ class PlayerSubmissionForm extends Component {
   render() {
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{}</h3>
-
+        <h3>Player Submission Form for Player #{this.props.currentPlayer}</h3>
+        {this.state.errorMessage && (
+          <section className="PlayerSubmissionFormt__input--invalid center">
+            {this.state.errorMessage}
+          </section>
+        )}
         <form
           className="PlayerSubmissionForm__form"
           onSubmit={this.handleSubmitPoem}

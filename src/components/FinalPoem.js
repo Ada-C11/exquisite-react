@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinalPoem.css';
+import PropTypes from 'prop-types';
 
 const FinalPoem = ({ finalPoemDisplayCallback, poem, poemComplete }) => {
   return (
@@ -28,6 +29,12 @@ const formatPoem = poemArray => {
   return poemArray.map(line => {
     return <p> {line} </p>;
   });
+};
+
+FinalPoem.propTypes = {
+  finalPoemDisplayCallback: PropTypes.func.isRequired,
+  poem: PropTypes.arrayOf(PropTypes.string).isRequired,
+  poemComplete: PropTypes.bool.isRequired,
 };
 
 export default FinalPoem;

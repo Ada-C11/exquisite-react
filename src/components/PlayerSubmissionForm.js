@@ -27,8 +27,14 @@ class PlayerSubmissionForm extends Component {
     onSubmitForm = (event) => {
       event.preventDefault(); 
 
-      const constructedLine = `The ${this.state.adjective} ${this.state.noun} ${this.state.adverb}
-      ${this.state.verb} ${this.state.secondAdjective} ${this.state.secondNoun} .`
+      const constructedLine = this.props.fields.map((field)=> {
+        if (field.key) {
+          return this.state[field.key];
+        } else {
+          return field;
+        }
+      }).join(" ");
+      
       
       this.setState({
         adjective: '',
@@ -49,6 +55,24 @@ class PlayerSubmissionForm extends Component {
        return newState[field]=== ''? "PlayerSubmissionFormt__input--invalid" : "";
      }
 
+   dryFields() {
+     const exampleFormat= this.props.fields.map((field) => {
+       if (field.key) {
+         console.log(field);
+         return <input 
+         placeholder={field.placeholder}
+         name={field.key}
+         type="text"
+         value={this.state[field.key]}
+         onChange={this.onWordInput}
+         className={this.validInput(field.key)}/>
+       } else {
+         return field;
+       }
+     });
+     return exampleFormat;
+    }
+
   render() {
 
     return (
@@ -61,9 +85,10 @@ class PlayerSubmissionForm extends Component {
 
             {
               // Put your form inputs here... We've put in one below as an example
+              this.dryFields()
             }
 
-            The
+            {/* The
             <input
               placeholder="Adjective"
               name='adjective'
@@ -106,7 +131,8 @@ class PlayerSubmissionForm extends Component {
               value={this.secondNoun}
               onChange={this.onWordInput}
               className={this.validInput('secondNoun')}/>
-              .
+              . */
+              }
           </div>
 
           <div className="PlayerSubmissionForm__submit">

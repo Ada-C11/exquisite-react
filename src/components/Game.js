@@ -30,7 +30,7 @@ class Game extends Component {
 
   render() {
 
-    const exampleFormat = FIELDS.map((field) => {
+    const exampleFormat= FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
       } else {
@@ -61,7 +61,8 @@ class Game extends Component {
 
         {poetryInProgress &&  
         <PlayerSubmissionForm 
-        addLineCallback={this.addLine} playerNumber={this.state.player}/>}
+        addLineCallback={this.addLine} playerNumber={this.state.player}
+        fields={FIELDS}/>}
 
         <FinalPoem poem={this.state.poem} revealPoem={this.state.finalize} revealPoemCallback={() =>this.setState({finalize: true})}/>
 

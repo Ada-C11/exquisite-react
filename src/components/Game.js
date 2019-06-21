@@ -8,17 +8,40 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+      poem: [],
+      player: 0,
+    }
   }
+
+    addLine = (newLine) => {
+      const newState = {...this.state};
+      const newPoem = newState.poem;
+      // console.log("this is:", newLine);
+      // console.log("this is a poem in array:",newPoem);
+      newPoem.push(newLine);
+
+      this.setState(newState);
+      this.setState({
+        player: this.state.player + 1
+      });
+    };
 
   render() {
 
-    const exampleFormat = FIELDS.map((field) => {
+    const exampleFormat= FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
       } else {
         return field;
       }
     }).join(" ");
+
+    console.log(this.state.poem[this.state.poem.length - 1]);
+    const startOfPoetry = this.state.poem.length === 0 ? false : true;
+    const poetryInProgress = !this.state.finalize;
+
 
     return (
       <div className="Game">
@@ -32,11 +55,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+         {startOfPoetry &&
+        <RecentSubmission 
+         previousLine={this.state.poem[this.state.poem.length - 1]}/>}
 
-        <PlayerSubmissionForm />
+        {poetryInProgress &&  
+        <PlayerSubmissionForm 
+        addLineCallback={this.addLine} playerNumber={this.state.player}
+        fields={FIELDS}/>}
 
-        <FinalPoem />
+        <FinalPoem poem={this.state.poem} revealPoem={this.state.finalize} revealPoemCallback={() =>this.setState({finalize: true})}/>
 
       </div>
     );

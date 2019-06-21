@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
+import PropTypes from 'prop-types';
 
 class PlayerSubmissionForm extends Component {
   constructor(props) {
@@ -39,8 +40,9 @@ class PlayerSubmissionForm extends Component {
   handleSubmitPoem = event => {
     event.preventDefault();
     let isValid = true;
+    const validations = this.validations();
     Object.keys(this.state).forEach(field => {
-      if (!this.isValid(field, this.validations())) {
+      if (!this.isValid(field, validations)) {
         isValid = false;
       }
     });
@@ -101,6 +103,7 @@ class PlayerSubmissionForm extends Component {
             {this.state.errorMessage}
           </section>
         )}
+
         <form
           className="PlayerSubmissionForm__form"
           onSubmit={this.handleSubmitPoem}
@@ -120,5 +123,19 @@ class PlayerSubmissionForm extends Component {
     );
   }
 }
+
+PlayerSubmissionForm.propTypes = {
+  currentPlayer: PropTypes.number.isRequired,
+  format: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        key: PropTypes.string,
+        placeholder: PropTypes.string,
+      }),
+    ]).isRequired
+  ),
+  onPoemSubmissionCallback: PropTypes.func.isRequired,
+};
 
 export default PlayerSubmissionForm;

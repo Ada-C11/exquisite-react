@@ -11,10 +11,18 @@ class Game extends Component {
 
     this.state = {
       recentSubmission: "",
-      finalPoem: []
+      finalPoem: [],
+      display: true
+
     }
   }
-  //addPoemLine is a place holder function that add exampleFormat to the final poem
+  
+  displayCallback = () => {
+    this.setState({
+      display: false,
+    })
+  }
+
   addPoemLineCallback = (words) => {
      let line = FIELDS.map((field) => {
        if(field.key) {
@@ -25,8 +33,12 @@ class Game extends Component {
          return field;
        }                              
      }).filter(word => word !== undefined ).join(" ");
+
+     let updatedPoem = this.state.finalPoem;
+     updatedPoem.push(line)
      this.setState({
-       recentSubmission: line
+       recentSubmission: line,
+       finalPoem: updatedPoem
      })
   }
   render() {
@@ -50,12 +62,23 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        {
+          this.state.display?
+            <section>
+            <RecentSubmission recentSubmission={this.state.recentSubmission}/>
 
-        <RecentSubmission recentSubmission={this.state.recentSubmission}/>
+            <PlayerSubmissionForm addPoemLineCallback={this.addPoemLineCallback} />
+            </section>
 
-        <PlayerSubmissionForm addPoemLineCallback={this.addPoemLineCallback} />
+            :null
+        }
 
-        <FinalPoem />
+        <FinalPoem 
+          
+          poem ={this.state.finalPoem}
+          displayCallback={this.displayCallback}
+          display={this.state.display}
+        />
 
       </div>
     );

@@ -26,8 +26,8 @@ const FinalPoem = ({ finalPoemDisplayCallback, poem, poemComplete }) => {
 };
 
 const formatPoem = poemArray => {
-  return poemArray.map(line => {
-    return <p> {line} </p>;
+  return poemArray.map((line, i) => {
+    return <p key={i}> {line} </p>;
   });
 };
 

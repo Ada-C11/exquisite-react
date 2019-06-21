@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
-// import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
@@ -10,7 +9,6 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      // playerNumber: 1,
       poemLines: [],
       poemFinished: false,
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './PlayerSubmissionForm.css';
-// import PropTypes from 'prop-types';
 import RecentSubmission from './RecentSubmission';
 
 class PlayerSubmissionForm extends Component {
@@ -22,33 +21,26 @@ class PlayerSubmissionForm extends Component {
       updatePoemLinesCallback: props.updatePoemLines,
       incrementPlayerNumberCallback: props.incrementPlayerNumberCallback
     }
-    // this.cleared = {
-    //
-    // };
-    //
-    // this.state = {...this.cleared}
   }
 
 incrementPlayerNumber = () => {
     const newPlayerNumber = this.state.playerNumber + 1;
-    // console.log(`new player number ${newPlayerNumber}`);
     this.setState({
       playerNumber: newPlayerNumber
     })
   }
 
 onFieldTyping = (event) => {
-  // console.log(`field updated: ${event.target.value}`);
-
   const field = {};
   field[event.target.name] = event.target.value;
   event.target.className=''
   this.setState(field);
 }
 
-
-
-// console.log('newPoemLine is ' newPoemLine);
+// CURRENTLY THE FEILD WON'T TURN BACK TO WHITE IF YOU TYPE THEN DELETE ITS CONTENTS
+// check that the state of the field matches /[x-y]/
+// assign a class name to a variable
+// update class on input field based on conditional
 
 onSubmitLine = (event) => {
   event.preventDefault();
@@ -63,15 +55,11 @@ onSubmitLine = (event) => {
     adj2: '',
     noun2: '',
     lastPoemLine: newPoemLine,
-    // lastPoemLine: `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2}.`,
   })
-  // console.log(`last poem line in state ${this.state.lastPoemLine} - might not be done updating!`);
-  console.log(`last submited line: ${newPoemLine}`);
+
   this.incrementPlayerNumber();
 
   this.props.updatePoemLinesCallback(newPoemLine);
-  // this.props.updatePoemLinesCallback(this.state.lastPoemLine);
-
 }
 // variable name for class of pink and for empty string
 // ternary for each input Line

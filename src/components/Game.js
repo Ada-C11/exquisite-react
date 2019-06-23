@@ -18,14 +18,20 @@ class Game extends Component {
 
   // Changes state and adds the new verse to the peom array.
   addSubmission = (verse) => {
-    let verses = this.state.poem;
+    let newVerse = this.state.poem;
 
-    verses.push(verse);
+    newVerse.push(verse);
     this.setState({
-      verses, 
+      poem: newVerse, 
     });
   } 
 
+  showFinalPoem = (event) => {
+    event.preventDefault();
+    this.setState({
+      showPoem: true
+    })
+  }
   render() {
 
     const exampleFormat = SUBMISSIONS.map((field) => {
@@ -54,7 +60,11 @@ class Game extends Component {
         addSubmissionCallback={this.addSubmission}
         player={this.state.poem.length}/>
 
-        <FinalPoem />
+        <FinalPoem 
+        showPoem={this.state.showPoem}
+        poem={this.state.poem}
+        showFinalPoem={this.state.showFinalPoem}
+        />
 
       </div>
     );

@@ -8,11 +8,33 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+     this.state = {
+      poem: [],
+      showPoem: false,
+     };
   }
 
+
+  // Changes state and adds the new verse to the peom array.
+  addSubmission = (verse) => {
+    let newVerse = this.state.poem;
+
+    newVerse.push(verse);
+    this.setState({
+      poem: newVerse, 
+    });
+  } 
+
+  showFinalPoem = (event) => {
+    event.preventDefault();
+    this.setState({
+      showPoem: true
+    })
+  }
   render() {
 
-    const exampleFormat = FIELDS.map((field) => {
+    const exampleFormat = SUBMISSIONS.map((field) => {
       if (field.key) {
         return field.placeholder;
       } else {
@@ -32,18 +54,24 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission lastVerse={this.state.poem[this.state.poem.length - 1]} />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm 
+        addSubmissionCallback={this.addSubmission}
+        player={this.state.poem.length}/>
 
-        <FinalPoem />
+        <FinalPoem 
+        showPoem={this.state.showPoem}
+        poem={this.state.poem}
+        showFinalPoem={this.state.showFinalPoem}
+        />
 
       </div>
     );
   }
 }
 
-const FIELDS = [
+const SUBMISSIONS = [
   "The",
   {
     key: 'adj1',

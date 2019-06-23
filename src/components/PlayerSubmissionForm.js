@@ -7,21 +7,21 @@ class PlayerSubmissionForm extends Component {
     super(props);
 
     this.state = {
-      adjective1: '',
+      adj1: '',
       noun1: '',
-      adverb: '',
+      adv: '',
       verb: '',
-      adjective2: '',
+      adj2: '',
       noun2: '',
     };
   }
   // all fields need at least one character
   validations = {
-    adjective1: /.+/,
+    adj1: /.+/,
     noun1: /.+/,
-    adverb: /.+/,
+    adv: /.+/,
     verb: /.+/,
-    adjective2: /.+/,
+    adj2: /.+/,
     noun2: /.+/,
   }
 
@@ -30,9 +30,7 @@ class PlayerSubmissionForm extends Component {
   }
 
   onChangeHandler = (event) => {
-    console.log(event.target);
-    console.log(event.target.name);
-    console.log(event.target.value);
+   
     const field = {}
     field[event.target.name] = event.target.value
     this.setState(field)
@@ -51,19 +49,19 @@ class PlayerSubmissionForm extends Component {
 
     if (allFieldsValid) {
       this.props.addSubmissionCallback({
-        adjective1: this.state.adjective1,
+        adj1: this.state.adj1,
         noun1: this.state.noun1,
-        adverb: this.state.adverb,
+        adv: this.state.adverb,
         verb: this.state.verb,
-        adjective2: this.state.adjective2,
+        adj2: this.state.adj2,
         noun2: this.state.noun2,
       })
       this.setState({
-        adjective1: '',
+        adj1: '',
         noun1: '',
-        adverb: '',
+        adv: '',
         verb: '',
-        adjective2: '',
+        adj2: '',
         noun2: '',
       })
     }
@@ -72,45 +70,57 @@ class PlayerSubmissionForm extends Component {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ this.props.player + 1 }</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit={this.handleSubmit}>
 
           <div className="PlayerSubmissionForm__poem-inputs">
+            <p>The</p>
             <input
-              name="adjective1" onChange={this.onChangeHandler} value={this.state.adjective1}
+              name="adj1" 
+              onChange={this.onChangeHandler} 
+              value={this.state.adj1}
               placeholder="adjective"
               type="text" />
-          </div>
-          <div className="PlayerSubmissionForm__poem-inputs">
+
             <input
-              name="noun1" onChange={this.onChangeHandler} value={this.state.noun1}
+              name="noun1" 
+              onChange={this.onChangeHandler} 
+              value={this.state.noun1}
               placeholder="noun"
               type="text" />
-          </div>
-          <div className="PlayerSubmissionForm__poem-inputs">
+          
             <input
-              name="adverb" onChange={this.onChangeHandler} value={this.state.adverb}
+              name="adv" 
+              onChange={this.onChangeHandler} 
+              value={this.state.adv}
               placeholder="adverb"
               type="text" />
-          </div>
-          <div className="PlayerSubmissionForm__poem-inputs">
+
             <input
-              name="verb" onChange={this.onChangeHandler} value={this.state.verb}
+              name="verb" 
+              onChange={this.onChangeHandler} 
+              value={this.state.verb}
               placeholder="verb"
               type="text" />
-          </div>
-          <div className="PlayerSubmissionForm__poem-inputs">
+
+            <p>the</p>
+
             <input
-              name="adjective2" onChange={this.onChangeHandler} value={this.state.adjective2}
+              name="adj2" 
+              onChange={this.onChangeHandler} 
+              value={this.state.adj2}
               placeholder="adjective"
               type="text" />
-          </div>
-          <div className="PlayerSubmissionForm__poem-inputs">
+
             <input
-              name="noun2" onChange={this.onChangeHandler} value={this.state.noun2}
+              name="noun2" 
+              onChange={this.onChangeHandler} 
+              value={this.state.noun2}
               placeholder="noun"
               type="text" />
+            
+            <p>.</p>
           </div>
 
           <div className="PlayerSubmissionForm__submit">

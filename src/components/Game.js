@@ -2,13 +2,30 @@ import React, { Component } from 'react';
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
-import RecentSubmission from './RecentSubmission';
 
 class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      poemLines: [],
+      poemFinished: false,
+    }
+    console.log(this.poemLines);
   }
+
+  updatePoemLines = (newPoemLine) => {
+    const newPoemLines = this.state.poemLines
+    if (newPoemLine) {
+      newPoemLines.push(newPoemLine);
+      this.setState({
+        poemLines: newPoemLines
+      })
+    }
+    console.log(this.state.poemLines);
+  }
+
 
   render() {
 
@@ -19,6 +36,12 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
+
+const poemFinished = () => {
+  this.setState({
+    poemFinished: true
+  })
+}
 
     return (
       <div className="Game">
@@ -32,11 +55,20 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        {!this.state.poemFinished &&
+        <PlayerSubmissionForm
+          // playerNumber={this.state.playerNumber}
+          updatePoemLinesCallback={this.updatePoemLines}
+          />
+        }
 
-        <FinalPoem />
+        <FinalPoem
+          poemLines={this.state.poemLines}
+          poemFinished={this.state.poemFinished}
+          updatePoemLinesCallback={this.state.updatePoemLines}
+          poemFinishedCallback={poemFinished}
+          />
 
       </div>
     );

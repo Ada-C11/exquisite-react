@@ -8,8 +8,39 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: "",
+      finalPoem: [],
+      display: true
+
+    }
+  }
+  
+  displayCallback = () => {
+    this.setState({
+      display: false,
+    })
   }
 
+  addPoemLineCallback = (words) => {
+     let line = FIELDS.map((field) => {
+       if(field.key) {
+         if (words[field.key] !== "") {
+         return words[field.key]
+         }
+       } else {
+         return field;
+       }                              
+     }).filter(word => word !== undefined ).join(" ");
+
+     let updatedPoem = this.state.finalPoem;
+     updatedPoem.push(line)
+     this.setState({
+       recentSubmission: line,
+       finalPoem: updatedPoem
+     })
+  }
   render() {
 
     const exampleFormat = FIELDS.map((field) => {
@@ -31,12 +62,23 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
+        {
+          this.state.display?
+            <section>
+            <RecentSubmission recentSubmission={this.state.recentSubmission}/>
 
-        <RecentSubmission />
+            <PlayerSubmissionForm addPoemLineCallback={this.addPoemLineCallback} />
+            </section>
 
-        <PlayerSubmissionForm />
+            :null
+        }
 
-        <FinalPoem />
+        <FinalPoem 
+          
+          poem ={this.state.finalPoem}
+          displayCallback={this.displayCallback}
+          display={this.state.display}
+        />
 
       </div>
     );

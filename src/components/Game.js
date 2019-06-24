@@ -10,7 +10,7 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      poem: ["hello"],
+      poem: [],
       finished: undefined,
       finalPoem: []
     }
@@ -28,8 +28,6 @@ class Game extends Component {
     onFinishCallback = () => {
       const entirePoem = this.state.poem
 
-      console.log(this.state.poem[this.state.poem.length - 1])
-
       this.setState({
         finalPoem: entirePoem,
         poem: [],
@@ -38,10 +36,17 @@ class Game extends Component {
     }
 
     finalPoem = () => {
+      const styledPoem = this.state.finalPoem.map((line, i) => {
+        return (
+          <p key={i}>{line}</p>
+        )
+      });
+
+
       return (
         <section className="FinalPoem__poem">
           <h3>Final Poem</h3>
-          <div>{this.state.finalPoem}</div>
+          <div>{styledPoem}</div>
         </section>
       )
     }

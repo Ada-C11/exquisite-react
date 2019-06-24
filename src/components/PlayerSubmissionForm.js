@@ -21,9 +21,16 @@ class PlayerSubmissionForm extends Component {
       if (typeof field !== "object") {
         return field;
       } else {
-      return (
-          <input key={i} name={field.key} placeholder={field.placeholder} onChange={this.onChanges} value={ this.state[field.key]}/>
-      )}
+        if (this.state[field.key] === '') {
+          return (
+            <input className='PlayerSubmissionFormt__input--invalid' key={i} name={field.key} placeholder={field.placeholder} onChange={this.onChanges} value={this.state[field.key]}/>
+          )
+        } else {
+          return (
+            <input key={i} name={field.key} placeholder={field.placeholder} onChange={this.onChanges} value={this.state[field.key]}/>
+          )
+        }
+      }
     });
 
     return fields

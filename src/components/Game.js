@@ -51,12 +51,16 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission line={[...this.state.poem].pop()}/>
+        { !this.state.displayPoem &&
+          <RecentSubmission line={[...this.state.poem].pop()}/>
+        }
 
-        <PlayerSubmissionForm
-          addLine = {(poemLine) => this.addLine(poemLine)}
-          submissionNumber = {this.state.poem.length + 1}/>
-
+        { !this.state.displayPoem &&
+          <PlayerSubmissionForm
+            addLine = {(poemLine) => this.addLine(poemLine)}
+            submissionNumber = {this.state.poem.length + 1}/>
+        }
+        
         <FinalPoem displayPoem={this.state.displayPoem}
         revealPoem={this.revealPoem}
         poem={this.state.poem}/>

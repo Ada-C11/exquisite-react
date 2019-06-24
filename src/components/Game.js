@@ -17,15 +17,27 @@ class Game extends Component {
   }
 
     onSubmit = (line) => {
-      const newPoem = this.state.poem.push(line)
+      const extendedPoem = this.state.poem
+      console.log(extendedPoem)
+
+      extendedPoem.push(line)
+      // const newPoem = 
+      // console.log(newPoem)
+      console.log(line)
+      console.log(extendedPoem)
+
 
       this.setState({
-        poem: newPoem,
+        poem: extendedPoem,
       });
+
+      console.log(this.state.poem);
+      console.log(this.state.poem.length);
     };
 
     onFinishCallback = () => {
       const entirePoem = this.state.poem
+      console.log(entirePoem)
 
       this.setState({
         finalPoem: entirePoem,
@@ -35,6 +47,7 @@ class Game extends Component {
     }
 
     finalPoem = () => {
+      console.log(this.state.finalPoem)
       return (
         <section className="FinalPoem__poem">
           <h3>Final Poem</h3>
@@ -67,7 +80,7 @@ class Game extends Component {
 
         {!this.state.poem.length > 1 && <RecentSubmission />}
 
-        {!this.state.finished &&  <PlayerSubmissionForm fields={FIELDS} onSubmitCallback={this.onSubmit} player={this.state.poem.length}/>}
+        {!this.state.finished &&  <PlayerSubmissionForm fields={FIELDS} onSubmitCallback={this.onSubmit} player={this.state.poem.length + 1}/>}
 
         <FinalPoem poem={this.state.poem} finish={this.state.finished} onFinishCallback={this.onFinishCallback} />
       

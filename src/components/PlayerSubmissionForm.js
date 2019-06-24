@@ -5,6 +5,15 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: ''
+    }
   }
 
   formInputs = () => {
@@ -13,25 +22,41 @@ class PlayerSubmissionForm extends Component {
         return field;
       } else {
       return (
-          <input key={i} name={field.key} placeholder={field.placeholder} />
+          <input key={i} name={field.key} placeholder={field.placeholder} onChange={this.onChanges} value={ this.state[field.key]}/>
       )}
     });
 
     return fields
   }
 
+  onChanges = (event) => {
+    const field = {}
+    field[event.target.name] = event.target.value;
+
+    this.setState(field);
+  }
+
   submitLine = (event) => {
     event.preventDefault();
-    let lineSubmission = ""
 
-    this.props.onSubmit(lineSubmission)
+    const line = `The ${this.state.adj1} ${this.state.noun1} ${this.state.adv} ${this.state.verb} the ${this.state.adj2} ${this.state.noun2} .`
+
+    this.props.onSubmitCallback(line);
+    this.setState({
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: ''
+    });
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{ this.props.player + 1 }</h3>
+        <h3>Player Submission Form for Player #{this.props.player}</h3>
 
         <form className="PlayerSubmissionForm__form" >
 

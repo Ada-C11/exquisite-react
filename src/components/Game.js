@@ -8,7 +8,29 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      recentSubmission: "",
+      poem: [],
+      player:1,
+      gameCompleted:false,
+    }
   }
+
+  addRecentSubmission = (sentence) =>{
+    
+    this.setState({
+      recentSubmission: sentence,
+      poem: [...this.state.poem, sentence],
+      player: this.state.player + 1,
+    });
+  }
+
+  handleRevealClick = (event) => {
+    event.preventDefault();
+    this.setState({
+      gameCompleted: true,
+    });
+}
 
   render() {
 
@@ -32,11 +54,18 @@ class Game extends Component {
           { exampleFormat }
         </p>
 
-        <RecentSubmission />
+        <RecentSubmission 
+        sentence = {this.state.recentSubmission}/>
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm addRecentSubmissionCallback = {this.addRecentSubmission}
+        player={this.state.player}
+        gameCompleted = {this.state.gameCompleted}
+        fields= {FIELDS}
+        />
 
-        <FinalPoem />
+        <FinalPoem sentences={this.state.poem}
+        handleRevealClick ={this.handleRevealClick}
+        gameCompleted = {this.state.gameCompleted}/>
 
       </div>
     );

@@ -8,6 +8,28 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      recentSubmission: undefined,
+      allSubmissions: [],
+      showPoem: false
+    }
+  }
+
+  showAllPoems = () => {
+    this.setState({
+      showPoem: true
+    })
+  }
+
+  addSubmission = (submission) => {
+    const updatedAllSubmissions = this.state.allSubmissions
+    updatedAllSubmissions.push(submission)
+
+    this.setState({
+      recentSubmission: submission,
+      allSubmissions: updatedAllSubmissions
+    })
   }
 
   render() {
@@ -19,7 +41,7 @@ class Game extends Component {
         return field;
       }
     }).join(" ");
-
+    
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -29,14 +51,20 @@ class Game extends Component {
         <p>Please follow the following format for your poetry submission:</p>
 
         <p className="Game__format-example">
-          { exampleFormat }
+          { exampleFormat } 
         </p>
 
-        <RecentSubmission />
+        {this.state.recentSubmission && !this.state.showPoem && <RecentSubmission 
+        showSubmission={this.state.recentSubmission} /> }
+        
+        {!this.state.showPoem && <PlayerSubmissionForm 
+        submitFormCallback={this.addSubmission}/>}
 
-        <PlayerSubmissionForm />
-
-        <FinalPoem />
+        <FinalPoem 
+        allSubmissionsString={this.state.allSubmissions}
+        showAllPoemsCallback={this.showAllPoems}
+        showPoemStatus={this.state.showPoem}
+        />
 
       </div>
     );
